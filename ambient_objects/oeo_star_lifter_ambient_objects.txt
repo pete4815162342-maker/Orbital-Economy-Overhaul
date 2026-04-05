@@ -1,7 +1,0 @@
-#Starlifter star effect
-ambient_object = {
-	name = "oeo_forge_outburst_1"
-	entity = "oeo_neutron_outbursts_entity"
-	selectable = no
-	show_name = no
-}
