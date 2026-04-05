@@ -1,0 +1,54 @@
+######Only for uninhabited habitat#######
+oeo_decision_dismantle_habitat = {
+	icon = oeo_decision_remove_habitat
+	owned_planets_only = no
+	#enactment_time = 360
+	resources = {
+		category = decisions
+		cost = {
+############Matches alloy cost####
+			energy = 1500
+		}
+	}
+	potential = {
+		is_planet_class = pc_habitat
+		has_owner = no
+		is_colony = no
+		is_under_colonization = no
+		has_anomaly = no
+	}
+	
+	effect = {
+		custom_tooltip = oeo_habitat_removal_tooltip
+		hidden_effect = {
+			solar_system = {
+				remove_star_flag = has_habitat
+				every_system_planet = { 
+					remove_planet_flag = habitat@prevprev
+					remove_planet_flag = has_orbital
+				}
+				every_system_megastructure = {
+					limit = {
+						OR = {
+							is_megastructure_type = habitat_minor_orbital
+							is_megastructure_type = habitat_major_orbital
+						}
+					}
+					remove_megastructure = this
+				}
+			}
+			remove_planet = yes
+		}
+		from = {
+			add_resource = {
+				alloys = 1500
+				mult = modifier:megastructure_dismantle_refund_mult
+			}
+		}
+	}
+#####No AI ALLOWED#######
+	ai_weight = {
+		weight = 0
+	}
+}
+
