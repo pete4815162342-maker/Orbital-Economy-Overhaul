@@ -1,0 +1,558 @@
+@stage_1_research_bonus	= 100
+@stage_2_research_bonus	= 200
+@stage_3_research_bonus	= 300
+@stage_4_research_bonus	= 350
+@entity_x				= 0
+@entity_y				= -20
+think_tank_0 = {
+	entity = "construction_platform_entity"
+	construction_entity = "construction_platform_entity"
+	portrait = "GFX_megastructure_construction_background"
+	place_entity_on_planet_plane = no
+	entity_offset = { x = @entity_x y = @entity_y }
+	build_time = 1800
+	resources = {
+		category = megastructures_oeo_megastructures
+		cost = { 
+			####Unity replaced with influence for 1st stage####
+			influence = 500
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 5000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 5000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 5000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = { trade = @oeo_nexus1_trade_upkeep }
+	}
+	dismantle_cost = {
+		category = megastructures
+		cost = { energy = 5000 }
+	}
+	dismantle_time = 360
+	dismantle_potential = {	always = yes }
+	dismantle_possible = {
+		custom_tooltip = {
+			fail_text = "oeo_dismantle_cooldown" 
+			NOT = { has_megastructure_flag = oeo_dismantle_cooldown }
+		}
+	}
+	on_dismantle_start = {
+		fromfrom.planet = {
+			set_planet_flag = oeo_not_cancelled
+			planet_event = { id = oeo_individual_dismantle.1 days = 361 }
+		}
+	}
+	on_dismantle_cancel = {
+		fromfrom = { set_timed_megastructure_flag = { flag = oeo_dismantle_cooldown days = 360 } }
+		fromfrom.planet = { remove_planet_flag = oeo_not_cancelled }
+	}
+	on_dismantle_complete = {	
+		from = {
+			add_resource = {
+				alloys = 5000
+				mult = modifier:megastructure_dismantle_refund_mult
+			}
+		}
+	}	
+	custom_tooltip_requirements = "oeo_MEGASTRUCTURE_TOOLTIP_REQUIREMENTS_MEGASTRUCTURE_LIMIT"
+	prerequisites = { "tech_science_nexus" }
+	possible = {
+		hidden_trigger = {
+			exists = starbase
+		}
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		custom_tooltip = {
+			fail_text = "requires_surveyed_system"
+			NOT = {
+				any_system_planet = {
+					is_surveyed = {
+						who = prev.from
+						status = no
+					}
+				}
+			}
+		}
+	}
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "requires_survey_not_habitable"
+				is_surveyed = {			# prevent leaking habitability information
+					who = prev.from
+					status = yes
+				}
+				colonizable_planet = no
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = { has_anomaly = yes }
+			}
+			custom_tooltip = {
+				fail_text = "requires_not_minor_planetary_body"
+				NOR = {
+					is_asteroid = yes
+					is_moon = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_not_star"
+				is_star = no
+			}
+			custom_tooltip = {
+				fail_text = "requires_not_astral_scar"
+				is_astral_scar = no
+			}
+			custom_tooltip = {
+				fail_text = "requires_not_ring_world"
+				is_ringworld = no
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_existing_megastructure"
+				#can_build_megastructure_on_planet = yes
+				NOR = {
+					has_planet_flag = has_megastructure
+					has_planet_flag = megastructure
+				}
+			}
+		}
+	}
+	# root = system
+	# from = country
+	ai_weight = {
+		factor = 10
+		modifier = {
+			factor = 0.1
+			starbase = { NOT = { has_starbase_size >= starbase_starfortress } }
+		}
+		modifier = {
+			factor = 0.1
+			any_neighbor_system = {
+				exists = owner
+				NOT = {
+					owner = { is_same_value = from }
+				}
+			}
+		}
+		modifier = {
+			factor = 2.0
+			from = {
+				OR = {
+					has_ethic = ethic_materialist
+					has_ethic = ethic_fanatic_materialist
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+		 	from = {
+		 		has_country_flag = oeo_mega_cooldown
+		 	}
+		}
+		modifier = {
+			factor = 0
+			from = {
+				count_owned_megastructure = {
+					limit = { 
+						is_oeo_think_category = yes
+					}
+					count < 0
+				}
+			}
+		}
+	}
+	on_build_start = {
+		from = {
+			set_timed_country_flag = { flag = oeo_mega_cooldown days = @oeo_mega_cooldown_time }
+		}
+	}
+	on_build_complete = {
+		set_star_flag = think_tank_built
+		fromfrom.planet = {
+			set_planet_flag = has_megastructure
+			set_planet_flag = oeo_think
+		}
+		from = {
+			if = {
+				limit = {
+					has_relic = r_contingency_core
+					has_country_flag = built_think_tank
+				}
+				set_country_flag = built_think_tank_contingency
+			}
+			set_country_flag = built_think_tank
+		}
+	}
+}
+think_tank_1 = {
+	entity = "thinktank_phase_01_entity"
+	construction_entity = "thinktank_phase_01_entity"
+	portrait = "GFX_megastructure_construction_background"
+	place_entity_on_planet_plane = no
+	entity_offset = { x = @entity_x y = @entity_y }
+	build_time = 3600
+	resources = {
+		category = megastructures_oeo_megastructures
+		cost = { unity = 5000 }
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 15000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 15000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 15000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = { trade = @oeo_nexus2_trade_upkeep }
+		produces = {
+			society_research = @stage_1_research_bonus
+			engineering_research = @stage_1_research_bonus
+			physics_research = @stage_1_research_bonus
+		}
+	}
+	dismantle_cost = {
+		category = megastructures
+		cost = { energy = 15000 }
+	}
+	dismantle_time = 360
+	dismantle_potential = {	always = yes }
+	dismantle_possible = {
+		custom_tooltip = {
+			fail_text = "oeo_dismantle_cooldown" 
+			NOT = { has_megastructure_flag = oeo_dismantle_cooldown }
+		}
+	}
+	on_dismantle_start = {
+		fromfrom.planet = {
+			set_planet_flag = oeo_not_cancelled
+			planet_event = { id = oeo_individual_dismantle.1 days = 361 }
+		}
+	}
+	on_dismantle_cancel = {
+		fromfrom = { set_timed_megastructure_flag = { flag = oeo_dismantle_cooldown days = 360 } }
+		fromfrom.planet = { remove_planet_flag = oeo_not_cancelled }
+	}
+	on_dismantle_complete = {	
+		from = {
+			add_resource = {
+				alloys = 15000
+				mult = modifier:megastructure_dismantle_refund_mult
+			}
+		}
+	}	
+	upgrade_from = { think_tank_0 }
+	prerequisites = { "tech_science_nexus" }
+	country_modifier = { all_technology_research_speed = 0.05 }
+}
+think_tank_2 = {
+	entity = "thinktank_phase_02_entity"
+	construction_entity = "thinktank_phase_02_entity"
+	portrait = "GFX_megastructure_construction_background"
+	place_entity_on_planet_plane = no
+	entity_offset = { x = @entity_x y = @entity_y }
+	build_time = 3600
+	resources = {
+		category = megastructures_oeo_megastructures
+		cost = { unity = 5000 }
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 15000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 15000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 15000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = { trade = @oeo_nexus3_trade_upkeep }
+		produces = {
+			society_research = @stage_2_research_bonus
+			engineering_research = @stage_2_research_bonus
+			physics_research = @stage_2_research_bonus
+		}
+	}
+	dismantle_cost = {
+		category = megastructures
+		cost = { energy = 15000 }
+	}
+	dismantle_time = 360
+	dismantle_potential = {	always = yes }
+	dismantle_possible = {
+		custom_tooltip = {
+			fail_text = "oeo_dismantle_cooldown" 
+			NOT = { has_megastructure_flag = oeo_dismantle_cooldown }
+		}
+	}
+	on_dismantle_start = {
+		fromfrom.planet = {
+			set_planet_flag = oeo_not_cancelled
+			planet_event = { id = oeo_individual_dismantle.1 days = 361 }
+		}
+	}
+	on_dismantle_cancel = {
+		fromfrom = { set_timed_megastructure_flag = { flag = oeo_dismantle_cooldown days = 360 } }
+		fromfrom.planet = { remove_planet_flag = oeo_not_cancelled }
+	}
+	on_dismantle_complete = {	
+		from = {
+			add_resource = {
+				alloys = 15000
+				mult = modifier:megastructure_dismantle_refund_mult
+			}
+		}
+	}	
+	upgrade_from = { think_tank_1 }
+	prerequisites = { "tech_science_nexus" }
+	country_modifier = { all_technology_research_speed = 0.10 }
+}
+think_tank_3 = {
+	entity = "thinktank_phase_03_entity"
+	construction_entity = "thinktank_phase_03_entity"
+	portrait = "GFX_megastructure_think_tank_background"
+	place_entity_on_planet_plane = no
+	entity_offset = { x = @entity_x y = @entity_y }
+	outliner_trigger = {
+		exists = owner
+		owner = {
+			NOT = { has_country_flag = oeo_think_outliner}
+		}
+	}
+	build_time = 3600
+	resources = {
+		category = megastructures_oeo_megastructures
+		cost = { unity = 5000 }
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 15000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 15000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 15000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = { trade = @oeo_nexus4_trade_upkeep }
+		produces = {
+			society_research = @stage_3_research_bonus
+			engineering_research = @stage_3_research_bonus
+			physics_research = @stage_3_research_bonus
+		}
+	}
+	dismantle_cost = {
+		category = megastructures
+		cost = { energy = 15000 }
+	}
+	dismantle_time = 360
+	dismantle_potential = {	always = yes }
+	dismantle_possible = {
+		custom_tooltip = {
+			fail_text = "oeo_dismantle_cooldown" 
+			NOT = { has_megastructure_flag = oeo_dismantle_cooldown }
+		}
+	}
+	on_dismantle_start = {
+		fromfrom.planet = {
+			set_planet_flag = oeo_not_cancelled
+			planet_event = { id = oeo_individual_dismantle.1 days = 361 }
+		}
+	}
+	on_dismantle_cancel = {
+		fromfrom = { set_timed_megastructure_flag = { flag = oeo_dismantle_cooldown days = 360 } }
+		fromfrom.planet = { remove_planet_flag = oeo_not_cancelled }
+	}
+	on_dismantle_complete = {	
+		from = {
+			add_resource = {
+				alloys = 15000
+				mult = modifier:megastructure_dismantle_refund_mult
+			}
+		}
+	}	
+	upgrade_from = { think_tank_2 }
+	on_build_complete = {
+		from = { set_country_flag = has_built_or_repaired_megastructure }
+	}
+	prerequisites = { "tech_science_nexus" }
+	show_prereqs = yes
+	country_modifier = { all_technology_research_speed = 0.15 }
+}
+
+#Leader sacrifice boosted
+think_tank_4 = {
+	entity = "thinktank_phase_03_entity"
+	construction_entity = "thinktank_phase_03_entity"
+	portrait = "GFX_megastructure_think_tank_background"
+	place_entity_on_planet_plane = no
+	entity_offset = { x = @entity_x y = @entity_y }
+	outliner_trigger = {
+		exists = owner
+		owner = {
+			NOT = { has_country_flag = oeo_think_outliner}
+		}
+	}
+	build_time = 20
+	resources = {
+		category = megastructures_oeo_megastructures
+		upkeep = { trade = @oeo_nexus5_trade_upkeep }
+		produces = {
+			society_research = @stage_4_research_bonus
+			engineering_research = @stage_4_research_bonus
+			physics_research = @stage_4_research_bonus
+		}
+	}
+	dismantle_cost = {
+		category = megastructures
+		cost = { energy = 15000 }
+	}
+	dismantle_time = 360
+	dismantle_potential = {	always = yes }
+	dismantle_possible = {
+		custom_tooltip = {
+			fail_text = "oeo_dismantle_cooldown" 
+			NOT = { has_megastructure_flag = oeo_dismantle_cooldown }
+		}
+	}
+	on_dismantle_start = {
+		fromfrom.planet = {
+			set_planet_flag = oeo_not_cancelled
+			planet_event = { id = oeo_individual_dismantle.1 days = 361 }
+		}
+	}
+	on_dismantle_cancel = {
+		fromfrom = { set_timed_megastructure_flag = { flag = oeo_dismantle_cooldown days = 360 } }
+		fromfrom.planet = { remove_planet_flag = oeo_not_cancelled }
+	}
+	on_dismantle_complete = {	
+		from = {
+			add_resource = {
+				alloys = 15000
+				mult = modifier:megastructure_dismantle_refund_mult
+			}
+		}
+	}	
+	upgrade_from = { think_tank_3 }
+	on_build_complete = {
+		from = { set_country_flag = has_built_or_repaired_megastructure }
+	}
+	prerequisites = { "tech_science_nexus" }
+	upgrade_desc = hide
+	potential = { always = no }
+	country_modifier = { all_technology_research_speed = 0.15 }
+}
+
+# Restored Science Nexus
+think_tank_restored = {
+	entity = "thinktank_phase_03_entity"
+	construction_entity = "thinktank_phase_03_entity"
+	portrait = "GFX_megastructure_think_tank_background"
+	place_entity_on_planet_plane = no
+	entity_offset = { x = @entity_x y = @entity_y }
+	outliner_trigger = {
+		exists = owner
+		owner = {
+			NOT = { has_country_flag = oeo_think_outliner}
+		}
+	}
+	build_time = 4800
+	resources = {
+		category = megastructures_oeo_megastructures
+		cost = { unity = 3200 }
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 15000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 15000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 15000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = { trade = @oeo_nexus4_trade_upkeep }
+		produces = {
+			society_research = @stage_3_research_bonus
+			engineering_research = @stage_3_research_bonus
+			physics_research = @stage_3_research_bonus
+		}
+	}
+	dismantle_cost = {
+		category = megastructures
+		cost = { energy = 15000 }
+	}
+	dismantle_time = 360
+	dismantle_potential = {	always = yes }
+	dismantle_possible = {
+		custom_tooltip = {
+			fail_text = "oeo_dismantle_cooldown" 
+			NOT = { has_megastructure_flag = oeo_dismantle_cooldown }
+		}
+	}
+	on_dismantle_start = {
+		fromfrom.planet = {
+			set_planet_flag = oeo_not_cancelled
+			planet_event = { id = oeo_individual_dismantle.1 days = 361 }
+		}
+	}
+	on_dismantle_cancel = {
+		fromfrom = { set_timed_megastructure_flag = { flag = oeo_dismantle_cooldown days = 360 } }
+		fromfrom.planet = { remove_planet_flag = oeo_not_cancelled }
+	}
+	on_dismantle_complete = {	
+		from = {
+			add_resource = {
+				alloys = 15000
+				mult = modifier:megastructure_dismantle_refund_mult
+			}
+		}
+	}	
+	upgrade_from = { think_tank_ruined }
+
+	possible = { from = { has_technology = tech_mega_engineering } }
+	country_modifier = { all_technology_research_speed = 0.15 }
+	on_build_start = {
+		fromfrom = { set_graphical_culture = root.from }
+	}
+	on_build_complete = {
+		every_system_ambient_object = {
+			limit = {
+				OR = {
+					is_ambient_object_type = large_debris_object
+					is_ambient_object_type = medium_debris_01_object
+					is_ambient_object_type = medium_debris_02_object
+				}
+			}
+			destroy_ambient_object = this
+		}
+		from = {
+			set_country_flag = has_built_or_repaired_megastructure
+			country_event = { id = utopia.2013 }
+		}
+	}
+}

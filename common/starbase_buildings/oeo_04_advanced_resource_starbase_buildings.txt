@@ -1,0 +1,217 @@
+oeo_metallurgy_bay = {
+	icon = "GFX_oeo_spaceport_module_metallurgy"
+	construction_days = 720
+	potential = {
+		exists = owner
+		owner = { has_technology = "tech_oeo_orbtital_industry_2" }
+		is_space_citadel = no
+	}
+	resources = {
+		category = starbase_buildings
+		cost = { alloys = 150 }
+		produces = { alloys = 5 }
+		upkeep = { energy = 2 }
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = { is_catalytic_empire = no }
+			}
+			minerals = 10
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = { is_catalytic_empire = yes }
+			}
+			food = 30
+		}
+	}
+	show_in_tech = "tech_oeo_orbtital_industry_2"
+	ai_weight = { weight = 200 }
+}
+oeo_manufacturing_bay = {
+	icon = "GFX_oeo_spaceport_module_factory"
+	construction_days = 720
+	potential = {
+		exists = owner
+		owner = { 
+			has_technology = "tech_oeo_orbtital_industry_2"
+			country_uses_consumer_goods = yes
+		}
+		is_space_citadel = no
+	}
+	resources = {
+		category = starbase_buildings
+		cost = { alloys = 150 }
+		produces = { consumer_goods = 5 }
+		upkeep = { energy = 2 }
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = { is_catalytic_empire = no }
+			}
+			minerals = 5
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = { is_catalytic_empire = yes }
+			}
+			food = 15
+		}
+	}
+	show_in_tech = "tech_oeo_orbtital_industry_2"
+	ai_weight = { weight = 100 }
+}
+oeo_gas_refinery = {
+	icon = "GFX_oeo_spaceport_module_gas"
+	construction_days = 720
+
+	potential = {
+		exists = owner
+		owner = { has_technology = "tech_exotic_gases" }
+		is_space_citadel = no
+	}
+
+	possible = {
+		exists = owner
+		owner = { has_technology = tech_exotic_gases }
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 150
+		}
+
+		produces = {
+			exotic_gases = 1
+		}
+
+		upkeep = {
+			energy = 3
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = { is_catalytic_empire = no }
+			}
+			minerals = 5
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = { is_catalytic_empire = yes }
+			}
+			food = 15
+		}
+	}
+
+	show_in_tech = "tech_exotic_gases"
+
+	ai_weight = {
+		weight = 100 #use same weight here - ai weighting is done in starbase_types.txt
+	}
+}
+oeo_chemical_plant = {
+	icon = "GFX_oeo_spaceport_module_motes"
+	construction_days = 720
+
+	potential = {
+		exists = owner
+		owner = { 
+			has_technology = "tech_volatile_motes"
+		}
+		is_space_citadel = no
+	}
+
+	possible = {
+		exists = owner
+		owner = { has_technology = tech_volatile_motes }
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 150
+		}
+
+		produces = {
+			volatile_motes = 1
+		}
+
+		upkeep = {
+			energy = 3
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = { is_catalytic_empire = no }
+			}
+			minerals = 5
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = { is_catalytic_empire = yes }
+			}
+			food = 15
+		}
+	}
+
+	show_in_tech = "tech_volatile_motes"
+
+	ai_weight = {
+		weight = 100 #use same weight here - ai weighting is done in starbase_types.txt
+	}
+}
+oeo_translucer_bay = {
+	icon = "GFX_oeo_spaceport_module_crystals"
+	construction_days = 720
+
+	potential = {
+		exists = owner
+		owner = { has_technology = "tech_rare_crystals" }
+		is_space_citadel = no
+	}
+
+	possible = {
+		exists = owner
+		owner = { has_technology = tech_rare_crystals }
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 150
+		}
+
+		produces = {
+			rare_crystals = 1
+		}
+
+		upkeep = {
+			energy = 3
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = { is_catalytic_empire = no }
+			}
+			minerals = 5
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = { is_catalytic_empire = yes }
+			}
+			food = 15
+		}
+	}
+
+	show_in_tech = "tech_rare_crystals"
+
+	ai_weight = {
+		weight = 100 #use same weight here - ai weighting is done in starbase_types.txt
+	}
+}

@@ -1,0 +1,85 @@
+oeo_ring_world_repair = {
+    entity = ""
+	construction_entity = ""
+	portrait = "GFX_megastructure_construction_background"
+	place_entity_on_planet_plane = yes
+	entity_offset = { x = 0 y = 0 }
+	scales_with_planet = yes
+	show_in_outliner = no
+	build_time = 1800
+	resources = {
+		category = megastructures_oeo_megastructures
+		cost = { influence = 500 }
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 10000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 10000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = { trade = 5 }
+	}
+	potential = { 
+		has_technology = tech_ring_world
+	}
+	possible = {
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		custom_tooltip = {
+			fail_text = "oeo_requires_destroyed_ringworld"
+			any_system_planet = {
+				is_planet_class = pc_ringworld_habitable_damaged
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_black_hole_neutron_star_pulsar"
+			NOR = {
+				is_star_class = sc_black_hole
+				is_star_class = sc_neutron_star
+				is_star_class = sc_pulsar
+			}
+		}
+	}
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "requires_surveyed_planet"
+				is_surveyed = {			# prevent leaking habitability information
+					who = prev.from
+					status = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "oeo_requires_destroyed_ringworld"
+				is_planet_class = pc_ringworld_habitable_damaged
+			}
+		}
+	}
+	ai_weight = {
+		factor = 50
+	}
+	on_build_start = {}
+	on_build_complete = {
+		fromfrom.planet = {
+			change_pc = pc_ringworld_habitable
+			set_planet_entity = {
+				entity = "ringworld_habitable_entity_01_entity"
+				graphical_culture = fromfrom
+			}		
+		}
+		fromfrom = {
+			remove_megastructure = this
+		}
+	}
+}
+

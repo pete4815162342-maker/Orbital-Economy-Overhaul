@@ -1,0 +1,114 @@
+
+oeo_gateway_system = {
+	class = "sc_pulsar"
+
+	flags = {  }
+	
+	scaled_spawn_chance = 4
+	max_instances = 1
+	
+	usage_odds = {
+		base = 0
+		modifier = {
+			host_has_dlc = "Ancient Relics Story Pack"
+			host_has_dlc = "Utopia"
+			add = 1000
+		}
+	}
+	planet = {
+		class = star
+		orbit_distance = 0
+	}
+	change_orbit = 45
+	planet = {
+		class = pc_broken
+		size = 17
+		orbit_distance = 25
+		orbit_angle = { min = 90 max = 270 }
+		flags = { oeo_arc_site }
+
+		init_effect = {
+			prevent_anomaly = yes
+			create_archaeological_site = oeo_strange_derelict_digsite
+			create_ambient_object = {
+				type = "abandoned_ship_2_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 5
+					angle = 20
+				}
+			}
+			create_ambient_object = {
+				type = "abandoned_starbase_01_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 0
+					angle = 30
+				}
+			}
+			create_ambient_object = {
+					type = "large_debris_object"
+					location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 0
+					angle = 30
+				}
+			}
+		}
+	}
+}
+
+oeo_black_hole_shell_world = {
+	class = sc_black_hole
+	usage = misc_system_init
+	 name = "Abyssal Edge"
+	flags = { oeo_ruined_black_hole_shell_world }
+	
+	usage_odds = {
+		base = 0
+	}
+	max_instances = 1
+	
+	planet = {
+		class = star
+		orbit_distance = 0
+		init_effect = {
+			save_event_target_as = oeo_black_hole_shellworld
+			prevent_anomaly = yes
+			clear_deposits = ye
+		}
+	}
+
+	change_orbit = 200
+
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 150
+	}
+
+	init_effect = {
+		spawn_megastructure = {
+			type = "oeo_ruined_black_hole_shellworld"
+			planet = event_target:oeo_black_hole_shellworld
+		}
+		spawn_natural_wormhole = {
+			bypass_type = wormhole
+			random_pos = no
+			orbit_distance = 180
+			orbit_angle = -90
+			graphics_entity_name = strange_wormhole_entity
+			init_effect = {
+				save_global_event_target_as = oeo_wormhole_bypass
+			}
+		}
+	}
+}

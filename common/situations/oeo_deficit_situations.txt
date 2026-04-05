@@ -1,0 +1,216 @@
+@stage_1_workforce_penalty = -0.33
+@stage_2_workforce_penalty = -0.50
+@stage_3_workforce_penalty = -0.66
+@stage_4_workforce_penalty = -0.75
+
+situation_oeo_logistics_deficit = {
+	picture = GFX_evt_deficit
+	category = negative
+	fail_icon = GFX_situation_outcome_meh
+	fail_icon_frame = GFX_situation_outcome_frame_green
+	complete_icon = GFX_situation_outcome_bankrupcy
+	complete_icon_frame = GFX_situation_outcome_frame_red
+
+	on_start = {
+		set_situation_flag = deficit_situation
+		owner = {
+			country_event = { id = timeline.19 } # Timeline Deficit
+		}
+	}
+	on_abort = {
+		owner = {
+			add_resource = {
+				trade = 1000
+				mult = value:bailout_scaling_factor
+			}
+		}
+	}
+
+	initial_progress = 15
+	on_monthly = {
+		random_events = {
+			80 = 0
+			#20 = origin.4170	# Payback | MSI helping you
+		}
+	}
+
+	stages = {
+		deficit_first = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_red
+			end = 25
+			triggered_modifier = {
+				modifier = {
+					megastructures_oeo_kilostructures_produces_mult = -0.20
+					megastructures_oeo_hectostructures_produces_mult = -0.20
+					megastructures_cost_mult = 1
+					stations_produces_mult = -0.20
+					ship_weapon_damage = -0.2
+				}
+			}
+		}
+		deficit_second = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_red
+			end = 50
+			triggered_modifier = {
+				modifier = {
+					megastructures_oeo_kilostructures_produces_mult = -0.40
+					megastructures_oeo_hectostructures_produces_mult = -0.40
+					megastructures_cost_mult = 2
+					stations_produces_mult = -0.40
+					ship_weapon_damage = -0.4
+				}
+			}
+		}
+		deficit_third = {
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_red
+			end = 75
+			triggered_modifier = {
+				modifier = {
+					megastructures_oeo_kilostructures_produces_mult = -0.60
+					megastructures_oeo_hectostructures_produces_mult = -0.60
+					megastructures_cost_mult = 3
+					stations_produces_mult = -0.60
+					ship_weapon_damage = -0.6
+				}
+			}
+		}
+		deficit_fourth = {
+			icon = GFX_situation_stage_4
+			icon_background = GFX_situation_stage_frame_red
+			end = 100
+			on_first_enter = {
+				situation_event = { id = oeo_situation_events.2 }
+			}
+			triggered_modifier = {
+				modifier = {
+					megastructures_oeo_kilostructures_produces_mult = -0.80
+					megastructures_oeo_hectostructures_produces_mult = -0.80
+					megastructures_cost_mult = 4
+					stations_produces_mult = -0.80
+					ship_weapon_damage = -0.8
+				}
+			}
+		}
+	}
+
+	on_progress_complete = {
+		country_defaulted_in_situation_tooltip = yes
+		hidden_effect = {
+			situation_event = { id = oeo_situation_events.1 }
+		}
+	}
+	on_fail = {
+		custom_tooltip = deficit_situation_finish_tooltip
+		hidden_effect = { destroy_situation = this }
+	}
+	monthly_progress = {
+		base = 0
+		modifier = {
+			add = value:deficit_situation_progress_value|RESOURCE|trade|
+			desc = string_expenditures_greater_than_income_trade
+			owner = { has_actual_deficit = { RESOURCE = trade } }
+		}
+		modifier = {
+			subtract = 5
+			desc = string_not_in_deficit_trade
+			owner = {
+				resource_income_compare = {
+					resource = trade
+					value >= 0
+				}
+			}
+		}
+		modifier = {
+			subtract = 1
+			desc = string_resource_reserves_trade
+			owner = {
+				has_negative_income_with_stockpile = { RESOURCE = trade }
+			}
+		}
+		modifier = {
+			desc = civilian_difficulty
+			mult = 0.1
+			situation_monthly_progress > 0
+			is_difficulty = 0
+			owner = {
+				is_ai = no
+			}
+		}
+		modifier = {
+			desc = cadet_difficulty
+			mult = 0.5
+			situation_monthly_progress > 0
+			is_difficulty = 1
+			owner = {
+				is_ai = no
+			}
+		}
+	}
+	approach = {
+		name = deficit_approach_do_nothing
+		icon = GFX_situation_approach_this_is_fine
+		icon_background = GFX_situation_approach_bg_yellow
+		default = yes
+		on_select = {
+			custom_tooltip = deficit_approach_do_nothing_tooltip
+		}
+		ai_weight = {
+			base = 1
+		}
+	}
+	approach = {
+		name = deficit_approach_cut_investment
+		icon = GFX_situation_approach_balance_sheet
+		icon_background = GFX_situation_approach_bg_red
+		triggered_modifier = {
+			modifier = {
+				megastructures_oeo_megastructures_produces_mult = -0.50
+				megastructures_oeo_kilostructures_produces_mult = -0.50
+				megastructures_oeo_hectostructures_produces_mult = -0.50
+				megastructures_upkeep_mult = -0.50
+			}
+		}
+		
+		potential = {
+		}
+
+		ai_weight = {
+			base = 0
+			modifier = {
+				add = 2
+				current_stage = deficit_third
+			}
+			modifier = {
+				add = 2
+				current_stage = deficit_fourth
+			}
+		}
+	}
+	approach = {
+		name = deficit_approach_invest_in_logistics
+		icon = GFX_situation_approach_unity
+		icon_background = GFX_situation_approach_bg_green
+		potential = {
+		}
+		modifier = {
+			country_trade_produces_mult = 0.5
+			country_unity_produces_mult = -0.5
+			country_influence_produces_mult = -0.5
+		}
+
+		ai_weight = {
+			base = 0
+			modifier = {
+				add = 3
+				current_stage = deficit_third
+			}
+			modifier = {
+				add = 3
+				current_stage = deficit_fourth
+			}
+		}
+	}
+}

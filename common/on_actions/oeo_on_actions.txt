@@ -1,0 +1,164 @@
+
+on_game_start_country = {
+	events = {
+		oeo_megastructure_civic.1
+		zzz_oeo_terraform_game_start.2
+		zzz_oeo_terraform_game_start.3
+	}
+}
+# scope: country, from: leader
+on_leader_spawned = {
+	events = {
+		oeo_computation_events.2
+		oeo_extraction_scan.5
+	}
+}
+
+# THIS = country
+on_tradition_picked = {
+	events = {}
+}
+
+# this/root = planet that have been fired upon
+# from = fleet that fired
+on_destroy_planet_with_PLANET_KILLER_CRACKER = {
+	events = {
+		oeo_planet_cracked.1
+	}
+}
+
+# this/root = planet that have been fired upon
+# from = fleet that fired
+on_destroy_planet_with_PLANET_KILLER_SHIELDER = {
+	events = {
+		oeo_planet_shielded.1
+	}
+}
+
+# this/root = planet that have been fired upon
+# from = fleet that fired
+on_destroy_planet_with_PLANET_KILLER_NEUTRON = {
+	events = {
+		oeo_planet_neutron.1
+	}
+}
+
+# this/root = planet that have been fired upon
+# from = fleet that fired
+on_destroy_planet_with_PLANET_KILLER_GODRAY = {
+	events = {
+		oeo_planet_godray.1
+	}
+}
+
+# this/root = planet that have been fired upon
+# from = fleet that fired
+on_destroy_planet_with_PLANET_KILLER_DEVOLUTION = {
+	events = {
+		oeo_planet_devolver.1
+	}
+}
+
+on_destroy_planet_with_PLANET_KILLER_NANOBOTS = {
+	events = {
+		oeo_planet_nanobot.1
+	}
+}
+
+# Scope = Ship
+# From = System
+# FromFrom = Country
+on_entering_system_first_time = {
+	events = {
+		oeo_arc_sites.10
+	}
+}
+
+# Scope: Ship Event
+# Root = Ship
+# From = Planet
+on_ship_built = {
+    events = {}
+}
+
+# THIS = System: system whos controller has changed
+# FROM = Country: New controller of the system
+# FROMFROM = Country: Old controller of the system
+on_system_controller_changed = {
+	events = {}
+}
+
+#NO SCOPE
+on_monthly_pulse_country = {
+	events = {}
+}
+
+# This = owner of ship 1 (destroyed)
+# From = owner of ship 2 (combatant)
+# FromFrom = ship 1
+# FromFromFrom = ship 2
+on_ship_destroyed_victim = {	
+	events = {} 
+}
+
+# This = owner of fleet
+# From = disbanded fleet
+on_fleet_disbanded = {								
+	events = {}
+}
+
+# This = owner of ship
+# From = disbanded ship
+on_ship_disbanded = {								
+	events = {}
+}
+
+# This = starbase being destroyed (not ship!)
+# From = fleet that destroyed the starbase
+on_starbase_destroyed = {
+	events = {}
+}
+
+# From = system
+# FromFrom = country (new owner)
+# This = country (previous owner)
+on_system_lost = {
+	events = {}
+}
+
+# this = new owner
+# from = megastructure
+# fromfrom = old owner (if existing)
+on_megastructure_change_owner = {
+	events = {}
+}
+
+# this = solar system containing megastructure
+# from = megastructure
+# fromfrom = old owner (if existing)
+on_megastructure_ownerless = {
+	events = {}
+}
+
+# Root = Country
+# From = Megastructure
+# FromFrom = System
+on_megastructure_upgraded = {
+	events = {
+		oeo_good_bye_sun.1
+	}
+}
+
+# Root = Country
+# From = Megastructure
+# FromFrom = System
+# FromFromFrom = Fleet
+on_megastructure_built = {
+	events = {
+		oeo_habitat_orbital.1
+		oeo_dyson_swarm_pre_star_lifter.1
+	}
+}
+on_terraforming_complete = {
+	events = {}
+}

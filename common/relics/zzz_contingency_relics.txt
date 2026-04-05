@@ -1,0 +1,68 @@
+
+###################
+### Crisis relics
+###################
+r_contingency_core = {
+	activation_duration = @triumph_duration
+	portrait = "GFX_relic_contingency_core"
+	sound = "relic_activation_isolated_contingency_core"
+
+	resources = {
+		category = relics
+		# Activation cost
+		cost = {
+			unity = @activation_cost
+		}
+	}
+
+	ai_weight = {
+		weight = 100
+	}
+
+	# See 'GetContingencyCoreEffect'
+	triggered_country_modifier = {
+		potential = {
+			is_hive_empire = no
+		}
+		megastructures_trade_upkeep_mult = -0.50
+		planet_pop_assembly_mult = 1.00
+		show_only_custom_tooltip = no
+		#custom_tooltip = relic_contingecy_core # +1 Megastructure
+	}
+	triggered_country_modifier = {
+		potential = {
+			is_hive_empire = yes
+		}
+		megastructures_oeo_megastructures_trade_upkeep_mult = -0.25
+		megastructures_oeo_kilostructures_trade_upkeep_mult = -0.5
+		megastructures_oeo_hectostructures_trade_upkeep_mult = -0.75
+		country_engineering_research_produces_mult = 1.5
+		show_only_custom_tooltip = no
+		#custom_tooltip = relic_contingecy_core # +1 Megastructure
+	}
+
+
+	score = 5000
+
+	active_effect = {
+		add_modifier = {
+			modifier = "contingency_calculation"
+			days = @triumph_duration
+		}
+		custom_tooltip = relic_triumph_cooldown
+		hidden_effect = {
+			add_modifier = {
+				modifier = "relic_activation_cooldown"
+				days = @triumph_duration
+			}
+		}
+	}
+
+	# Possible check for activation
+	possible = {
+		inline_script = {
+			script = relics/activation_checks
+			RELIC = r_contingency_core
+		}
+	}
+}

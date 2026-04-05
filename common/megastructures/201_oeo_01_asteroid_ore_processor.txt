@@ -1,0 +1,250 @@
+oeo_asteroid_mine = {
+    entity = "oeo_asteroid_base"
+	construction_entity = "oeo_asteroid_base"
+	portrait = "GFX_oeo_asteroid"
+	place_entity_on_planet_plane = yes
+	use_planet_resource = yes
+	construction_blocks_and_blocked_by = none
+	build_time = @oeo_miner_build_time
+	custom_tooltip_requirements = "oeo_MEGASTRUCTURE_TOOLTIP_REQUIREMENTS_HECTOSTRUCTURE_LIMIT"
+	outliner_trigger = {
+		exists = owner
+		owner = {
+			NOT = { has_country_flag = oeo_miner_outliner }
+		}
+	}
+	resources = {
+		category = megastructures_oeo_miner
+		cost = { influence = @oeo_miner_influence_cost }
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = @oeo_miner_alloy_cost
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = @oeo_miner_alloy_cost
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = @oeo_miner_alloy_cost
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = { trade = 1 }
+		upkeep = { 
+			trade = 0.5
+			mult = value:oeo_num_asteroid_in_system_for_starbase
+		}
+	}
+	dismantle_cost = {
+		category = megastructures_oeo_miner
+		cost = { energy = @oeo_miner_alloy_cost }
+	}
+	dismantle_time = 360
+	dismantle_potential = { always = yes }
+	dismantle_possible = {
+		custom_tooltip = {
+			fail_text = "oeo_dismantle_cooldown" 
+			NOT = { has_megastructure_flag = oeo_dismantle_cooldown }
+		}
+	}
+	on_dismantle_start = {
+		fromfrom.planet = {
+			set_planet_flag = oeo_not_cancelled
+			planet_event = { id = oeo_individual_dismantle.4 days = 361 }
+		}
+	}
+	on_dismantle_cancel = {
+		fromfrom = { set_timed_megastructure_flag = { flag = oeo_dismantle_cooldown days = 360 } }
+		fromfrom.planet = { remove_planet_flag = oeo_not_cancelled }
+	}
+	on_dismantle_complete = {
+		solar_system = {
+			every_system_planet = {
+				limit = { has_planet_flag = oeo_asteroid_mine }
+				remove_deposit = d_minerals_3
+				remove_planet_flag = oeo_asteroid_mine
+			}
+			every_system_planet = {
+				limit = { has_planet_flag = oeo_asteroid_base }
+				remove_modifier = oeo_asteroid_miner_mod
+				remove_planet_flag = oeo_asteroid_base
+			}
+			every_system_planet = {
+				limit = { has_planet_flag = oeo_asteroid_mine_bonus }
+				remove_deposit = d_minerals_1
+				remove_planet_flag = oeo_asteroid_mine_bonus
+			}
+		}
+		from = {
+			add_resource = {
+				alloys = @oeo_miner_alloy_cost
+				mult = modifier:megastructure_dismantle_refund_mult
+			}
+		}
+	}
+	potential = { has_technology = tech_oeo_orbtital_industry_1 }
+	possible = {
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		custom_tooltip = {
+			fail_text = "oeo_requires_no_asteroid_mining"
+			NOT = {
+				any_system_megastructure = {
+					OR = { is_megastructure_type = oeo_asteroid_mine }
+				}
+			}
+		}
+	}
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "requires_surveyed_planet"
+				is_surveyed = {			# prevent leaking habitability information
+					who = prev.from
+					status = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = { has_anomaly = yes }
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_existing_megastructure"
+				#can_build_megastructure_on_planet = yes
+				NOR = {
+					has_planet_flag = has_megastructure
+					has_planet_flag = megastructure
+				}
+			}
+			custom_tooltip = {
+				fail_text = "oeo_requires_is_minor_planetary_body"
+				is_asteroid = yes
+			}
+			custom_tooltip = {
+				fail_text = "oeo_requires_resource_technology"
+				if = {
+					limit = {
+						OR = {
+							has_deposit = d_volatile_motes_1
+							has_deposit = d_volatile_motes_2
+							has_deposit = d_volatile_motes_3
+							has_deposit = d_volatile_motes_4
+							has_deposit = d_volatile_motes_5
+						
+						}
+					}
+					exists = controller
+					controller = { has_technology = tech_mine_volatile_motes }
+				}
+				if = {
+					limit = {
+						OR = {
+							has_deposit = d_rare_crystals_1
+							has_deposit = d_rare_crystals_2
+							has_deposit = d_rare_crystals_3
+							has_deposit = d_rare_crystals_4
+							has_deposit = d_rare_crystals_5
+						}
+					}
+					exists = controller
+					controller = { has_technology = tech_mine_rare_crystals }
+				}
+				if = {
+					limit = {
+						OR = {
+							has_deposit = d_exotic_gases_1
+							has_deposit = d_exotic_gases_2
+							has_deposit = d_exotic_gases_3
+							has_deposit = d_exotic_gases_4
+							has_deposit = d_exotic_gases_5
+						}
+					}
+					exists = controller
+					controller = { has_technology = tech_mine_exotic_gases }
+				}
+				if = {
+					limit = {
+						OR = {
+							has_deposit = d_zro_deposit_1
+							has_deposit = d_zro_deposit_2
+							has_deposit = d_zro_deposit_3
+							has_deposit = d_zro_deposit_4
+							has_deposit = d_zro_deposit_5
+						}
+					}
+					exists = controller
+					controller = { has_technology = tech_mine_zro }
+				}
+				if = {
+					limit = {
+						has_deposit = d_living_metal_deposit
+					}
+					exists = controller
+					controller = { has_technology = tech_mine_living_metal }
+				}
+			}
+		}
+	}
+	ai_weight = {
+		factor = 5
+		modifier = {
+			factor = 0.1
+			starbase = { NOT = { has_starbase_size >= starbase_starfortress } }
+		}
+
+		modifier = {
+			factor = 0.1
+			any_neighbor_system = {
+				exists = owner
+				NOT = {
+					owner = { is_same_value = from }
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+		 	from = { has_country_flag = oeo_hecto_cooldown }
+		}
+	}
+	on_build_start = {
+		from = { set_timed_country_flag = { flag = oeo_hecto_cooldown days = @oeo_hecto_cooldown_time } }
+	}
+	on_build_complete = {
+		solar_system = {
+			every_system_planet = {
+				limit = { 
+					is_asteroid = yes
+					NOT = { has_planet_flag = oeo_asteroid_mine }
+				}
+				set_planet_flag = oeo_asteroid_mine
+				add_deposit = d_minerals_2
+				if = {
+					limit = {
+						from = {
+							has_tradition = tr_oeo_extraction_finish
+						}
+					}
+					add_deposit = d_minerals_1
+					set_planet_flag = oeo_asteroid_mine_bonus
+				}
+			}
+		}
+		fromfrom.planet = {
+			set_planet_flag = shroud_storm_changed
+			set_planet_flag = has_megastructure
+			set_planet_flag = megastructure
+			set_planet_flag = oeo_asteroid_base
+			add_modifier = { modifier = "oeo_asteroid_miner_mod" days = -1 }
+			if = {
+				limit = { has_orbital_station = yes }
+				orbital_station = {
+					dismantle = yes
+				}
+			}
+		}	
+	}
+}

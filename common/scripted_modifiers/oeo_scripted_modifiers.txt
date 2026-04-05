@@ -1,0 +1,13 @@
+
+oeo_matrioshka_pop_bonus_workforce_mult = {
+	icon = "mod_planet_virtual_jobs_produces_mult"
+	good = yes
+	category = planet
+	percentage = yes
+}
+oeo_virtual_pop_bonus_workforce_mult = {
+	icon = "mod_planet_virtual_jobs_produces_mult"
+	good = yes
+	category = planet
+	percentage = yes
+}

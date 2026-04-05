@@ -1,0 +1,66 @@
+create_singular_debris = {
+	random_list = {
+		1 = { create_ambient_object = { type = "large_debris_object"		location = this } }
+		1 = { create_ambient_object = { type = "medium_debris_01_object"	location = this } }
+		1 = { create_ambient_object = { type = "medium_debris_02_object"	location = this } }
+		1 = { create_ambient_object = { type = "small_debris_object"		location = this } }
+		1 = { create_ambient_object = { type = "large_debris_object"		entity_offset_height = { min = -0 max = -20 } location = this } }
+		1 = { create_ambient_object = { type = "medium_debris_01_object"	entity_offset_height = { min = -0 max = -20 } location = this } }
+		1 = { create_ambient_object = { type = "medium_debris_02_object"	entity_offset_height = { min = -0 max = -20 } location = this } }
+		1 = { create_ambient_object = { type = "small_debris_object"		entity_offset_height = { min = -0 max = -20 } location = this } }
+	}
+	random_list = {
+		1 = { last_created_ambient_object = { set_location = { target = prev distance = 20 angle = random } } }
+		1 = { last_created_ambient_object = { set_location = { target = prev distance = 30 angle = random } } }
+		1 = { last_created_ambient_object = { set_location = { target = prev distance = 40 angle = random } } }
+		1 = { last_created_ambient_object = { set_location = { target = prev distance = 50 angle = random } } }
+		1 = { last_created_ambient_object = { set_location = { target = prev distance = 60 angle = random } } }
+	}
+}
+
+create_singular_system_debris = {
+	random_list = {
+		1 = { create_ambient_object = { type = "large_debris_object"		location = solar_system } }
+		1 = { create_ambient_object = { type = "medium_debris_01_object"	location = solar_system } }
+		1 = { create_ambient_object = { type = "medium_debris_02_object"	location = solar_system } }
+		1 = { create_ambient_object = { type = "small_debris_object"		location = solar_system } }
+		1 = { create_ambient_object = { type = "large_debris_object"		entity_offset_height = { min = -0 max = -20 } location = solar_system } }
+		1 = { create_ambient_object = { type = "medium_debris_01_object"	entity_offset_height = { min = -0 max = -20 } location = solar_system } }
+		1 = { create_ambient_object = { type = "medium_debris_02_object"	entity_offset_height = { min = -0 max = -20 } location = solar_system } }
+		1 = { create_ambient_object = { type = "small_debris_object"		entity_offset_height = { min = -0 max = -20 } location = solar_system } }
+	}
+}
+
+create_field_debris = {
+	random_list = {
+		1 = { while = { count = 4 create_singular_debris = yes } }
+		1 = { while = { count = 8 create_singular_debris = yes } }
+		1 = { while = { count = 12 create_singular_debris = yes } }
+		1 = { while = { count = 16 create_singular_debris = yes } }
+		1 = { while = { count = 20 create_singular_debris = yes } }
+	}
+}
+
+create_field_system_debris = {
+	random_list = {
+		1 = { while = { count = 8 create_singular_system_debris = yes } }
+		1 = { while = { count = 16 create_singular_system_debris = yes } }
+		1 = { while = { count = 24 create_singular_system_debris = yes } }
+		1 = { while = { count = 32 create_singular_system_debris = yes } }
+		1 = { while = { count = 40 create_singular_system_debris = yes } }
+	}
+}
+
+clear_all_system_debris = {
+	every_ambient_object = {
+		limit = {
+			OR = {
+				is_ambient_object_type = small_debris_object
+				is_ambient_object_type = medium_debris_01_object
+				is_ambient_object_type = medium_debris_02_object
+				is_ambient_object_type = large_debris_object
+			}
+		}
+		destroy_ambient_object = this
+	}
+}

@@ -1,0 +1,35 @@
+defined_text = {
+	name = GetEpamSphereSystemCount
+	value = value:oeo_num_system_sphere
+}
+defined_text = {
+	name = GetEpamOrbSystemCount
+	value = value:oeo_num_system_orb
+}
+defined_text = {
+	name = GetEpamThinkSystemCount
+	value = value:oeo_num_system_think
+}
+defined_text = {
+	name = GetEpamMatterSystemCount
+	value = value:oeo_num_system_matter
+}
+defined_text = {
+	name = GetEpamCenterSystemCount
+	value = value:oeo_num_system_center
+}
+defined_text = {
+	name = GetEpamArtSystemCount
+	value = value:oeo_num_system_art
+}
+defined_text = {
+	name = GetEpamAssemblySystemCount
+	value = value:oeo_num_system_assembly
+}
+defined_text = {
+	name = GetEpamShipyardSystemCount
+	value = value:oeo_num_system_shipyard
+}
+
+
+

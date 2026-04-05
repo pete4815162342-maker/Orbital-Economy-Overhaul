@@ -1,0 +1,5 @@
+@oeo_common_tech_weight = 10
+@oeo_uncommon_tech_weight = 5
+@oeo_rare_tech_weight = 1
+@oeo_ultra_rare_tech_weight = 0.5
+@oeo_extremely_rare_tech_weight = 0.25

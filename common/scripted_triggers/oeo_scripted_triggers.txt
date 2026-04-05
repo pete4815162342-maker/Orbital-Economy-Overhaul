@@ -1,0 +1,504 @@
+#####ID Trigger#####
+has_orbital_economy_overhaul = {
+	always = yes
+}
+#####Research Scritped Triggers#####
+oeo_has_physics_deposit = {
+	solar_system = { 
+		any_system_planet = {
+			OR = { 
+				has_deposit = d_physics_1
+				has_deposit = d_physics_2
+				has_deposit = d_physics_3
+				has_deposit = d_physics_4
+				has_deposit = d_physics_5
+				has_deposit = d_physics_6
+				has_deposit = d_physics_7
+				has_deposit = d_physics_8
+				has_deposit = d_physics_9
+				has_deposit = d_physics_10
+				has_deposit = d_physics_25
+			}
+		}
+	}
+}
+oeo_has_engineering_deposit = {
+	solar_system = { 
+		any_system_planet = {
+			OR = { 
+				has_deposit = d_engineering_1
+				has_deposit = d_engineering_2
+				has_deposit = d_engineering_3
+				has_deposit = d_engineering_4
+				has_deposit = d_engineering_5
+				has_deposit = d_engineering_6
+				has_deposit = d_engineering_7
+				has_deposit = d_engineering_8
+				has_deposit = d_engineering_9
+				has_deposit = d_engineering_10
+				has_deposit = d_engineering_25
+			}
+		}
+	}
+}
+oeo_has_society_deposit = {
+	solar_system = { 
+		any_system_planet = {
+			OR = { 
+				has_deposit = d_society_1
+				has_deposit = d_society_2
+				has_deposit = d_society_3
+				has_deposit = d_society_4
+				has_deposit = d_society_5
+				has_deposit = d_society_6
+				has_deposit = d_society_7
+				has_deposit = d_society_8
+				has_deposit = d_society_9
+				has_deposit = d_society_10
+				has_deposit = d_society_15
+				has_deposit = d_society_25
+			}
+		}
+	}
+}
+######Fortification Check########
+is_oeo_foritification = {
+	OR = {
+		is_space_citadel_ship_size = yes
+	}
+}
+######Checks for megas########
+is_oeo_megastructure_category = {
+	OR = {
+		is_megastructure_type = dyson_sphere_0
+		is_megastructure_type = dyson_sphere_1
+		is_megastructure_type = dyson_sphere_2
+		is_megastructure_type = dyson_sphere_3
+		is_megastructure_type = dyson_sphere_4
+		is_megastructure_type = dyson_sphere_5
+		is_megastructure_type = dyson_sphere_restored
+
+		is_megastructure_type = think_tank_0
+		is_megastructure_type = think_tank_1
+		is_megastructure_type = think_tank_2
+		is_megastructure_type = think_tank_3
+		is_megastructure_type = think_tank_4
+		is_megastructure_type = think_tank_restored
+
+		is_megastructure_type = spy_orb_0
+		is_megastructure_type = spy_orb_1
+		is_megastructure_type = spy_orb_2
+		is_megastructure_type = spy_orb_3
+		is_megastructure_type = spy_orb_4
+		is_megastructure_type = spy_orb_restored
+
+		is_megastructure_type = matter_decompressor_0
+		is_megastructure_type = matter_decompressor_1
+		is_megastructure_type = matter_decompressor_2
+		is_megastructure_type = matter_decompressor_3
+		is_megastructure_type = matter_decompressor_4
+		is_megastructure_type = matter_decompressor_restored
+
+		is_megastructure_type = strategic_coordination_center_0
+		is_megastructure_type = strategic_coordination_center_1
+		is_megastructure_type = strategic_coordination_center_2
+		is_megastructure_type = strategic_coordination_center_3
+		is_megastructure_type = strategic_coordination_center_restored
+
+		is_megastructure_type = mega_art_installation_0
+		is_megastructure_type = mega_art_installation_1
+		is_megastructure_type = mega_art_installation_2
+		is_megastructure_type = mega_art_installation_3
+		is_megastructure_type = mega_art_installation_restored
+
+		is_megastructure_type = interstellar_assembly_0
+		is_megastructure_type = interstellar_assembly_1
+		is_megastructure_type = interstellar_assembly_2
+		is_megastructure_type = interstellar_assembly_3
+		is_megastructure_type = interstellar_assembly_4
+		is_megastructure_type = interstellar_assembly_restored
+
+		is_megastructure_type = mega_shipyard_0
+		is_megastructure_type = mega_shipyard_1
+		is_megastructure_type = mega_shipyard_2
+		is_megastructure_type = mega_shipyard_3
+		is_megastructure_type = mega_shipyard_restored
+	
+	}
+}
+is_oeo_orb_category = {
+	OR = {
+		is_megastructure_type = spy_orb_0
+		is_megastructure_type = spy_orb_1
+		is_megastructure_type = spy_orb_2
+		is_megastructure_type = spy_orb_3
+		is_megastructure_type = spy_orb_4
+		is_megastructure_type = spy_orb_restored
+	}
+}
+is_oeo_think_category = {
+	OR = {
+		is_megastructure_type = think_tank_0
+		is_megastructure_type = think_tank_1
+		is_megastructure_type = think_tank_2
+		is_megastructure_type = think_tank_3
+		is_megastructure_type = think_tank_4
+		is_megastructure_type = think_tank_restored
+	}
+}
+is_oeo_matter_category = {
+	OR = {
+		is_megastructure_type = matter_decompressor_0
+		is_megastructure_type = matter_decompressor_1
+		is_megastructure_type = matter_decompressor_2
+		is_megastructure_type = matter_decompressor_3
+		is_megastructure_type = matter_decompressor_4
+		is_megastructure_type = matter_decompressor_restored
+	}
+}
+is_oeo_center_category = {
+	OR = {
+		is_megastructure_type = strategic_coordination_center_0
+		is_megastructure_type = strategic_coordination_center_1
+		is_megastructure_type = strategic_coordination_center_2
+		is_megastructure_type = strategic_coordination_center_3
+		is_megastructure_type = strategic_coordination_center_restored
+	}
+}
+is_oeo_art_category = {
+	OR = {
+		is_megastructure_type = mega_art_installation_0
+		is_megastructure_type = mega_art_installation_1
+		is_megastructure_type = mega_art_installation_2
+		is_megastructure_type = mega_art_installation_3
+		is_megastructure_type = mega_art_installation_restored
+	}
+}
+is_oeo_assembly_category = {
+	OR = {
+		is_megastructure_type = interstellar_assembly_0
+		is_megastructure_type = interstellar_assembly_1
+		is_megastructure_type = interstellar_assembly_2
+		is_megastructure_type = interstellar_assembly_3
+		is_megastructure_type = interstellar_assembly_4
+		is_megastructure_type = interstellar_assembly_restored
+	}
+}
+is_oeo_shipyard_category = {
+	OR = {
+		is_megastructure_type = mega_shipyard_0
+		is_megastructure_type = mega_shipyard_1
+		is_megastructure_type = mega_shipyard_2
+		is_megastructure_type = mega_shipyard_3
+		is_megastructure_type = mega_shipyard_restored
+	}
+}
+is_oeo_sphere_category = {
+	OR = {
+		is_megastructure_type = dyson_sphere_0
+		is_megastructure_type = dyson_sphere_1
+		is_megastructure_type = dyson_sphere_2
+		is_megastructure_type = dyson_sphere_3
+		is_megastructure_type = dyson_sphere_4
+		is_megastructure_type = dyson_sphere_5
+		is_megastructure_type = dyson_sphere_restored
+	}
+}
+######Checks for kilostructure########
+is_oeo_kilostructure_category = {
+	OR = {
+		is_megastructure_type = dyson_swarm_1
+		is_megastructure_type = dyson_swarm_2
+		is_megastructure_type = dyson_swarm_3
+
+		is_megastructure_type = orbital_arc_furnace_1
+		is_megastructure_type = orbital_arc_furnace_2
+		is_megastructure_type = orbital_arc_furnace_3
+		is_megastructure_type = orbital_arc_furnace_4
+		is_megastructure_type = orbital_arc_furnace_restored
+		
+		is_megastructure_type = oeo_matrioshka_brain_0
+		is_megastructure_type = oeo_matrioshka_brain_1
+		is_megastructure_type = oeo_matrioshka_brain_2
+		
+		is_megastructure_type = oeo_forge_star_build_site_0
+		is_megastructure_type = oeo_forge_star_build_site_1
+		is_megastructure_type = oeo_forge_star_build_site_2
+		is_megastructure_type = oeo_forge_star_restored	
+
+		is_megastructure_type = oeo_orbital_drill_build_site_1
+		is_megastructure_type = oeo_orbital_drill_minerals
+		is_megastructure_type = oeo_orbital_drill_gas
+		is_megastructure_type = oeo_orbital_drill_crystal
+		is_megastructure_type = oeo_orbital_drill_motes
+	}
+}
+is_oeo_arc_category = {
+	OR = {
+		is_megastructure_type = orbital_arc_furnace_1
+		is_megastructure_type = orbital_arc_furnace_2
+		is_megastructure_type = orbital_arc_furnace_3
+		is_megastructure_type = orbital_arc_furnace_4
+		is_megastructure_type = orbital_arc_furnace_restored
+	}
+}
+is_oeo_swarm_category = {
+	OR = {
+		is_megastructure_type = dyson_swarm_1
+		is_megastructure_type = dyson_swarm_2
+		is_megastructure_type = dyson_swarm_3
+	}
+}
+is_oeo_matrioshka_category = {
+	OR = {
+		is_megastructure_type = oeo_matrioshka_brain_0
+		is_megastructure_type = oeo_matrioshka_brain_1
+		is_megastructure_type = oeo_matrioshka_brain_2
+	}
+}
+is_oeo_lifter_category = {
+	OR = {
+		is_megastructure_type = oeo_forge_star_build_site_0
+		is_megastructure_type = oeo_forge_star_build_site_1
+		is_megastructure_type = oeo_forge_star_build_site_2
+		is_megastructure_type = oeo_forge_star_restored	
+	}
+}
+is_oeo_drill_category = {
+	OR = {
+		is_megastructure_type = oeo_orbital_drill_build_site_1
+		is_megastructure_type = oeo_orbital_drill_minerals
+		is_megastructure_type = oeo_orbital_drill_gas
+		is_megastructure_type = oeo_orbital_drill_crystal
+		is_megastructure_type = oeo_orbital_drill_motes
+	}
+}
+######Checks for modded megas########
+has_no_oeo_megastructure = {
+	OR = {
+		has_any_megastructure = no
+		NOT = {
+			NOT = {
+				any_ship_in_system = {
+					OR = {
+						is_space_citadel_ship_size = yes
+					}
+				}
+			}
+			any_system_megastructure = {
+				is_oeo_mega = yes
+			}
+		}
+	}
+}
+######Checks for modded and vanilla non gate megas########
+has_no_oeo_non_gate_megastructure = {
+	OR = {
+		#has_any_megastructure = no
+		NOT = {
+			has_star_flag = ring_world_built
+			any_system_megastructure = { # exclude gateways
+				OR = {
+					is_megastructure_type = habitat_central_complex
+					is_oeo_vanilla_non_star = yes
+					is_megastructure_type = cosmogenesis_world_0
+					is_oeo_mega = yes
+				}
+			}
+		}
+	}
+}
+#####Checks if it is a modded mega########
+is_oeo_mega = {
+	OR = {
+		is_megastructure_type = oeo_hydroponic_station_build_site_1		
+		is_megastructure_type = oeo_energy_station_build_site_1						
+		is_megastructure_type = oeo_asteroid_mine 			
+		is_megastructure_type = oeo_matrioshka_brain_0
+		is_megastructure_type = oeo_matrioshka_brain_1
+		is_megastructure_type = oeo_matrioshka_brain_2
+		is_megastructure_type = oeo_forge_star_build_site_0
+		is_megastructure_type = oeo_forge_star_build_site_1
+		is_megastructure_type = oeo_forge_star_build_site_2
+		is_megastructure_type = oeo_star_lifter_ruined
+		is_megastructure_type = oeo_forge_star_restored			
+		is_megastructure_type = oeo_orbital_drill_build_site_1
+		is_megastructure_type = oeo_orbital_drill_minerals
+		is_megastructure_type = oeo_orbital_drill_gas
+		is_megastructure_type = oeo_orbital_drill_crystal
+		is_megastructure_type = oeo_orbital_drill_motes
+		is_megastructure_type = oeo_industrial_station_build_site_0
+		is_megastructure_type = oeo_industrial_station_ruined
+		is_megastructure_type = oeo_industrial_station_restored		
+	}
+}
+
+is_oeo_vanilla = {
+	OR = {
+		is_megastructure_type = dyson_sphere_0
+		is_megastructure_type = dyson_sphere_1
+		is_megastructure_type = dyson_sphere_2
+		is_megastructure_type = dyson_sphere_3
+		is_megastructure_type = dyson_sphere_4
+		is_megastructure_type = dyson_sphere_5
+		is_megastructure_type = dyson_sphere_ruined
+		is_megastructure_type = dyson_sphere_restored
+
+		is_megastructure_type = think_tank_0
+		is_megastructure_type = think_tank_1
+		is_megastructure_type = think_tank_2
+		is_megastructure_type = think_tank_3
+		is_megastructure_type = think_tank_4
+		is_megastructure_type = think_tank_ruined
+		is_megastructure_type = think_tank_restored
+
+		is_megastructure_type = spy_orb_0
+		is_megastructure_type = spy_orb_1
+		is_megastructure_type = spy_orb_2
+		is_megastructure_type = spy_orb_3
+		is_megastructure_type = spy_orb_4
+		is_megastructure_type = spy_orb_ruined
+		is_megastructure_type = spy_orb_restored
+
+		is_megastructure_type = matter_decompressor_0
+		is_megastructure_type = matter_decompressor_1
+		is_megastructure_type = matter_decompressor_2
+		is_megastructure_type = matter_decompressor_3
+		is_megastructure_type = matter_decompressor_4
+		is_megastructure_type = matter_decompressor_ruined
+		is_megastructure_type = matter_decompressor_restored
+
+		is_megastructure_type = strategic_coordination_center_0
+		is_megastructure_type = strategic_coordination_center_1
+		is_megastructure_type = strategic_coordination_center_2
+		is_megastructure_type = strategic_coordination_center_3
+		is_megastructure_type = strategic_coordination_center_ruined
+		is_megastructure_type = strategic_coordination_center_restored
+
+		is_megastructure_type = mega_art_installation_0
+		is_megastructure_type = mega_art_installation_1
+		is_megastructure_type = mega_art_installation_2
+		is_megastructure_type = mega_art_installation_3
+		is_megastructure_type = mega_art_installation_ruined
+		is_megastructure_type = mega_art_installation_restored
+
+		is_megastructure_type = interstellar_assembly_0
+		is_megastructure_type = interstellar_assembly_1
+		is_megastructure_type = interstellar_assembly_2
+		is_megastructure_type = interstellar_assembly_3
+		is_megastructure_type = interstellar_assembly_4
+		is_megastructure_type = interstellar_assembly_ruined
+		is_megastructure_type = interstellar_assembly_restored
+
+		is_megastructure_type = mega_shipyard_0
+		is_megastructure_type = mega_shipyard_1
+		is_megastructure_type = mega_shipyard_2
+		is_megastructure_type = mega_shipyard_3
+		is_megastructure_type = mega_shipyard_ruined
+		is_megastructure_type = mega_shipyard_restored
+		
+		is_megastructure_type = orbital_ring
+		is_megastructure_type = orbital_ring_ruined
+		is_megastructure_type = orbital_ring_restored
+
+		is_megastructure_type = dyson_swarm_1
+		is_megastructure_type = dyson_swarm_2
+		is_megastructure_type = dyson_swarm_3
+
+		is_megastructure_type = orbital_arc_furnace_1
+		is_megastructure_type = orbital_arc_furnace_2
+		is_megastructure_type = orbital_arc_furnace_3
+		is_megastructure_type = orbital_arc_furnace_4
+		
+		is_megastructure_type = crisis_sphere_0
+		is_megastructure_type = crisis_sphere_1
+		is_megastructure_type = crisis_sphere_2
+		is_megastructure_type = crisis_sphere_3
+		is_megastructure_type = crisis_sphere_4
+		
+		is_megastructure_type = habitat_central_complex
+		
+		is_megastructure_type = cosmogenesis_world_0
+
+		is_megastructure_type = grand_archive_0
+	}
+}
+is_oeo_vanilla_non_star = {
+	OR = {
+		is_megastructure_type = dyson_sphere_0
+		is_megastructure_type = dyson_sphere_1
+		is_megastructure_type = dyson_sphere_2
+		is_megastructure_type = dyson_sphere_3
+		is_megastructure_type = dyson_sphere_4
+		is_megastructure_type = dyson_sphere_5
+		is_megastructure_type = dyson_sphere_ruined
+		is_megastructure_type = dyson_sphere_restored
+
+		is_megastructure_type = think_tank_0
+		is_megastructure_type = think_tank_1
+		is_megastructure_type = think_tank_2
+		is_megastructure_type = think_tank_3
+		is_megastructure_type = think_tank_4
+		is_megastructure_type = think_tank_ruined
+		is_megastructure_type = think_tank_restored
+
+		is_megastructure_type = spy_orb_0
+		is_megastructure_type = spy_orb_1
+		is_megastructure_type = spy_orb_2
+		is_megastructure_type = spy_orb_3
+		is_megastructure_type = spy_orb_4
+		is_megastructure_type = spy_orb_ruined
+		is_megastructure_type = spy_orb_restored
+
+		is_megastructure_type = matter_decompressor_0
+		is_megastructure_type = matter_decompressor_1
+		is_megastructure_type = matter_decompressor_2
+		is_megastructure_type = matter_decompressor_3
+		is_megastructure_type = matter_decompressor_4
+		is_megastructure_type = matter_decompressor_ruined
+		is_megastructure_type = matter_decompressor_restored
+
+		is_megastructure_type = strategic_coordination_center_0
+		is_megastructure_type = strategic_coordination_center_1
+		is_megastructure_type = strategic_coordination_center_2
+		is_megastructure_type = strategic_coordination_center_3
+		is_megastructure_type = strategic_coordination_center_ruined
+		is_megastructure_type = strategic_coordination_center_restored
+
+		is_megastructure_type = mega_art_installation_0
+		is_megastructure_type = mega_art_installation_1
+		is_megastructure_type = mega_art_installation_2
+		is_megastructure_type = mega_art_installation_3
+		is_megastructure_type = mega_art_installation_ruined
+		is_megastructure_type = mega_art_installation_restored
+
+		is_megastructure_type = interstellar_assembly_0
+		is_megastructure_type = interstellar_assembly_1
+		is_megastructure_type = interstellar_assembly_2
+		is_megastructure_type = interstellar_assembly_3
+		is_megastructure_type = interstellar_assembly_4
+		is_megastructure_type = interstellar_assembly_ruined
+		is_megastructure_type = interstellar_assembly_restored
+		
+		is_megastructure_type = orbital_ring
+		is_megastructure_type = orbital_ring_ruined
+		is_megastructure_type = orbital_ring_restored
+
+		is_megastructure_type = orbital_arc_furnace_1
+		is_megastructure_type = orbital_arc_furnace_2
+		is_megastructure_type = orbital_arc_furnace_3
+		is_megastructure_type = orbital_arc_furnace_4
+		
+		is_megastructure_type = crisis_sphere_0
+		is_megastructure_type = crisis_sphere_1
+		is_megastructure_type = crisis_sphere_2
+		is_megastructure_type = crisis_sphere_3
+		is_megastructure_type = crisis_sphere_4
+		
+		is_megastructure_type = habitat_central_complex
+		
+		is_megastructure_type = cosmogenesis_world_0
+
+		is_megastructure_type = grand_archive_0
+	}
+}

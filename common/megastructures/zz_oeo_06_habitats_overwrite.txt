@@ -1,0 +1,133 @@
+
+# Major Orbital
+habitat_major_orbital = {
+	entity = "habitat_phase_02_entity"
+	construction_entity = "habitat_phase_02_entity"
+	portrait = "GFX_megastructure_habitat_background"
+	place_entity_on_planet_plane = no
+	show_galactic_map_icon = no
+	use_planet_resource = yes
+	hide_name = yes
+	show_in_outliner = no
+	entity_offset = { x = -7 y = -7 }
+	build_time = 900
+
+	resources = {
+		category = megastructures_habitat
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	construction_blocks_and_blocked_by = none
+
+	potential = {
+		always = no
+	}
+
+	possible = {
+		always = no
+	}
+
+	placement_rules = {
+	}
+
+	# root = system
+	# from = country
+	ai_weight = {
+		factor = 0
+	}
+
+	on_build_start = {}
+	on_build_cancel = {}
+########START OF EDITS####################################
+	on_build_complete = {
+		fromfrom = {
+			save_event_target_as = oeo_orbital
+		}
+		fromfrom.planet = {
+			set_planet_flag = has_orbital
+			save_event_target_as = oeo_orbital_target
+			if = {
+				limit = { has_orbital_station = yes }
+				orbital_station = {
+					dismantle = yes
+				}
+			}
+		}
+		#Dynamic flags added to let events target orbitals#
+		event_target:oeo_orbital_target = {
+			set_planet_flag = oeo_orbital@fromfrom.planet
+		}
+		event_target:oeo_orbital = {
+			set_megastructure_flag = oeo_orbital@fromfrom.planet
+		}
+	}
+}
+##############END OF EDITS#######################################################################
+# Minor Orbital
+habitat_minor_orbital = {
+	entity = "habitat_phase_01_entity"
+	construction_entity = "habitat_phase_01_entity"
+	portrait = "GFX_megastructure_habitat_background"
+	place_entity_on_planet_plane = no
+	show_galactic_map_icon = no
+	use_planet_resource = yes
+	hide_name = yes
+	show_in_outliner = no
+	entity_offset = { x = -7 y = -7 }
+	build_time = 900
+
+	resources = {
+		category = stations
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	construction_blocks_and_blocked_by = none
+
+	potential = {
+		always = no
+	}
+
+	possible = {
+		always = no
+	}
+
+	placement_rules = {
+	}
+
+	# root = system
+	# from = country
+	ai_weight = {
+		factor = 0
+	}
+
+	on_build_start = {}
+	on_build_cancel = {}
+###############START OF EDITS###########################################################################
+	on_build_complete = {
+		fromfrom = {
+			save_event_target_as = oeo_orbital
+		}
+		fromfrom.planet = {
+			set_planet_flag = has_orbital
+			save_event_target_as = oeo_orbital_target
+			if = {
+				limit = { has_orbital_station = yes }
+				orbital_station = {
+					dismantle = yes
+				}
+			}
+		}
+		#Dynamic flags added to let events target orbitals#
+		event_target:oeo_orbital_target = {
+			set_planet_flag = oeo_orbital@fromfrom.planet
+		}
+		event_target:oeo_orbital = {
+			set_megastructure_flag = oeo_orbital@fromfrom.planet
+		}
+	}
+}
+#####################END OF EDITS#############################################################################

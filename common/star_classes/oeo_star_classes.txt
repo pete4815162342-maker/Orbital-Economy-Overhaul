@@ -1,0 +1,20 @@
+sc_oeo_junk_star = {
+	class = toxoid_star
+	icon = x_star
+	planet = { key = pc_oeo_junk_star }
+	spawn_odds = 0
+
+	is_environmental_hazard = yes
+	modifier = {
+		ship_speed_reduction = 0.5
+		ship_armor_reduction = 1.0
+		ship_disengage_chance_reduction = 1.0
+		ship_emergency_ftl_min_days_mult = 1.0
+	}
+}
+sc_oeo_class_o = {
+	class = b_star
+	icon = oeo_o_star
+	planet = { key = pc_oeo_o_star }
+	spawn_odds = 0
+}

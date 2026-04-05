@@ -1,0 +1,111 @@
+oeo_physicist_lab = {
+	icon = "GFX_oeo_physicist_lab"
+	construction_days = 360
+	potential = {
+		exists = owner
+		owner = { has_technology = "tech_space_science_1" }
+		is_space_citadel = no
+	}
+	possible = {
+		oeo_has_physics_deposit = yes
+	}
+	triggered_system_modifier = {
+		station_researchers_physics_research_produces_mult = 0.25
+	}
+	resources = {
+		category = starbase_buildings
+		cost = { alloys = 100 }
+		produces = { physics_research = 5 }
+		upkeep = { energy = 2 }
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = { is_gestalt = no }
+			}
+			consumer_goods = 1
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = { is_gestalt = yes }
+			}
+			energy = 5
+		}
+	}
+	show_in_tech = "tech_space_science_1"
+	ai_weight = { weight = 200 }
+}
+oeo_biology_lab = {
+	icon = "GFX_oeo_society_lab"
+	construction_days = 360
+	potential = {
+		exists = owner
+		owner = { has_technology = "tech_space_science_1" }
+		is_space_citadel = no
+	}
+	possible = {
+		oeo_has_society_deposit = yes
+	}
+	triggered_system_modifier = {
+		station_researchers_society_research_produces_mult = 0.25
+	}
+	resources = {
+		category = starbase_buildings
+		cost = { alloys = 100 }
+		produces = { society_research = 5 }
+		upkeep = { energy = 2 }
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = { is_gestalt = no }
+			}
+			consumer_goods = 1
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = { is_gestalt = yes }
+			}
+			energy = 5
+		}
+	}
+	show_in_tech = "tech_space_science_1"
+	ai_weight = { weight = 200 }
+}
+oeo_engineering_lab = {
+	icon = "GFX_oeo_engineering_lab"
+	construction_days = 360
+	potential = {
+		exists = owner
+		owner = { has_technology = "tech_space_science_1" }
+		is_space_citadel = no
+	}
+	possible = {
+		oeo_has_engineering_deposit = yes
+	}
+	triggered_system_modifier = {
+		station_researchers_engineering_research_produces_mult = 0.25
+	}
+	resources = {
+		category = starbase_buildings
+		cost = { alloys = 100 }
+		produces = { engineering_research = 5 }
+		upkeep = { energy = 2 }
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = { is_gestalt = no }
+			}
+			consumer_goods = 1
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = { is_gestalt = yes }
+			}
+			energy = 5
+		}
+	}
+	show_in_tech = "tech_space_science_1"
+	ai_weight = { weight = 200 }
+}

@@ -1,0 +1,561 @@
+oeo_forge_star_build_site_0 = {
+	entity = "oeo_star_lifter1"
+	construction_entity = "oeo_star_lifter1"
+	portrait = "GFX_oeo_star_lifter"
+	place_entity_on_planet_plane = yes
+	use_planet_resource = yes
+	build_time = @oeo_forgestar1_build_time
+	construction_blocks_and_blocked_by = none
+	upgrade_from = { dyson_swarm_3_pre_star_lifter }
+	potential = { 
+		has_technology = tech_oeo_forge_star 
+	}
+	possible = {
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+	}
+	resources = {
+		category = megastructures_oeo_kilostructures
+		cost = {
+			unity = @oeo_forgestar1_unity_cost
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = no
+			}
+			alloys = @oeo_forgestar1_alloy_cost
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			alloys = @oeo_forgestar1_alloy_cost
+			mult = 0.5
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			food = @oeo_forgestar1_alloy_cost
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			trade = @oeo_forgestar1_trade_upkeep
+		}
+	}
+	dismantle_cost = {
+		category = megastructures
+		cost = {
+			energy = @oeo_forgestar1_alloy_cost
+		}
+	}
+	dismantle_time = 360
+	dismantle_potential = {	always = yes }
+	dismantle_possible = {
+		custom_tooltip = {
+			fail_text = "oeo_dismantle_cooldown" 
+			NOT = { has_megastructure_flag = oeo_dismantle_cooldown }
+		}
+	}
+	on_dismantle_start = {
+		fromfrom.planet = {
+			set_planet_flag = oeo_not_cancelled
+			planet_event = { id = oeo_individual_dismantle.2 days = 361 }
+		}
+	}
+	on_dismantle_cancel = {
+		fromfrom = { set_timed_megastructure_flag = { flag = oeo_dismantle_cooldown days = 360 } }
+		fromfrom.planet = { remove_planet_flag = oeo_not_cancelled }
+	}
+	on_dismantle_complete = {	
+		from = {
+			add_resource = {
+				alloys = @oeo_forgestar1_alloy_cost
+				mult = modifier:megastructure_dismantle_refund_mult
+			}
+		}
+	}
+	ai_weight = {
+		factor = 5
+
+		modifier = {
+			factor = 0.1
+			starbase = { NOT = { has_starbase_size >= starbase_starfortress } }
+		}
+
+		modifier = {
+			factor = 0.1
+			any_neighbor_system = {
+				exists = owner
+				NOT = {
+					owner = { is_same_value = from }
+				}
+			}
+		}
+	}
+	on_build_start = {}
+	on_build_cancel = {}
+	on_build_complete = {
+		fromfrom.planet = {
+			set_planet_flag = has_megastructure
+			set_planet_flag = megastructure
+			set_planet_flag = shroud_storm_changed
+			set_planet_flag = oeo_star_lifter@fromfrom.planet
+			create_ambient_object = {
+				type = oeo_forge_outburst_1
+				location = this
+				use_3d_location = yes
+				entity_scale_to_size = yes
+			}
+			last_created_ambient_object = {
+				set_ambient_object_flag = oeo_star_lifter@fromfrom.planet
+			}
+			add_deposit = d_minerals_1
+			add_modifier = { modifier = "oeo_star_lifter_1_mod" days = -1 }
+			remove_modifier = dyson_swarm_3_mod
+			if = {
+				limit = { 
+					AND = { 
+						is_star = yes
+						is_planet_class = pc_k_star 
+					}
+				}
+				set_planet_size = 32
+			}
+			if = {
+				limit = { 
+					AND = { 
+						is_star = yes
+						is_planet_class = pc_g_star
+					}
+				}
+				set_planet_size = 30
+			}
+			if = {
+				limit = { 
+					AND = { 
+						is_star = yes
+						is_planet_class = pc_m_star
+					}
+				}
+				set_planet_size = 37
+			}
+			if = {
+				limit = { 
+					AND = { 
+						is_star = yes
+						is_planet_class = pc_m_giant_star 
+					}
+				}
+				set_planet_size = 20
+			}
+			if = {
+				limit = { 
+					AND = { 
+						is_star = yes
+						is_planet_class = pc_b_star 
+					}
+				}
+				set_planet_size = 23
+			}
+			if = {
+				limit = { 
+					AND = { 
+						is_star = yes
+						is_planet_class = pc_a_star 
+					}
+				}
+				set_planet_size = 25
+			}
+			if = {
+				limit = { 
+					AND = { 
+						is_star = yes
+						is_planet_class = pc_f_star 
+					}
+				}
+				set_planet_size = 25
+			}
+			if = {
+				limit = { 
+					has_orbital_station = yes 
+				}
+				orbital_station = {
+					dismantle = yes
+				}
+			}
+		}
+	}
+}
+oeo_forge_star_build_site_1 = {
+	entity = "oeo_star_lifter2"
+	construction_entity = "oeo_star_lifter2"
+	portrait = GFX_oeo_star_lifter
+	place_entity_on_planet_plane = yes
+	use_planet_resource = yes
+	build_time = @oeo_forgestar2_build_time
+	construction_blocks_and_blocked_by = self_type
+	upgrade_from = { oeo_forge_star_build_site_0 }
+	potential = { 
+		has_technology = tech_oeo_forge_star 
+	}
+	resources = {
+		category = megastructures_oeo_kilostructures
+		cost = {
+			unity = @oeo_forgestar2_unity_cost
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = no
+			}
+			alloys = @oeo_forgestar2_alloy_cost
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			alloys = @oeo_forgestar2_alloy_cost
+			mult = 0.5
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			food = @oeo_forgestar2_alloy_cost
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			trade = @oeo_forgestar2_trade_upkeep
+		}
+	}
+	dismantle_cost = {
+		category = megastructures
+		cost = {
+			energy = @oeo_forgestar2_alloy_cost
+		}
+	}
+	dismantle_time = 360
+	dismantle_potential = {	always = yes }
+	dismantle_possible = {
+		custom_tooltip = {
+			fail_text = "oeo_dismantle_cooldown" 
+			NOT = { has_megastructure_flag = oeo_dismantle_cooldown }
+		}
+	}
+	on_dismantle_start = {
+		fromfrom.planet = {
+			set_planet_flag = oeo_not_cancelled
+			planet_event = { id = oeo_individual_dismantle.2 days = 361 }
+		}
+	}
+	on_dismantle_cancel = {
+		fromfrom = { set_timed_megastructure_flag = { flag = oeo_dismantle_cooldown days = 360 } }
+		fromfrom.planet = { remove_planet_flag = oeo_not_cancelled }
+	}
+	on_dismantle_complete = {	
+		from = {
+			add_resource = {
+				alloys = @oeo_forgestar2_alloy_cost
+				mult = modifier:megastructure_dismantle_refund_mult
+			}
+		}
+	}
+	on_build_complete = {
+		fromfrom.planet = {
+			add_modifier = { modifier = "oeo_star_lifter_2_mod" days = -1 }
+			remove_modifier = oeo_star_lifter_1_mod
+			add_deposit = d_minerals_1
+			set_planet_flag = oeo_star_lifter_2
+		}
+	}
+}
+oeo_forge_star_build_site_2 = {
+	entity = "oeo_star_lifter3"
+	construction_entity = "oeo_star_lifter3"
+	portrait = GFX_oeo_star_lifter
+	place_entity_on_planet_plane = yes
+	use_planet_resource = yes
+	build_time = @oeo_forgestar3_build_time
+	construction_blocks_and_blocked_by = self_type
+	outliner_trigger = {
+		exists = owner
+		owner = {
+			NOT = { has_country_flag = oeo_lifter_outliner }
+		}
+	}
+	upgrade_from = { oeo_forge_star_build_site_1 }
+	potential = { 
+		has_technology = tech_oeo_forge_star 
+	}
+	resources = {
+		category = megastructures_oeo_kilostructures
+		cost = {
+			unity = @oeo_forgestar3_unity_cost
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = no
+			}
+			alloys = @oeo_forgestar3_alloy_cost
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			alloys = @oeo_forgestar3_alloy_cost
+			mult = 0.5
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			food = @oeo_forgestar3_alloy_cost
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			trade = @oeo_forgestar3_trade_upkeep
+		}
+	}
+	dismantle_cost = {
+		category = megastructures
+		cost = {
+			energy = @oeo_forgestar3_alloy_cost
+		}
+	}
+	dismantle_time = 360
+	dismantle_potential = {	always = yes }
+	dismantle_possible = {
+		custom_tooltip = {
+			fail_text = "oeo_dismantle_cooldown" 
+			NOT = { has_megastructure_flag = oeo_dismantle_cooldown }
+		}
+	}
+	on_dismantle_start = {
+		fromfrom.planet = {
+			set_planet_flag = oeo_not_cancelled
+			planet_event = { id = oeo_individual_dismantle.2 days = 361 }
+		}
+	}
+	on_dismantle_cancel = {
+		fromfrom = { set_timed_megastructure_flag = { flag = oeo_dismantle_cooldown days = 360 } }
+		fromfrom.planet = { remove_planet_flag = oeo_not_cancelled }
+	}
+	on_dismantle_complete = {	
+		from = {
+			add_resource = {
+				alloys = @oeo_forgestar3_alloy_cost
+				mult = modifier:megastructure_dismantle_refund_mult
+			}
+		}
+	}
+	on_build_complete = {
+		fromfrom.planet = {
+			add_modifier = { modifier = "oeo_star_lifter_3_mod" days = -1 }
+			remove_modifier = oeo_star_lifter_2_mod
+			set_planet_flag = oeo_star_lifter_3
+			add_deposit = d_oeo_exotic_gas_very_small
+		}
+	}
+}
+
+oeo_star_lifter_ruined = {
+    entity = "oeo_star_lifter_ruined"
+	construction_entity = "oeo_star_lifter_ruined"
+	place_entity_on_planet_plane = yes
+	build_outside_gravity_well = no
+	use_planet_resource = no
+	show_in_outliner = yes
+	construction_blocks_and_blocked_by = none
+	build_time = 0
+	dismantle_potential = { always = no }
+	potential = { always = no }
+	possible = { always = no }
+	on_build_complete = {
+		fromfrom.planet = {
+			set_planet_flag = shroud_storm_changed
+			set_planet_flag = has_megastructure
+			set_planet_flag = megastructure
+			if = {
+				limit = { has_orbital_station = yes }
+				orbital_station = {
+					dismantle = yes
+				}
+			}	
+		}	
+	}
+}
+oeo_forge_star_restored = {
+	entity = "oeo_star_lifter3"
+	construction_entity = "oeo_star_lifter3"
+	portrait = GFX_oeo_star_lifter
+	place_entity_on_planet_plane = yes
+	use_planet_resource = yes
+	build_time = @oeo_forgestar3_build_time
+	construction_blocks_and_blocked_by = self_type
+	outliner_trigger = {
+		exists = owner
+		owner = {
+			NOT = { has_country_flag = oeo_lifter_outliner }
+		}
+	}
+	upgrade_from = { oeo_star_lifter_ruined }
+	potential = { has_technology = tech_oeo_forge_star }
+	resources = {
+		category = megastructures_oeo_kilostructures
+		cost = {
+			trigger = {
+				country_uses_bio_ships = no
+			}
+			alloys = @oeo_forgestar3_ruined_alloy_cost
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			alloys = @oeo_forgestar3_alloy_cost
+			mult = 0.5
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			food = @oeo_forgestar3_alloy_cost
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			trade = @oeo_forgestar3_alloy_cost
+		}
+	}
+	dismantle_cost = {
+		category = megastructures
+		cost = {
+			energy = @oeo_forgestar2_alloy_cost
+		}
+	}
+	dismantle_time = 360
+	dismantle_potential = {	always = yes }
+	dismantle_possible = {
+		custom_tooltip = {
+			fail_text = "oeo_dismantle_cooldown" 
+			NOT = { has_megastructure_flag = oeo_dismantle_cooldown }
+		}
+	}
+	on_dismantle_start = {
+		fromfrom.planet = {
+			set_planet_flag = oeo_not_cancelled
+			planet_event = { id = oeo_individual_dismantle.2 days = 361 }
+		}
+	}
+	on_dismantle_cancel = {
+		fromfrom = { set_timed_megastructure_flag = { flag = oeo_dismantle_cooldown days = 360 } }
+		fromfrom.planet = { remove_planet_flag = oeo_not_cancelled }
+	}
+	on_dismantle_complete = {	
+		from = {
+			add_resource = {
+				alloys = @oeo_forgestar2_alloy_cost
+				mult = modifier:megastructure_dismantle_refund_mult
+			}
+		}
+	}
+	on_build_complete = {
+		solar_system = {
+			set_star_flag = oeo_star_lifter_built
+		}
+		every_system_planet = {
+			limit = { 
+				AND = { 
+					is_star = yes
+					is_planet_class = pc_k_star 
+				}
+			}
+			set_planet_size = 32
+		}
+		every_system_planet = {
+			limit = { 
+				AND = { 
+					is_star = yes
+					is_planet_class = pc_g_star
+				}
+			}
+			set_planet_size = 30
+		}
+		every_system_planet = {
+			limit = { 
+				AND = { 
+					is_star = yes
+					is_planet_class = pc_m_star
+				}
+			}
+			set_planet_size = 37
+		}
+		every_system_planet = {
+			limit = { 
+				AND = { 
+					is_star = yes
+					is_planet_class = pc_m_giant_star 
+				}
+			}
+			set_planet_size = 20
+		}
+		every_system_planet = {
+			limit = { 
+				AND = { 
+					is_star = yes
+					is_planet_class = pc_b_star 
+				}
+			}
+			set_planet_size = 23
+		}
+		every_system_planet = {
+			limit = { 
+				AND = { 
+					is_star = yes
+					is_planet_class = pc_a_star 
+				}
+			}
+			set_planet_size = 25
+		}
+		every_system_planet = {
+			limit = { 
+				AND = { 
+					is_star = yes
+					is_planet_class = pc_f_star 
+				}
+			}
+			set_planet_size = 25
+		}
+		fromfrom.planet = {
+			set_planet_flag = has_megastructure
+			set_planet_flag = megastructure
+			set_planet_flag = shroud_storm_changed
+			add_deposit = d_minerals_1
+			add_deposit = d_minerals_1
+			add_deposit = d_oeo_exotic_gas_very_small
+			add_modifier = { modifier = "oeo_star_lifter_3_mod" days = -1 }
+			set_planet_flag = oeo_star_lifter@fromfrom.planet
+			set_planet_flag = oeo_star_lifter_2
+			set_planet_flag = oeo_star_lifter_3
+			create_ambient_object = {
+				type = oeo_forge_outburst_1
+				location = this
+				use_3d_location = yes
+				entity_scale_to_size = yes
+			}
+			last_created_ambient_object = {
+				set_ambient_object_flag = oeo_star_lifter@fromfrom.planet
+			}
+			if = {
+				limit = { 
+					has_orbital_station = yes 
+				}
+				orbital_station = {
+					dismantle = yes
+				}
+			}	
+		}
+	}
+}

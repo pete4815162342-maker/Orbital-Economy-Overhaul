@@ -1,0 +1,34 @@
+oeo_hectostructure_logistics_dock = {
+	icon = "GFX_oeo_hectostructure_logistics_dock"
+	construction_days = 720
+	potential = {
+		exists = owner
+		owner = { has_technology = "tech_galactic_ambitions" }
+		is_space_citadel = no
+		is_orbital_ring = no
+	}
+	possible = {
+		solar_system = {
+			any_system_megastructure = {
+				OR = {
+					is_megastructure_type = oeo_hydroponic_station_build_site_1
+					is_megastructure_type = oeo_energy_station_build_site_1
+					is_megastructure_type = oeo_asteroid_mine
+					is_megastructure_type = oeo_industrial_station_build_site_0
+					is_megastructure_type = oeo_industrial_station_restored				
+				}
+			}
+		}
+	}
+	resources = {
+		category = starbase_buildings
+		cost = { alloys = 150 }
+		produces = {
+			trade = 2
+			mult = value:oeo_num_system_hectostructures_for_starbase
+		}
+		upkeep = { energy = 3 }
+	}
+	show_in_tech = "tech_galactic_ambitions"
+	ai_weight = { weight = 500 }
+}

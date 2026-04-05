@@ -1,0 +1,82 @@
+@distance = 50
+@jumps = 3
+@planet_min_size = 10
+@planet_max_size = 25
+@base_moon_distance = 10
+@moon_min_size = 6
+@moon_max_size = 10
+oeo_class_o_initializer = {
+	class = sc_oeo_class_o
+	usage = misc_system_init
+	flags = { oeo_class_o }
+	
+
+	usage_odds = {
+		base = 1000
+	}
+	
+	max_instances = 3
+	scaled_spawn_chance = 4
+	
+	init_effect = {
+		generate_home_system_resources = no
+	}
+
+	# Star
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		has_ring = no
+		init_effect = {
+			prevent_anomaly = yes
+			#add_modifier = { modifier = "oeo_class_o_mod" days = -1 }
+			random_list = {
+				50 = {
+					add_deposit = d_energy_10
+					add_deposit = d_energy_10
+				}
+				50 = {
+					add_deposit = d_physics_10
+					add_deposit = d_physics_10
+				}
+			}
+		}
+	}
+	change_orbit = 50
+
+	planet = {
+		count = { min = 0 max = 2 }
+		orbit_distance = 20
+		class = random_non_colonizable
+		orbit_angle = { min = 90 max = 270 }
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 0 max = 1 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+	
+	change_orbit = 25
+	
+	planet = {
+		count = { min = 0 max = 4 }
+		orbit_distance = 20
+		class = random_non_colonizable
+		orbit_angle = { min = 90 max = 270 }
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 0 max = 2 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+}

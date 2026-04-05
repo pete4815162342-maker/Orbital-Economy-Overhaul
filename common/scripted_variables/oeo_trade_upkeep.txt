@@ -1,0 +1,100 @@
+######Hectostructures#########
+@oeo_miner_trade_upkeep = 2
+@oeo_hydro_trade_upkeep = 2
+@oeo_solar_trade_upkeep = 2
+@oeo_industrial_trade_upkeep = 5
+@oeo_refinery_trade_upkeep = 5
+
+#####Arcology Ring#####
+@oeo_orbitalarc_trade_upkeep = 1
+
+#####Planetary Drill#################
+@oeo_drill1_trade_upkeep = 1
+@oeo_drill2_trade_upkeep = 10
+
+####Dyson Swarm Upkeep Overwrites####
+@oeo_dyson_1_trade_upkeep = 10
+@oeo_dyson_2_trade_upkeep = 20
+@oeo_dyson_3_trade_upkeep = 30
+
+####Star Lifter##########
+@oeo_forgestar1_trade_upkeep = 50
+@oeo_forgestar2_trade_upkeep = 75
+@oeo_forgestar3_trade_upkeep = 100
+
+#####Matrioshka Brain########
+@oeo_matrioshka1_trade_upkeep = 70
+@oeo_matrioshka2_trade_upkeep = 110
+@oeo_matrioshka3_trade_upkeep = 150
+
+####Dyson Sphere Upkeep Overwrites####
+@oeo_sphere_1_trade_upkeep = 5
+@oeo_sphere_2_trade_upkeep = 10
+@oeo_sphere_3_trade_upkeep = 25
+@oeo_sphere_4_trade_upkeep = 50
+@oeo_sphere_5_trade_upkeep = 75
+@oeo_sphere_6_trade_upkeep = 100
+@oeo_sphere_disco_trade_upkeep = 25
+
+####Ring World Upkeep Overwrites####
+@oeo_ring_1_trade_upkeep = 5
+@oeo_ring_2_trade_upkeep = 10
+
+####Arc Furnace Upkeep Overwrites####
+@oeo_arc1_trade_upkeep = 15
+@oeo_arc2_trade_upkeep = 30
+@oeo_arc3_trade_upkeep = 45
+@oeo_arc4_trade_upkeep = 60
+
+####Catapult Upkeep Overwrites####
+@oeo_catapult1_trade_upkeep = 5
+@oeo_catapult2_trade_upkeep = 25
+@oeo_catapult3_trade_upkeep = 50
+@oeo_catapult4_trade_upkeep = 100
+
+####Shipyard Upkeep Overwrites####
+@oeo_shipyard1_trade_upkeep = 5
+@oeo_shipyard2_trade_upkeep = 25
+@oeo_shipyard3_trade_upkeep = 50
+@oeo_shipyard4_trade_upkeep = 100
+
+####Assembly Upkeep Overwrites####
+@oeo_assembly1_trade_upkeep = 5
+@oeo_assembly2_trade_upkeep = 25
+@oeo_assembly3_trade_upkeep = 50
+@oeo_assembly4_trade_upkeep = 75
+@oeo_assembly5_trade_upkeep = 100
+
+####Art Upkeep Overwrites####
+@oeo_art1_trade_upkeep = 5
+@oeo_art2_trade_upkeep = 25
+@oeo_art3_trade_upkeep = 50
+@oeo_art4_trade_upkeep = 75
+@oeo_art5_trade_upkeep = 100
+
+####Strategic Upkeep Overwrites####
+@oeo_strategic1_trade_upkeep = 5
+@oeo_strategic2_trade_upkeep = 50
+@oeo_strategic3_trade_upkeep = 75
+@oeo_strategic4_trade_upkeep = 100
+
+####Decompressor Upkeep Overwrites####
+@oeo_decompressor1_trade_upkeep = 5
+@oeo_decompressor2_trade_upkeep = 25
+@oeo_decompressor3_trade_upkeep = 50
+@oeo_decompressor4_trade_upkeep = 75
+@oeo_decompressor5_trade_upkeep = 100
+
+####Nexus Upkeep Overwrites####
+@oeo_nexus1_trade_upkeep = 5
+@oeo_nexus2_trade_upkeep = 25
+@oeo_nexus3_trade_upkeep = 50
+@oeo_nexus4_trade_upkeep = 75
+@oeo_nexus5_trade_upkeep = 100
+
+####Sentry Upkeep Overwrites####
+@oeo_sentry1_trade_upkeep = 5
+@oeo_sentry2_trade_upkeep = 25
+@oeo_sentry3_trade_upkeep = 50
+@oeo_sentry4_trade_upkeep = 75
+@oeo_sentry5_trade_upkeep = 100

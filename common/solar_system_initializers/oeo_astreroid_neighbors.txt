@@ -1,0 +1,511 @@
+oeo_asteroid_system_1 = {
+	class = "rl_standard_stars"
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 75
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 145
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 215
+	}
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 290
+	}
+
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 20 max = 35 }
+		has_ring = no
+	}
+#50
+	planet = {
+		count = 1
+		orbit_distance = 50
+		class = pc_molten
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 15 max = 20 }
+	}
+	change_orbit = 25
+#75
+	planet = {
+		class = pc_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 100 max = 170 }
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = pc_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 180 max = 270 }
+		size = 5
+		has_ring = no
+	}
+	change_orbit = 70
+#145
+	planet = {
+		class = pc_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 100 max = 170 }
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = pc_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 0 max = 90 }
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = pc_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 180 max = 270 }
+		size = 5
+		has_ring = no
+	}
+	change_orbit = 70
+#215
+	planet = {
+		class = pc_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 90 max = 170 }
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = pc_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 280 max = 360 }
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = pc_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 10 max = 80 }
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = pc_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 190 max = 260 }
+		size = 5
+		has_ring = no
+	}
+#290
+	change_orbit = 75
+
+	planet = {
+		class = pc_ice_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 90 max = 180 }
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = pc_ice_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 0 max = 80 }
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = pc_ice_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 190 max = 300 }
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = pc_ice_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 310 max = 355 }
+		size = 5
+		has_ring = no
+	}
+	neighbor_system = {
+		hyperlane_jumps = { min = 1 max = 3 }
+		initializer = "oeo_asteroid_system_2"
+	}
+}
+oeo_asteroid_system_2 = {
+	class = "rl_standard_stars"
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 75
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 145
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 245
+	}
+	
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 325
+	}
+
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 20 max = 35 }
+		has_ring = no
+	}
+	change_orbit = 75
+#75
+	planet = {
+		class = pc_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 100 max = 170 }
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = pc_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 180 max = 270 }
+		size = 5
+		has_ring = no
+	}
+	change_orbit = 70
+#145
+	planet = {
+		class = pc_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 100 max = 170 }
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = pc_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 0 max = 90 }
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = pc_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 180 max = 270 }
+		size = 5
+		has_ring = no
+	}
+	
+	change_orbit = 25
+	
+	planet = {
+		count = 1
+		orbit_distance = 50
+		class = pc_molten
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 15 max = 20 }
+	}
+	change_orbit = 25
+#245
+	planet = {
+		class = pc_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 90 max = 170 }
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = pc_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 280 max = 360 }
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = pc_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 10 max = 80 }
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = pc_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 190 max = 260 }
+		size = 5
+		has_ring = no
+	}
+#325
+	change_orbit = 80
+	planet = {
+		class = pc_ice_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 90 max = 130 }
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = pc_ice_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 140 max = 180 }
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = pc_ice_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 0 max = 80 }
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = pc_ice_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 190 max = 300 }
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = pc_ice_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 310 max = 355 }
+		size = 5
+		has_ring = no
+	}
+	neighbor_system = {
+		hyperlane_jumps = { min = 1 max = 3 }
+		initializer = "oeo_asteroid_system_3"
+	}
+}
+oeo_asteroid_system_3 = {
+	class = "rl_standard_stars"
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 75
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 145
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 245
+	}
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 280
+	}
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 325
+	}
+
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 20 max = 35 }
+		has_ring = no
+	}
+	change_orbit = 75
+#75
+	planet = {
+		class = pc_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 100 max = 170 }
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = pc_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 180 max = 270 }
+		size = 5
+		has_ring = no
+	}
+	change_orbit = 70
+#145
+	planet = {
+		class = pc_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 100 max = 170 }
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = pc_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 0 max = 90 }
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = pc_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 180 max = 270 }
+		size = 5
+		has_ring = no
+	}
+	
+	change_orbit = 25
+	
+	planet = {
+		count = 1
+		orbit_distance = 50
+		class = pc_molten
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 15 max = 20 }
+	}
+	change_orbit = 25
+#245
+	planet = {
+		class = pc_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 90 max = 170 }
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = pc_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 280 max = 360 }
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = pc_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 10 max = 80 }
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = pc_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 190 max = 260 }
+		size = 5
+		has_ring = no
+	}
+#280
+	change_orbit = 35
+	planet = {
+		class = pc_ice_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 90 max = 130 }
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = pc_ice_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 140 max = 180 }
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = pc_ice_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 190 max = 300 }
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = pc_ice_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 310 max = 355 }
+		size = 5
+		has_ring = no
+	}
+	change_orbit = 45
+	planet = {
+		class = pc_ice_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 90 max = 130 }
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = pc_ice_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 140 max = 180 }
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = pc_ice_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 0 max = 80 }
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = pc_ice_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 190 max = 300 }
+		size = 5
+		has_ring = no
+	}
+	planet = {
+		class = pc_ice_asteroid
+		orbit_distance = 0
+		count = 1
+		orbit_angle = { min = 310 max = 355 }
+		size = 5
+		has_ring = no
+	}
+}

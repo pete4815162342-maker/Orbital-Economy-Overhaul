@@ -1,0 +1,128 @@
+#Only effects Megastructures
+megastructures_oeo_megastructures = {
+	use_for_ai_budget = yes
+	parent = megastructures
+	generate_mult_modifiers = {
+		produces
+		#cost
+		upkeep
+	}
+	#generate_add_modifiers = {
+		#produces
+		#cost
+		#upkeep
+	#}
+	modifier_category = megastructure
+}
+#Only effects Kilostructures
+megastructures_oeo_kilostructures = {
+	use_for_ai_budget = yes
+	parent = megastructures
+	generate_mult_modifiers = {
+		produces
+		#cost
+		upkeep
+	}
+	#generate_add_modifiers = {
+		#produces
+		#cost
+		#upkeep
+	#}
+	modifier_category = megastructure
+}
+#Only effects Hectostructures
+megastructures_oeo_hectostructures = {
+	use_for_ai_budget = yes
+	parent = megastructures
+	modifier_category = megastructure
+	generate_mult_modifiers = {
+		produces
+		upkeep
+		#cost
+	}
+}
+#Only Effects Hectostructures that directly produce resources
+megastructures_oeo_hectostructures_producers = {
+	use_for_ai_budget = yes
+	parent = megastructures_oeo_hectostructures
+	modifier_category = megastructure
+	generate_mult_modifiers = {
+		produces
+		upkeep
+		#cost
+	}
+}
+megastructures_oeo_hydroponics = {
+	use_for_ai_budget = yes
+	parent = megastructures_oeo_hectostructures_producers
+	generate_mult_modifiers = {
+		produces
+	}
+	modifier_category = megastructure
+}
+megastructures_oeo_industrial = {
+	use_for_ai_budget = yes
+	parent = megastructures_oeo_hectostructures_producers
+	generate_mult_modifiers = {
+		produces
+	}
+	modifier_category = megastructure
+}
+megastructures_oeo_solar = {
+	use_for_ai_budget = yes
+	parent = megastructures_oeo_hectostructures_producers
+	generate_mult_modifiers = {
+		produces
+		cost
+	}
+	generate_add_modifiers = {
+		#produces
+		#cost
+		#upkeep
+	}
+	modifier_category = megastructure
+}
+megastructures_oeo_miner = {
+	use_for_ai_budget = yes
+	parent = megastructures_oeo_hectostructures
+	generate_mult_modifiers = {
+		#produces
+		cost
+	}
+	generate_add_modifiers = {
+		#produces
+		#cost
+		#upkeep
+	}
+	modifier_category = megastructure
+}
+megastructures_oeo_arc_furnace = {
+	use_for_ai_budget = yes
+	parent = megastructures_oeo_kilostructures
+	generate_mult_modifiers = {
+		#produces
+		upkeep
+		cost
+	}
+	generate_add_modifiers = {
+		#produces
+		#cost
+		#upkeep
+	}
+	modifier_category = megastructure
+}
+megastructures_oeo_dyson_swarm = {
+	use_for_ai_budget = yes
+	parent = megastructures_oeo_kilostructures
+	generate_mult_modifiers = {
+		#produces
+		upkeep
+		cost
+	}
+	generate_add_modifiers = {
+		#produces
+		#cost
+		#upkeep
+	}
+	modifier_category = megastructure
+}

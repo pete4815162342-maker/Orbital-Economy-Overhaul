@@ -1,0 +1,89 @@
+
+####Asteroid Miner######
+@oeo_miner_build_time = 360
+@oeo_miner_alloy_cost = 100
+@oeo_miner_influence_cost = 50
+@oeo_miner_minerals = 5
+
+#####Hydroponics######
+@oeo_hydro_build_time = 360
+@oeo_hydro_alloy_cost = 150
+@oeo_hydro_influence_cost = 50
+@oeo_hydro_food_output = 10
+
+#####Solar Collector######
+@oeo_solar_build_time = 360
+@oeo_solar_alloy_cost = 150
+@oeo_solar_influence_cost = 50
+@oeo_solar_energy_output = 10
+
+#######Orbital Industrial Station#####
+@oeo_industrial_build_time = 360
+@oeo_industrial_alloy_cost = 150
+@oeo_industrial_ruined_alloy_cost = 50
+@oeo_industrial_influence_cost = 50
+@oeo_forge_alloy_output = 10
+@oeo_forge_mineral_upkeep = 20
+@oeo_forge_food_upkeep = 40
+@oeo_manufactory_alloys_output = 5
+@oeo_manufactury_goods_output = 5
+@oeo_manufactory_mineral_upkeep = 15
+@oeo_manufactory_food_upkeep = 30
+@oeo_manufactory_catalytic_mineral_upkeep = 5
+@oeo_factory_goods_output = 10
+@oeo_factory_mineral_upkeep = 10
+
+#####Arcology Ring########
+@oeo_orbitalarc_build_time = 1800
+@oeo_orbitalarc_alloy_cost = 3000
+@oeo_orbitalarc_influence_cost = 250
+@oeo_orbitalarc_alloy_upkeep = 25
+@oeo_orbitalarc_energy_upkeep = 20
+
+####Orbital Drill#####
+@oeo_drill1_build_time = 360
+@oeo_drill2_build_time = 720
+@oeo_drill1_influence_cost = 100
+@oeo_drill2_unity_cost = 1000
+@oeo_drill1_alloy_cost = 100
+@oeo_drill2_alloy_cost = 250
+@oeo_drill2_lifetime = 3600 ####May need adjusting#####
+
+##STAR LIFTER##
+@oeo_forgestar1_build_time = 1080
+@oeo_forgestar2_build_time = 1080
+@oeo_forgestar3_build_time = 1080
+@oeo_forgestar1_unity_cost = 5000
+@oeo_forgestar2_unity_cost = 5000
+@oeo_forgestar3_unity_cost = 5000
+@oeo_forgestar1_alloy_cost = 2000
+@oeo_forgestar2_alloy_cost = 2500
+@oeo_forgestar3_alloy_cost = 3000
+#####ruined#####
+@oeo_forgestar3_ruined_alloy_cost = 500
+
+####MATRIOSHKA BRAIN####
+@oeo_matrioshka1_build_time = 1080
+@oeo_matrioshka2_build_time = 1080
+@oeo_matrioshka3_build_time = 1080
+@oeo_matrioshka1_unity_cost = 5000
+@oeo_matrioshka2_unity_cost = 5000
+@oeo_matrioshka3_unity_cost = 5000
+@oeo_matrioshka1_alloy_cost = 2500
+@oeo_matrioshka2_alloy_cost = 3000
+@oeo_matrioshka3_alloy_cost = 3500
+
+####Star Lifter & Matrioshka Mods###
+@oeo_dyson_swarm_4_mod_value = 40
+@oeo_dyson_swarm_5_mod_value = 50
+@oeo_dyson_swarm_6_mod_value = 60
+@oeo_matrioshka_1_value = 10
+@oeo_matrioshka_2_value = 20
+@oeo_matrioshka_3_value = 30
+
+@oeo_starlifter_mineral_mod_value = 10
+@oeo_starlifter_mineral_2_mod_value = 20
+
+
+
+

@@ -1,0 +1,200 @@
+#Remember to update operation_sabotage_starbase if you add any new buildings.
+# You will need to update the description, espionage_sabotage_starbase_building, remove_sabotage_starbase_flag, and has_nonshipyard_starbase_buildings
+oeo_asteroid_mining_bay = {
+	icon = "GFX_oeo_asteroid_mining_bay"
+	construction_days = 360
+	potential = {
+		exists = owner
+		owner = { has_technology = "tech_space_mining_2" }
+		is_space_citadel = no
+	}
+	possible = {
+		solar_system = { 
+			OR = {
+				has_asteroid_belt = yes
+				any_system_planet = {
+					is_asteroid = yes
+				}
+			}
+		}
+	}
+	resources = {
+		category = starbase_buildings
+		cost = { alloys = 100 }
+		produces = {
+			minerals = 5
+		}
+		produces = {
+			minerals = 1
+			mult = value:oeo_num_asteroid_in_system_for_starbase
+		}
+		upkeep = { energy = 2 }
+	}
+	show_in_tech = "tech_space_mining_2"
+	ai_weight = { weight = 500 }
+}
+oeo_planet_ring_mining_bay = {
+	icon = "GFX_oeo_planet_ring_mining_bay"
+	construction_days = 360
+	potential = {
+		exists = owner
+		owner = { has_technology = "tech_space_mining_3" }
+		is_space_citadel = no
+	}
+	possible = {
+		solar_system = {
+			any_system_planet = {
+				has_ring = yes
+			}
+		}
+	}
+	resources = {
+		category = starbase_buildings
+		cost = { alloys = 100 }
+		produces = {
+			minerals = 2
+			mult = value:oeo_num_planet_rings_in_system_for_starbase
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = { has_technology = tech_mine_rare_crystals }
+			}
+			rare_crystals = 1
+		}
+		upkeep = { energy = 2 }
+	}
+	show_in_tech = "tech_space_mining_3"
+	ai_weight = { weight = 500 }
+}
+oeo_brown_dwarf_mining_bay = {
+	icon = "GFX_oeo_brown_dwarf_mining_bay"
+	construction_days = 360
+	potential = {
+		exists = owner
+		owner = { has_technology = "tech_space_mining_4" }
+		is_space_citadel = no
+	}
+	possible = {
+		solar_system = {
+			any_system_planet = {
+				is_planet_class = pc_t_star
+			}
+		}
+	}
+	resources = {
+		category = starbase_buildings
+		cost = { alloys = 100 }
+		produces = {
+			minerals = 10
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = { has_technology = tech_mine_volatile_motes }
+			}
+			volatile_motes = 1
+		}
+		upkeep = { energy = 2 }
+	}
+	show_in_tech = "tech_space_mining_4"
+	ai_weight = { weight = 500 }
+}
+oeo_shattered_harvesting_hangar = {
+	icon = "GFX_oeo_shattered_harvesting_hangar"
+	construction_days = 360
+	potential = {
+		exists = owner
+		owner = { has_technology = "tech_space_mining_5" }
+		is_space_citadel = no
+	}
+	possible = {
+		solar_system = {
+			any_system_planet = {
+				is_planet_class = pc_shattered
+			}
+		}
+	}
+	resources = {
+		category = starbase_buildings
+		cost = { alloys = 100 }
+		produces = {
+			minerals = 5
+			mult = value:num_planet_of_class_in_system|CLASS|pc_shattered|
+		}
+		upkeep = { energy = 2 }
+	}
+	show_in_tech = "tech_space_mining_5"
+	ai_weight = { weight = 500 }
+}
+#Starbase only food building, output scales with hydroponics installations
+oeo_system_agriculture_hub = {
+	icon = "GFX_oeo_system_agriculture_hub"
+	construction_days = 720
+	potential = {
+		exists = owner
+		owner = { has_technology = "tech_oeo_hydroponics_upgrade_1" }
+		is_space_citadel = no
+		is_orbital_ring = no
+	}
+	possible = {
+		OR = {
+			has_starbase_building = hydroponics_bay
+			solar_system = {
+				any_system_megastructure = { is_megastructure_type = oeo_hydroponic_station_build_site_1 }
+			}
+		}
+	}	
+	resources = {
+		category = starbase_buildings
+		cost = { alloys = 100 }
+		produces = {
+			food = 2
+			mult = value:oeo_num_system_hydroponics_for_starbase
+		}
+		produces = {
+			trigger = {
+				hidden_trigger = { exists = this }
+				has_starbase_building = hydroponics_bay
+			}
+			food = 5
+		}
+		upkeep = { energy = 3 }
+	}
+	show_in_tech = "tech_oeo_hydroponics_upgrade_1"
+	ai_weight = { weight = 300 }
+}
+oeo_system_energy_depot = {
+	icon = "GFX_oeo_system_energy_depot"
+	construction_days = 720
+	potential = {
+		exists = owner
+		owner = { has_technology = "tech_oeo_solar_upgrade_1" }
+		is_space_citadel = no
+		is_orbital_ring = no
+	}
+	possible = {
+		OR = {
+			has_starbase_module = solar_panel_network
+			solar_system = {
+				any_system_megastructure = { is_megastructure_type = oeo_energy_station_build_site_1 }
+			}
+		}
+	}	
+	resources = {
+		category = starbase_buildings
+		cost = { alloys = 100 }
+		produces = {
+			energy = 2
+			mult = value:oeo_num_system_solar_for_starbase
+		}
+		produces = {
+			energy = 2
+			mult = value:num_starbase_modules_of_type|TYPE|solar_panel_network|
+		}
+		upkeep = { minerals = 3 }
+	}
+	show_in_tech = "tech_oeo_solar_upgrade_1"
+	ai_weight = { weight = 500 }
+}
+

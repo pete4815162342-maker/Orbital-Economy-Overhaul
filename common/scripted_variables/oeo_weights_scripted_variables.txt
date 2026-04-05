@@ -1,0 +1,6 @@
+
+##AI MEGA WEIGHTS##
+@oeo_very_low_weight = 0.25
+@oeo_low_weight = 0.5
+@oeo_normal_weight = 1
+@oeo_high_weight = 10

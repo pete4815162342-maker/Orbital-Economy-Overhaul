@@ -1,0 +1,562 @@
+# Dyson Swarm First Stage
+dyson_swarm_1 = {
+	entity = "dyson_swarm_phase_1_entity"
+	construction_entity = "dyson_swarm_phase_1_entity"
+	portrait = "GFX_megastructure_dyson_swarm_background"
+	entity_offset = { x = 0.1 y = 0.1 }
+	rotate_to_center = no
+	scale_offset = yes
+	place_entity_on_planet_plane = yes
+	show_in_outliner = yes
+	use_planet_resource = yes
+	build_time = 1080 # 3 years
+	resources = {
+		category = megastructures_oeo_dyson_swarm
+		cost = { 
+			####Unity replaced with influence for 1st stage####
+			influence = 200
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 500
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 500
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 500
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		#Edited Upkeep#
+		upkeep = { trade = @oeo_dyson_1_trade_upkeep }
+	}
+	construction_blocks_and_blocked_by = none
+	custom_tooltip_requirements = "oeo_MEGASTRUCTURE_TOOLTIP_REQUIREMENTS_KILOSTRUCTURE_LIMIT"
+	dismantle_cost = {
+		category = megastructures
+		cost = { energy = 500 }
+	}
+	dismantle_time = 360
+	dismantle_potential = { always = yes }
+	dismantle_possible = {
+		can_dismantle_megastructure = {
+			TECH = tech_dyson_swarm
+		}
+		custom_tooltip = {
+			fail_text = "oeo_dismantle_cooldown" 
+			NOT = { has_megastructure_flag = oeo_dismantle_cooldown }
+		}
+	}
+	on_dismantle_start = {
+		fromfrom.planet = {
+			set_planet_flag = oeo_not_cancelled
+			planet_event = { id = oeo_individual_dismantle.2 days = 361 }
+		}
+	}
+	on_dismantle_cancel = {
+		fromfrom = { set_timed_megastructure_flag = { flag = oeo_dismantle_cooldown days = 360 } }
+		fromfrom.planet = { remove_planet_flag = oeo_not_cancelled }
+	}
+	on_dismantle_complete = {
+		from = {
+			add_resource = {
+				alloys = 500
+				mult = modifier:megastructure_dismantle_refund_mult
+			}
+		}
+	}
+	prerequisites = { "tech_dyson_swarm" }
+	potential = { has_machine_age_dlc = yes }
+	possible = {
+		hidden_trigger = {
+			exists = starbase
+		}
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		custom_tooltip = {
+			fail_text = "requires_surveyed_system"
+			NOT = {
+				any_system_planet = {
+					is_surveyed = {
+						who = prev.from
+						status = no
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_black_hole_neutron_star_pulsar"
+			NOR = {
+				is_star_class = sc_black_hole
+				is_star_class = sc_neutron_star
+				is_star_class = sc_pulsar
+			}
+		}
+	}
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "must_build_around_star"
+				is_star = yes
+			}
+			custom_tooltip = {
+				fail_text = "epam_requires_no_brown_dwarf"
+				NOT = {
+					is_planet_class = pc_t_star
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = { has_anomaly = yes }
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_existing_megastructure"
+				NOR = {
+					has_planet_flag = megastructure
+					has_planet_flag = has_megastructure
+				}
+			}
+			if = {
+				limit = { from = { is_ai = yes } }
+				NOR = {
+					has_deposit = d_energy_1
+					has_deposit = d_energy_2
+				}
+			}
+		}
+	}
+	country_modifier = { custom_tooltip = dyson_swarm_1_mod_tooltip }
+	# root = system
+	# from = country
+	ai_weight = {
+		factor = 5
+		modifier = {
+			factor = 0.1
+			starbase = { NOT = { has_starbase_size >= starbase_starfortress } }
+		}
+		modifier = {
+			factor = 0.1
+			any_neighbor_system = {
+				exists = owner
+				NOT = {
+					owner = { is_same_value = from }
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			from = {
+				count_owned_megastructure = {
+					limit = { 
+						is_oeo_swarm_category = yes
+					}
+					count > from.value:oeo_ai_system_limiter
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+		 	from = { has_country_flag = oeo_kilo_cooldown }
+		}
+	}
+	on_build_start = {
+		from = { set_timed_country_flag = { flag = oeo_kilo_cooldown days = @oeo_kilo_cooldown_time } }
+	}
+	on_build_complete = {
+		fromfrom.planet = {
+			set_planet_flag = has_megastructure
+			planet_event = { id = oeo_orbital_dismantle.1 }
+			add_modifier = { modifier = "dyson_swarm_1_mod" days = -1 }
+			if = {
+				limit = { 
+					NOT = { 
+						has_deposit_for = shipclass_research_station 
+						has_deposit_for = shipclass_mining_station 
+					}
+				}
+				set_planet_flag = oeo_energy_added
+				add_deposit = d_energy_1
+			}
+			if = {
+				limit = { 
+					has_deposit_for = shipclass_mining_station 
+					NOT = { has_deposit_for = shipclass_research_station }
+					NOT = { has_planet_flag = oeo_energy_bonus_added }
+				}
+				set_planet_flag = oeo_energy_bonus
+			}
+			if = {
+				limit = {
+					has_planet_flag = oeo_energy_bonus
+					controller = {
+						has_tradition = tr_oeo_star_husbandry_finish
+					}
+				}
+				set_planet_flag = oeo_energy_bonus_added
+				add_deposit = d_energy_1
+				remove_planet_flag = oeo_energy_bonus
+			}
+			if = {
+				limit = { has_orbital_station = yes }
+				orbital_station = {
+					dismantle = yes
+				}
+			}
+			if = {
+				limit = { 
+					AND = { 
+						is_star = yes
+						is_planet_class = pc_k_star 
+					}
+				}
+				add_modifier = { modifier = "oeo_class_k_mod" days = -1 }
+			}
+			if = {
+				limit = { 
+					AND = { 
+						is_star = yes
+						is_planet_class = pc_g_star
+					}
+				}
+				add_modifier = { modifier = "oeo_class_g_mod" days = -1 }
+			}
+			if = {
+				limit = { 
+					AND = { 
+						is_star = yes
+						is_planet_class = pc_m_star
+					}
+				}
+				add_modifier = { modifier = "oeo_class_m_mod" days = -1 }
+			}
+			if = {
+				limit = { 
+					AND = { 
+						is_star = yes
+						is_planet_class = pc_m_giant_star 
+					}
+				}
+				add_modifier = { modifier = "oeo_class_m_giant_mod" days = -1 }
+			}
+			if = {
+				limit = { 
+					AND = { 
+						is_star = yes
+						is_planet_class = pc_b_star 
+					}
+				}
+				add_modifier = { modifier = "oeo_class_b_mod" days = -1 }
+			}
+			if = {
+				limit = { 
+					AND = { 
+						is_star = yes
+						is_planet_class = pc_a_star 
+					}
+				}
+				add_modifier = { modifier = "oeo_class_a_mod" days = -1 }
+			}
+			if = {
+				limit = { 
+					AND = { 
+						is_star = yes
+						is_planet_class = pc_f_star 
+					}
+				}
+				add_modifier = { modifier = "oeo_class_f_mod" days = -1 }
+			}
+			if = {
+				limit = { 
+					AND = { 
+						is_star = yes
+						is_planet_class = pc_oeo_o_star
+					}
+				}
+				add_modifier = { modifier = "oeo_class_o_mod" days = -1 }
+			}
+		}
+	}
+}
+# Dyson Swarm Middle Stage
+dyson_swarm_2 = {
+	entity = "dyson_swarm_phase_2_entity"
+	construction_entity = "dyson_swarm_phase_2_entity"
+	portrait = "GFX_megastructure_dyson_swarm_background"
+	entity_offset = { x = -0.1 y = -0.1 }
+	rotate_to_center = no
+	scale_offset = yes
+	place_entity_on_planet_plane = yes
+	show_in_outliner = yes
+	use_planet_resource = yes
+	build_time = 1080 # 3 years
+	resources = {
+		category = megastructures_oeo_dyson_swarm
+		cost = { unity = 2500 }
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 1000
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 1000
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 1000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		#Edited Upkeep#
+		upkeep = { trade = @oeo_dyson_2_trade_upkeep }
+	}
+	construction_blocks_and_blocked_by = none
+	dismantle_cost = {
+		category = megastructures
+		cost = { energy = 1000 }
+	}
+	dismantle_time = 360
+	dismantle_potential = { always = yes }
+	dismantle_possible = {
+		can_dismantle_megastructure = {
+			TECH = tech_dyson_swarm
+		}
+		custom_tooltip = {
+			fail_text = "oeo_dismantle_cooldown" 
+			NOT = { has_megastructure_flag = oeo_dismantle_cooldown }
+		}
+	}
+	on_dismantle_start = {
+		fromfrom.planet = {
+			set_planet_flag = oeo_not_cancelled
+			planet_event = { id = oeo_individual_dismantle.2 days = 361 }
+		}
+	}
+	on_dismantle_cancel = {
+		fromfrom = { set_timed_megastructure_flag = { flag = oeo_dismantle_cooldown days = 360 } }
+		fromfrom.planet = { remove_planet_flag = oeo_not_cancelled }
+	}
+	on_dismantle_complete = {
+		from = {
+			add_resource = {
+				alloys = 1000
+				mult = modifier:megastructure_dismantle_refund_mult
+			}
+		}
+	}
+	upgrade_from = { dyson_swarm_1 }
+	prerequisites = { "tech_dyson_swarm" }
+	potential = { always = yes }
+	country_modifier = { custom_tooltip = dyson_swarm_2_mod_tooltip }
+	on_build_complete = {
+		fromfrom.planet = {
+			add_modifier = { modifier = "dyson_swarm_2_mod" days = -1 }
+			remove_modifier = dyson_swarm_1_mod
+		}
+	}
+}
+# Dyson Swarm Final Stage
+dyson_swarm_3 = {
+	entity = "dyson_swarm_phase_3_entity"
+	construction_entity = "dyson_swarm_phase_3_entity"
+	portrait = "GFX_megastructure_dyson_swarm_background"
+	entity_offset = { x = -0.1 y = -0.1 }
+	rotate_to_center = no
+	scale_offset = yes
+	place_entity_on_planet_plane = yes
+	use_planet_resource = yes
+	construction_blocks_and_blocked_by = none
+	outliner_trigger = {
+		exists = owner
+		owner = {
+			OR = {
+				NOT = { has_country_flag = oeo_swarm_outliner }
+			}
+		}
+	}
+	dismantle_cost = {
+		category = megastructures
+		cost = { energy = 1500 }
+	}
+	dismantle_time = 360
+	dismantle_potential = { always = yes }
+	dismantle_possible = {
+		can_dismantle_megastructure = {
+			TECH = tech_dyson_swarm
+		}
+		custom_tooltip = {
+			fail_text = "oeo_dismantle_cooldown" 
+			NOT = { has_megastructure_flag = oeo_dismantle_cooldown }
+		}
+	}
+	on_dismantle_start = {
+		fromfrom.planet = {
+			set_planet_flag = oeo_not_cancelled
+			planet_event = { id = oeo_individual_dismantle.2 days = 361 }
+		}
+	}
+	on_dismantle_cancel = {
+		fromfrom = { set_timed_megastructure_flag = { flag = oeo_dismantle_cooldown days = 360 } }
+		fromfrom.planet = { remove_planet_flag = oeo_not_cancelled }
+	}
+	on_dismantle_complete = {
+		from = {
+			add_resource = {
+				alloys = 1500
+				mult = modifier:megastructure_dismantle_refund_mult
+			}
+		}
+	}
+	build_time = 1080 # 3 years
+	resources = {
+		category = megastructures_oeo_dyson_swarm
+		cost = { unity = 5000 }
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 1500
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 1500
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 1500
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = { trade = @oeo_dyson_3_trade_upkeep }
+	}
+	upgrade_from = { dyson_swarm_2 }
+	prerequisites = { "tech_dyson_swarm" }
+	potential = { always = yes }
+	country_modifier = { custom_tooltip = dyson_swarm_3_mod_tooltip }
+	on_build_complete = {
+		fromfrom.planet = {
+			add_modifier = { modifier = "dyson_swarm_3_mod" days = -1 }
+			remove_modifier = dyson_swarm_2_mod
+		}
+		if = {
+			limit = {
+				any_system_megastructure = {
+					OR = {
+						is_megastructure_type = orbital_arc_furnace_4
+						is_megastructure_type = orbital_arc_furnace_restored
+					}
+				}
+			}
+			from = { set_country_flag = burning_brightly_achievement }
+		}
+		if = {
+			limit = {
+				fromfrom.planet = {
+					NOT = { 
+						has_deposit_for = shipclass_research_station 
+					}
+				}
+			}
+			fromfrom = {
+				save_event_target_as = oeo_potential_star_lifter
+			}
+			fromfrom.planet = {
+				set_planet_flag = oeo_dyson_swarm_replacement_target
+				save_event_target_as = oeo_potential_star_lifter_target
+				if = {
+					limit = { has_orbital_station = yes }
+						orbital_station = {
+						dismantle = yes
+					}
+				}
+			}
+			#Dynamic flags added to let events target orbitals#
+			event_target:oeo_orbital_target = {
+				set_planet_flag = oeo_has_potential_star_lifter@fromfrom.planet
+			}
+			event_target:oeo_potential_star_lifter = {
+				set_megastructure_flag = oeo_potential_star_lifter@fromfrom.planet
+			}
+		}
+	}
+}
+# Dyson Swarm Star Lifter Potential
+dyson_swarm_3_pre_star_lifter = {
+	entity = "dyson_swarm_phase_3_entity"
+	construction_entity = "dyson_swarm_phase_3_entity"
+	portrait = "GFX_megastructure_dyson_swarm_background"
+	entity_offset = { x = -0.1 y = -0.1 }
+	rotate_to_center = no
+	scale_offset = yes
+	place_entity_on_planet_plane = yes
+	use_planet_resource = yes
+	construction_blocks_and_blocked_by = none
+	outliner_trigger = {
+		exists = owner
+		owner = {
+			OR = {
+				NOT = { has_country_flag = oeo_swarm_outliner }
+			}
+		}
+	}
+	dismantle_cost = {
+		category = megastructures
+		cost = { energy = 1500 }
+	}
+	dismantle_time = 360
+	dismantle_potential = { always = yes }
+	dismantle_possible = {
+		can_dismantle_megastructure = {
+			TECH = tech_dyson_swarm
+		}
+		custom_tooltip = {
+			fail_text = "oeo_dismantle_cooldown" 
+			NOT = { has_megastructure_flag = oeo_dismantle_cooldown }
+		}
+	}
+	on_dismantle_start = {
+		fromfrom.planet = {
+			set_planet_flag = oeo_not_cancelled
+			planet_event = { id = oeo_individual_dismantle.2 days = 361 }
+		}
+	}
+	on_dismantle_cancel = {
+		fromfrom = { set_timed_megastructure_flag = { flag = oeo_dismantle_cooldown days = 360 } }
+		fromfrom.planet = { remove_planet_flag = oeo_not_cancelled }
+	}
+	on_dismantle_complete = {
+		from = {
+			add_resource = {
+				alloys = 1500
+				mult = modifier:megastructure_dismantle_refund_mult
+			}
+		}
+	}
+	build_time = 1080 # 3 years
+	resources = {
+		category = megastructures_oeo_dyson_swarm
+		cost = { unity = 5000 }
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = 1500
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = 1500
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = 1500
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = { trade = @oeo_dyson_3_trade_upkeep }
+	}
+	upgrade_from = { }
+	prerequisites = { "tech_dyson_swarm" }
+	potential = { always = no }
+	country_modifier = { custom_tooltip = dyson_swarm_3_mod_tooltip }
+	on_build_complete = {}
+}

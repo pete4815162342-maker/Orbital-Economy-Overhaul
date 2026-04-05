@@ -1,0 +1,224 @@
+oeo_junk_world_initializer = {
+	class = sc_oeo_junk_star
+	usage = misc_system_init
+	flags = { oeo_wild_junk_world }
+	
+
+	usage_odds = {
+		base = 0
+		modifier = {
+			host_has_dlc = "Utopia"
+			add = 1000
+		}
+	}
+	
+	max_instances = 1
+	scaled_spawn_chance = 4
+	
+	init_effect = {
+		generate_home_system_resources = no
+	}
+
+	# Star
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 20 max = 30 }
+		has_ring = no
+	}
+
+	# Asteroid belt
+	asteroid_belt = {
+		type = debris_asteroid_belt
+		radius = 40
+	}
+	asteroid_belt = {
+		type = debris_asteroid_belt
+		radius = 45
+	}
+	asteroid_belt = {
+		type = debris_asteroid_belt
+		radius = 50
+	}
+	asteroid_belt = {
+		type = debris_asteroid_belt
+		radius = 55
+	}
+	asteroid_belt = {
+		type = debris_asteroid_belt
+		radius = 60
+	}
+	asteroid_belt = {
+		type = debris_asteroid_belt
+		radius = 65
+	}
+	asteroid_belt = {
+		type = debris_asteroid_belt
+		radius = 70
+	}
+	asteroid_belt = {
+		type = debris_asteroid_belt
+		radius = 75
+	}
+	asteroid_belt = {
+		type = debris_asteroid_belt
+		radius = 80
+	}
+	asteroid_belt = {
+		type = debris_asteroid_belt
+		radius = 85
+	}
+	asteroid_belt = {
+		type = debris_asteroid_belt
+		radius = 90
+	}
+	asteroid_belt = {
+		type = debris_asteroid_belt
+		radius = 95
+	}
+	asteroid_belt = {
+		type = debris_asteroid_belt
+		radius = 100
+	}
+	asteroid_belt = {
+		type = debris_asteroid_belt
+		radius = 105
+	}
+	asteroid_belt = {
+		type = debris_asteroid_belt
+		radius = 110
+	}
+	asteroid_belt = {
+		type = debris_asteroid_belt
+		radius = 115
+	}
+	asteroid_belt = {
+		type = debris_asteroid_belt
+		radius = 120
+	}
+	asteroid_belt = {
+		type = debris_asteroid_belt
+		radius = 150
+	}
+	asteroid_belt = {
+		type = debris_asteroid_belt
+		radius = 155
+	}
+	asteroid_belt = {
+		type = debris_asteroid_belt
+		radius = 160
+	}
+	asteroid_belt = {
+		type = debris_asteroid_belt
+		radius = 165
+	}
+	asteroid_belt = {
+		type = debris_asteroid_belt
+		radius = 170
+	}
+	asteroid_belt = {
+		type = debris_asteroid_belt
+		radius = 175
+	}
+	asteroid_belt = {
+		type = debris_asteroid_belt
+		radius = 200
+	}
+	asteroid_belt = {
+		type = debris_asteroid_belt
+		radius = 205
+	}
+	asteroid_belt = {
+		type = debris_asteroid_belt
+		radius = 210
+	}
+	asteroid_belt = {
+		type = debris_asteroid_belt
+		radius = 220
+	}
+	asteroid_belt = {
+		type = debris_asteroid_belt
+		radius = 225
+	}
+	asteroid_belt = {
+		type = debris_asteroid_belt
+		radius = 230
+	}
+	asteroid_belt = {
+		type = debris_asteroid_belt
+		radius = 235
+	}
+	asteroid_belt = {
+		type = debris_asteroid_belt
+		radius = 240
+	}
+	asteroid_belt = {
+		type = debris_asteroid_belt
+		radius = 245
+	}
+	
+	change_orbit = 115
+	#planet = {
+		#count = { min = 2 max = 3 }
+		#class = pc_asteroid
+		#orbit_distance = 0
+		#orbit_angle = { min = 50 max = 110 }
+	#}
+
+	planet = {
+		class = pc_toxic
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 15 max = 20 }
+		init_effect = {
+				clear_deposits = yes
+				clear_planet_modifiers = yes
+				set_planet_flag = toxic_terraforming_candidate
+				add_modifier = {
+					modifier = toxic_terraforming_candidate
+				}
+		}
+	}
+
+	change_orbit = 38
+
+	planet = {
+		class = pc_toxic
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 15 max = 20 }
+		change_orbit = 15
+		init_effect = {
+				save_event_target_as = oeo_recycler_site
+				clear_deposits = yes
+				clear_planet_modifiers = yes
+				set_planet_flag = toxic_terraforming_candidate
+				add_modifier = {
+					modifier = toxic_terraforming_candidate
+				}
+		}
+	}
+
+	change_orbit = 41
+
+	planet = {
+		orbit_distance = 35
+		class = pc_toxic
+		size = { min = 15 max = 20 }
+		orbit_angle = { min = 90 max = 270 }
+		init_effect = {
+				clear_deposits = yes
+				clear_planet_modifiers = yes
+				set_planet_flag = toxic_terraforming_candidate
+				add_modifier = {
+					modifier = toxic_terraforming_candidate
+				}
+		}
+	}
+	init_effect = {
+		spawn_megastructure = {
+			type = "oeo_mega_recycler_ruined"
+			planet = event_target:oeo_recycler_site
+		}
+	}
+}

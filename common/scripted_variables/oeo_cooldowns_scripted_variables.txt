@@ -1,0 +1,6 @@
+
+##Cooldowns##
+@oeo_defense_cooldown_time = 1800 #5 years
+@oeo_hecto_cooldown_time = 3600 #10 years
+@oeo_kilo_cooldown_time = 5400 #15 years
+@oeo_mega_cooldown_time = 7200 #20 years

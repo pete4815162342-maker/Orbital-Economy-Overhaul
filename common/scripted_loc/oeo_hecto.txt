@@ -1,0 +1,16 @@
+defined_text = {
+	name = GetEpamHydroponicsSystemCount
+	value = value:oeo_num_system_hydroponics 
+}
+defined_text = {
+	name = GetEpamSolarArraySystemCount
+	value = value:oeo_num_system_solar_array 
+}
+defined_text = {
+	name = GetEpamMinerSystemCount
+	value = value:oeo_num_system_asteroid_miner
+}
+defined_text = {
+	name = GetEpamIndustrialSystemCount
+	value = value:oeo_num_system_industrial_station
+}

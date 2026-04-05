@@ -1,0 +1,20 @@
+######Used by Orbital Core Drill######
+pc_oeo_broken = {
+	entity = "oeo_broken_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_barren
+
+	atmosphere_color		= hsv { 0.1 0.4 0.7 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+
+	spawn_odds = 0
+	enable_tilt = no
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	planet_size = { min = 12 max = 30 }
+	moon_size = { min = 6 max = 10 }
+
+	colonizable = no
+}

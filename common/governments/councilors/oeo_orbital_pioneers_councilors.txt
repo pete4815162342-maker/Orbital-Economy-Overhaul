@@ -1,0 +1,11 @@
+
+councilor_civic_oeo_orbital_pioneers = {
+	leader_class = { 
+		scientist 
+		official 
+	}
+	civic = civic_oeo_orbital_pioneers
+	modifier = {
+		megastructures_alloys_cost_mult = -0.02
+	}
+}

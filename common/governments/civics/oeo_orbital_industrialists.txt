@@ -1,0 +1,36 @@
+#####Corpo#######
+civic_oeo_orbital_industrialists = {
+	potential = {
+		authority = { value = auth_corporate }
+	}
+	playable = { has_utopia = yes }
+	possible = {}
+	modifier = {
+		empire_size_colonies_mult = 1
+		empire_size_pops_mult = 1
+		logistic_growth_mult = -0.5
+		bonus_pop_growth_mult = -0.5
+		planet_pop_assembly_mult = -0.5
+		planet_colony_development_speed_mult = -0.5
+		empire_size_systems_mult = -1
+		country_starbase_capacity_mult = 1
+		megastructures_trade_upkeep_mult = -0.10
+		megastructure_build_speed_mult = 0.5
+		megastructure_dismantle_refund_mult = 0.5
+	}
+	modification = {
+		add = {
+			hidden_trigger = {
+				has_civic = civic_oeo_orbital_pioneers
+			}
+		}
+		remove = {
+			always = no
+		}
+	}
+	random_weight = { base = @civic_default_random_weight }
+	ai_weight = {
+		base = @ai_civic_default_base_weight
+	}
+	description = "civic_oeo_game_start_megastructure_tech_effect"
+}

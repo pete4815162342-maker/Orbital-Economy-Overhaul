@@ -1,0 +1,124 @@
+ap_oeo_populist_prerogative = {
+	potential = {
+		NOT = { has_ascension_perk = ap_oeo_populist_prerogative }
+		always = no
+	}
+	modifier = {
+		empire_size_pops_mult = -0.25
+	}
+}
+ap_oeo_capacity_for_exceptionalism = {
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_ascension_perks_1"
+			num_ascension_perks > 0
+		}
+	}
+	triggered_modifier = { megastructures_trade_upkeep_mult = -0.25 }
+	potential = {
+		host_has_dlc = "Utopia"
+		has_machine_age_dlc = yes
+		NOT = { has_ascension_perk = ap_oeo_capacity_for_exceptionalism }
+	}
+	ai_weight = {
+		factor = 10
+		modifier = {
+			factor = 4
+			has_ethic = ethic_materialist
+		}
+		modifier = {
+			factor = 8
+			has_ethic = ethic_fanatic_materialist
+		}
+	}
+}
+ap_oeo_civil_ascendancy = {
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_ascension_perks_5"
+			num_ascension_perks > 4
+		}
+	}
+	modifier = { country_government_civic_points_add = 1 }
+	potential = {
+		host_has_dlc = "Utopia"
+		has_machine_age_dlc = yes
+		NOT = { has_ascension_perk = ap_oeo_civil_ascendancy }
+	}
+}
+ap_oeo_rings_of_power = {
+	on_enabled = {
+		custom_tooltip = "oeo_add_research_options_rings_of_power"
+		hidden_effect = {
+			if = {
+				limit = {
+					NOT = { has_technology = tech_oeo_orbital_drill }
+				}
+				add_research_option = tech_oeo_orbital_drill
+			}
+			if = {
+				limit = {
+					NOT = { has_technology = tech_oeo_orbital_arcology }
+				}
+				add_research_option = tech_oeo_orbital_arcology
+			}
+		}
+	}
+
+	possible = {
+		has_technology = tech_orbital_ring_tier_1
+		NOT = {
+			AND = {
+				has_tradition = tr_oeo_extraction_adopt
+				has_tradition = tr_oeo_verticality_adopt
+			}
+		}
+	}
+
+	potential = {
+		host_has_dlc = "Utopia"
+		NOT = { has_ascension_perk = ap_oeo_rings_of_power }
+	}
+
+	ai_weight = {
+		factor = 0
+	}
+}
+ap_oeo_heliocentric_engineering = {
+	on_enabled = {
+		custom_tooltip = "oeo_add_research_options_heliocentric_enigneering"
+		hidden_effect = {
+			if = {
+				limit = {
+					NOT = { has_technology = tech_oeo_forge_star }
+				}
+				add_research_option = tech_oeo_forge_star
+			}
+			if = {
+				limit = {
+					NOT = { has_technology = tech_oeo_matrioshka_brain }
+				}
+				add_research_option = tech_oeo_matrioshka_brain
+			}
+		}
+	}
+
+	possible = {
+		has_technology = tech_dyson_swarm
+		NOT = {
+			AND = {
+				has_tradition = tr_oeo_star_husbandry_adopt
+				has_tradition = tr_oeo_computation_adopt
+			}
+		}
+	}
+
+	potential = {
+		host_has_dlc = "Utopia"
+		NOT = { has_ascension_perk = ap_oeo_heliocentric_engineering }
+	}
+
+	ai_weight = {
+		factor = 0
+	}
+}

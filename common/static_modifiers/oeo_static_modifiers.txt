@@ -1,0 +1,99 @@
+oeo_class_m_giant_mod = {
+	station_gatherers_minerals_produces_mult = 10
+	icon = "gfx/interface/icons/planet_modifiers/pm_star.dds"
+}
+oeo_class_m_mod = {
+	station_gatherers_minerals_produces_mult = 6
+	icon = "gfx/interface/icons/planet_modifiers/pm_star.dds"
+}
+oeo_class_f_mod = {
+	station_gatherers_minerals_produces_mult = 3
+	station_gatherers_energy_produces_mult = 3
+	icon = "gfx/interface/icons/planet_modifiers/pm_star.dds"
+}
+oeo_class_g_mod = {
+	station_gatherers_energy_produces_mult = 2
+	station_gatherers_minerals_produces_mult = 2
+	station_researchers_produces_mult = 2
+	icon = "gfx/interface/icons/planet_modifiers/pm_star.dds"
+}
+oeo_class_k_mod = {
+	station_gatherers_energy_produces_mult = 3
+	station_researchers_produces_mult = 3
+	icon = "gfx/interface/icons/planet_modifiers/pm_star.dds"
+}
+oeo_class_a_mod = {
+	station_gatherers_energy_produces_mult = 6
+	station_researchers_produces_mult = 6
+	icon = "gfx/interface/icons/planet_modifiers/pm_star.dds"
+}
+oeo_class_b_mod = {
+	station_gatherers_energy_produces_mult = 10
+	station_researchers_produces_mult = 10
+	icon = "gfx/interface/icons/planet_modifiers/pm_star.dds"
+}
+oeo_class_o_mod = {
+	station_gatherers_energy_produces_mult = 20
+	station_researchers_produces_mult = 20
+	icon = "gfx/interface/icons/planet_modifiers/pm_star.dds"
+}
+oeo_dyson_swarm_4_mod = {
+	station_gatherers_produces_mult = @dyson_swarm_3_mod_value
+	station_researchers_produces_mult = @oeo_dyson_swarm_4_mod_value
+	icon = "gfx/interface/icons/planet_modifiers/pm_dyson_swarm_3.dds"
+}
+oeo_dyson_swarm_5_mod = {
+	station_gatherers_produces_mult = @dyson_swarm_3_mod_value
+	station_researchers_produces_mult = @oeo_dyson_swarm_5_mod_value
+	icon = "gfx/interface/icons/planet_modifiers/pm_dyson_swarm_3.dds"
+}
+oeo_dyson_swarm_6_mod = {
+	station_gatherers_produces_mult = @dyson_swarm_3_mod_value
+	station_researchers_produces_mult = @oeo_dyson_swarm_6_mod_value
+	icon = "gfx/interface/icons/planet_modifiers/pm_dyson_swarm_3.dds"
+}
+oeo_star_lifter_1_mod = {
+	station_gatherers_produces_mult = @dyson_swarm_3_mod_value
+	station_gatherers_minerals_produces_mult = @oeo_starlifter_mineral_mod_value
+	station_researchers_produces_mult = @dyson_swarm_3_mod_value
+	icon = "gfx/interface/icons/planet_modifiers/pm_dyson_swarm_3.dds"
+}
+oeo_star_lifter_2_mod = {
+	station_gatherers_produces_mult = @dyson_swarm_3_mod_value
+	station_gatherers_minerals_produces_mult = @oeo_starlifter_mineral_2_mod_value
+	station_researchers_produces_mult = @dyson_swarm_3_mod_value
+	icon = "gfx/interface/icons/planet_modifiers/pm_dyson_swarm_3.dds"
+}
+oeo_star_lifter_3_mod = {
+	station_gatherers_produces_mult = @dyson_swarm_3_mod_value
+	station_gatherers_minerals_produces_mult = @oeo_starlifter_mineral_2_mod_value
+	station_researchers_produces_mult = @dyson_swarm_3_mod_value
+	icon = "gfx/interface/icons/planet_modifiers/pm_dyson_swarm_3.dds"
+}
+agenda_oeo_construction_boom_finish = {
+	megastructure_build_speed_mult = 0.1
+	planet_building_build_speed_mult = 0.1
+}
+oeo_logistics_failure = {
+	icon = "gfx/interface/icons/modifiers/mod_oeo_logistics_failure.dds"
+	megastructures_oeo_megastructures_produces_mult = -0.50
+	megastructures_oeo_kilostructures_produces_mult = -0.50
+	megastructures_oeo_hectostructures_produces_mult = -0.50
+	megastructures_upkeep_mult = -0.50
+	stations_produces_mult = -0.50
+	megastructures_cost_mult = 2
+	megastructure_build_speed_mult = -0.5
+}
+oeo_asteroid_miner_mod = {
+	station_gatherers_produces_mult = 1
+	icon = "gfx/interface/icons/planet_modifiers/pm_oeo_asteroid_miner_mod.dds"
+}
+oeo_multilayered_urban_zone_mod = {
+	species_empire_size_mult = -0.10
+	planet_max_districts_mult = 0.2
+	icon = "gfx/interface/icons/planet_modifiers/pm_oeo_multilayered_urban_zone_mod.dds"
+	show_only_custom_tooltip = yes
+	custom_tooltip = oeo_multilayered_urban_zone_mod_effect
+}
+
+

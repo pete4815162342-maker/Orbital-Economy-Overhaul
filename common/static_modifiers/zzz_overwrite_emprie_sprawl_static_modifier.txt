@@ -1,0 +1,6 @@
+empire_size_over_cap = {
+	country_starbase_influence_cost_mult = 0.002 #+200% at 1100
+	leader_upkeep_empire_size_mult = 0.002 #+200% at 1100
+	ships_trade_logistics_mult = 0.001 #+100% at 1100
+	megastructures_trade_upkeep_mult = 0.001 #+100% at 1100
+}

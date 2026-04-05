@@ -1,0 +1,18 @@
+
+#####Overwrite to prevent colussus targeting modded planets directly#######
+is_a_planet_megastructure = {
+	NOR = {
+		is_star = yes
+		is_planet_class = pc_gas_giant
+		is_planet_class = pc_asteroid
+		is_planet_class = pc_shrouded
+		is_planet_class = pc_broken
+		is_planet_class = pc_shattered
+		has_planet_flag = has_arc_furnace
+		######Vanilla Changes##########
+		is_planet_class = pc_oeo_black_hole_shellworld
+		is_planet_class = pc_oeo_planetary_ringworld
+		is_planet_class = pc_oeo_planetary_ringworld_damaged
+		is_planet_class = pc_oeo_planetary_ringworld_shielded
+	}
+}

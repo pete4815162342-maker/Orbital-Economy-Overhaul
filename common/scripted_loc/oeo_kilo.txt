@@ -1,0 +1,24 @@
+defined_text = {
+	name = GetEpamArcSystemCount
+	value = value:oeo_num_system_arc
+}
+defined_text = {
+	name = GetEpamSwarmSystemCount
+	value = value:oeo_num_system_swarm
+}
+defined_text = {
+	name = GetEpamMatrioshkaSystemCount
+	value = value:oeo_num_system_matrioshka
+}
+defined_text = {
+	name = GetEpamLifterSystemCount
+	value = value:oeo_num_system_lifter
+}
+defined_text = {
+	name = GetEpamDrillSystemCount
+	value = value:oeo_num_system_drill
+}
+defined_text = {
+	name = GetEpamOrbringSystemCount
+	value = value:oeo_num_system_orbring
+}
