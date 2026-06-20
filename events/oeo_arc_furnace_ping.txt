@@ -1,0 +1,25 @@
+namespace = oeo_arc_furnace_ping
+
+country_event = {
+	id = oeo_arc_furnace_ping.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		random_system_within_border = {
+			limit = {
+				exists = planet
+				is_asteroid = yes
+				NOT = {
+					has_deposit_for = shipclass_research_station
+				}
+			}
+			create_message = {
+				type = OEO_ARC_FURNACE_PING
+				localization = OEO_ARC_FURNACE_PING_DESC
+				days = 30
+				target = this
+			}
+		}
+	}
+}

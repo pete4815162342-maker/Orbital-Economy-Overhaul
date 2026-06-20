@@ -1,0 +1,122 @@
+namespace = oeo_good_bye_sun
+
+# Root = Country
+# From = Megastructure
+# FromFrom = System
+# FromFromFrom = Fleet
+country_event = {
+	id = oeo_good_bye_sun.1
+	title = "oeo_good_bye_sun.1.name"
+	desc = "oeo_good_bye_sun.1.desc"
+	picture = GFX_evt_cosmic_storms_hold_the_line
+	location = fromfrom
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = { 
+			OR = { 
+				is_megastructure_type = dyson_sphere_restored
+				is_megastructure_type = dyson_sphere_5
+			}
+		}
+		fromfrom = {
+			NOR = {
+				is_star_class = sc_binary_1
+				is_star_class = sc_binary_2
+				is_star_class = sc_binary_3
+				is_star_class = sc_binary_4
+				is_star_class = sc_binary_5
+				is_star_class = sc_binary_6
+				is_star_class = sc_binary_7
+				is_star_class = sc_binary_8
+				is_star_class = sc_binary_9
+				is_star_class = sc_binary_10
+				is_star_class = sc_trinary_1
+				is_star_class = sc_trinary_2
+				is_star_class = sc_trinary_3
+				is_star_class = sc_trinary_4
+			}
+			any_system_megastructure = {
+				is_megastructure_type = oeo_energy_station_build_site_1
+			}
+		}
+	}
+
+	option = {
+		name = Whoops
+		hidden_effect = {
+			fromfrom = {
+				set_star_flag = oeo_no_light_here
+			}
+			every_owned_megastructure = {
+				limit = {
+					is_megastructure_type = oeo_energy_station_build_site_1
+					solar_system = {
+						has_star_flag = oeo_no_light_here
+					}
+				}	
+				set_megastructure_flag = oeo_no_more_sun
+			}
+			fromfrom = {
+				remove_star_flag = oeo_no_light_here
+			}
+		}
+	}
+}
+country_event = {
+	id = oeo_good_bye_sun.2
+	title = "oeo_good_bye_sun.2.name"
+	desc = "oeo_good_bye_sun.2.desc"
+	picture = GFX_evt_cosmic_storms_hold_the_line
+	location = fromfrom
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = { 
+			OR = { 
+				is_megastructure_type = dyson_sphere_5
+			}
+		}
+		fromfrom = {
+			OR = {
+				is_star_class = sc_binary_1
+				is_star_class = sc_binary_2
+				is_star_class = sc_binary_3
+				is_star_class = sc_binary_4
+				is_star_class = sc_binary_5
+				is_star_class = sc_binary_6
+				is_star_class = sc_binary_7
+				is_star_class = sc_binary_8
+				is_star_class = sc_binary_9
+				is_star_class = sc_binary_10
+			}
+			has_star_flag = oeo_second_dyson_swarm
+			any_system_megastructure = {
+				is_megastructure_type = oeo_energy_station_build_site_1
+			}
+		}
+	}
+
+	option = {
+		name = Whoops
+		hidden_effect = {
+			fromfrom = {
+				set_star_flag = oeo_no_light_here
+			}
+			every_owned_megastructure = {
+				limit = {
+					is_megastructure_type = oeo_energy_station_build_site_1
+					solar_system = {
+						has_star_flag = oeo_no_light_here
+					}
+				}	
+				set_megastructure_flag = oeo_no_more_sun
+			}
+			fromfrom = {
+				remove_star_flag = oeo_no_light_here
+			}
+		}
+	}
+}

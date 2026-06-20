@@ -1,0 +1,152 @@
+namespace = oeo_situation_events
+
+situation_event = {
+	id = oeo_situation_events.1
+	title = oeo_situation_events.1.name
+	desc = {
+		text = oeo_situation_events.1.desc
+		trigger = {
+			owner = { is_regular_empire = yes }
+		}
+	}
+	desc = {
+		text = oeo_situation_events.1.desc.gestalt
+		trigger = {
+			owner = { is_gestalt = yes }
+		}
+	}
+	picture = GFX_evt_deficit
+	show_sound = event_life_support_fail
+	is_triggered_only = yes
+	situation = this
+	force_open = yes
+
+	option = {
+		name = UNFORTUNATE
+
+		owner = {
+			add_resource = {
+				trade = @bailout_basic_base_amount
+				mult = value:bailout_scaling_factor
+			}
+			add_modifier = { modifier = "oeo_logistics_failure" days = 1800 }
+			
+		}
+	}
+	after = {
+		destroy_situation = this
+	}
+}
+situation_event = {
+	id = oeo_situation_events.2
+	title = oeo_situation_events.2.name
+	desc = {
+		text = oeo_situation_events.2.desc
+		trigger = { owner = { is_gestalt = no } }
+	}
+	desc = {
+		text = oeo_situation_events.2.desc.gestalt
+		trigger = { owner = { is_gestalt = yes } }
+	}
+	picture = GFX_evt_deficit
+	show_sound = event_bad_omen
+	is_triggered_only = yes
+	situation = this
+
+	abort_trigger = {
+		situation_progress >= 100
+	}
+
+	immediate = {
+		owner = {
+			ordered_pop_faction = {
+				limit = {
+					is_owner_ethic_pop_faction = yes
+					NOT = { has_modifier = faction_loan_taken }
+				}
+				order_by = trigger:pop_amount
+				position = 0
+				save_event_target_as = ruler_pop_faction
+			}
+			ordered_owned_planet = {
+				limit = {
+					is_capital = no
+					NOT = {
+						is_planet_class = pc_cosmogenesis_world
+					}
+				}
+				order_by = trigger:pop_amount
+				position = 0
+				save_event_target_as = looted_planet
+			}
+			if = {
+				limit = {
+					NOT = { exists = event_target:looted_planet }
+				}
+				capital_scope = {
+					save_event_target_as = looted_planet
+				}
+			}
+		}
+	}
+
+	option = {
+		name = oeo_situation_events.2.A
+		trigger = {
+			owner = {
+				is_lithoid_empire = yes
+				num_buildings = {
+					type = building_clone_vats
+					disabled = no
+					value > 0
+				}
+			}
+		}
+		owner = {
+			custom_tooltip = deficit.140.A.tooltip
+			add_resource = {
+				trade = 100
+				mult = value:num_active_buildings|BUILDING|building_clone_vats|
+			}
+			hidden_effect = {
+				every_owned_planet = {
+					limit = { has_active_building = building_clone_vats }
+					ruin_building = building_clone_vats
+				}
+			}
+		}
+	}
+	option = {
+		name = oeo_situation_events.2.A
+		trigger = {
+			exists = event_target:ruler_pop_faction
+		}
+		owner = {
+			add_resource = {
+				trade = 0.5
+				mult = event_target:ruler_pop_faction.trigger:pop_amount
+			}
+			event_target:ruler_pop_faction = {
+				add_modifier = {
+					modifier = faction_loan_taken
+					years = 10
+				}
+			}
+		}
+	}
+	option = {
+		name = oeo_situation_events.2.B
+		owner = {
+			add_resource = {
+				trade = 1
+				mult = event_target:looted_planet.trigger:pop_amount
+			}
+			event_target:looted_planet = {
+				add_planet_devastation = 50
+			}
+		}
+	}
+	option = {
+		name = oeo_situation_events.2.C
+	}
+}

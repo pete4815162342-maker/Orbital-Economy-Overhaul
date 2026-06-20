@@ -1,0 +1,264 @@
+namespace = oeo_arc_sites
+# Stage 1: Scans of planet, ship, and station
+fleet_event = {
+	id = oeo_arc_sites.1
+	title = oeo_arc_sites.1.name
+	desc = oeo_arc_sites.1.desc
+	picture = GFX_evt_space_debris
+	show_sound = event_dig_site
+	location = from
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+
+	option = {
+		name = CURIOUS
+		medium_artifact_reward = yes
+	}
+}
+# Stage 2: Board ship, discover black box
+fleet_event = {
+	id = oeo_arc_sites.2
+	title = oeo_arc_sites.2.name
+	desc = oeo_arc_sites.2.desc
+	picture = GFX_evt_ancient_databank
+	show_sound = event_dig_site
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+
+	option = {
+		name = CURIOUS
+		medium_artifact_reward = yes
+	}
+}
+#Stage 3: ship was piloted by a derranged pirate attempted station ramming
+fleet_event = {
+	id = oeo_arc_sites.3
+	title = oeo_arc_sites.3.name
+	desc = oeo_arc_sites.3.desc
+	picture = GFX_evt_analyzing_artifacts
+	show_sound = event_screams
+	location = from
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+
+	option = {
+		name = CURIOUS
+		medium_artifact_reward = yes
+	}
+}
+# Stage 4: Station reactor barely functional, station contains a mysterious set of machinery, treasure hunters, station originally from precursers
+fleet_event = {
+	id = oeo_arc_sites.4
+	title = oeo_arc_sites.4.name
+	desc = oeo_arc_sites.4.desc
+	picture = GFX_evt_ruined_system
+	show_sound = event_mystic_reveal
+	location = from
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+
+	option = {
+		name = CURIOUS
+		medium_artifact_reward = yes
+	}
+}
+# Stage 5: Discover station logs detailing search for lost precursor treasures, planet was destroyed eons ago by self destructing experimental gateway.
+fleet_event = {
+	id = oeo_arc_sites.5
+	title = oeo_arc_sites.5.name
+	desc = oeo_arc_sites.5.desc
+	picture = GFX_evt_rare_tech_cache
+	show_sound = event_mystic_reveal
+	location = from
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+
+	option = {
+		name = EXCELLENT
+		large_artifact_reward = yes
+		hidden_effect = {
+			#fleet_event = { id = ancrel.4018 days = 1 }
+		}
+	}
+}
+# Stage 6: Station machinery can restabilize the wormhole to the "treasure"
+fleet_event = {
+	id = oeo_arc_sites.6
+	title = oeo_arc_sites.6.name
+	desc = oeo_arc_sites.6.desc
+	picture = GFX_evt_wormhole
+	show_sound = event_mystic_reveal
+	location = from
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	after = {
+		from = { set_site_progress_locked = no }
+	}
+
+	option = {
+		name = EXCELLENT
+		large_artifact_reward = yes
+		hidden_effect = {
+			fleet_event = { id = oeo_arc_sites.7 days = 1 }
+		}
+	}
+}
+fleet_event = {
+	id = oeo_arc_sites.7
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		owner = {
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = encountered_first_wormhole
+					}
+				}
+				set_country_flag = encountered_first_wormhole
+				add_seen_bypass_type = wormhole
+			}
+			country_event = { id = oeo_arc_sites.9 days = 2 }
+		}
+		solar_system = {
+			system_event = { id = oeo_arc_sites.8 days = 1 }
+		}
+	}
+}
+system_event = {
+	id = oeo_arc_sites.8
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		no_scope = {
+			# place system position at galactic core
+			spawn_system = {
+				min_distance >= 400
+				max_distance <= 450
+				min_orientation_angle = 0
+				max_orientation_angle = 359
+				initializer = oeo_black_hole_shell_world
+				hyperlane = no
+				authorize_spawn_on_galactic_core = no
+			}
+		}
+		spawn_natural_wormhole = {
+			bypass_type = wormhole
+			random_pos = yes
+			orbit_angle = 360
+			graphics_entity_name = strange_wormhole_entity
+			init_effect = {
+				link_wormholes = event_target:oeo_wormhole_bypass
+				clear_global_event_target = oeo_wormhole_bypass
+			}
+		}
+	}
+}
+country_event = {
+	id = oeo_arc_sites.9
+	title = oeo_arc_sites.9.name
+	desc = "oeo_arc_sites.9.desc"
+	picture = GFX_evt_wormhole
+	show_sound = event_radio_chatter
+
+	is_triggered_only = yes
+	
+	immediate = {
+	}
+	option = {
+		name = EXCELLENT
+		hidden_effect = {
+			if = {
+				limit = {
+					NOT = { has_technology = tech_wormhole_stabilization }
+				}
+				add_research_option = tech_wormhole_stabilization
+			}
+		}
+	}
+}
+ship_event = {
+	id = oeo_arc_sites.10
+	title = "oeo_arc_sites.10.name"
+	desc = "oeo_arc_sites.10.desc"
+	picture = GFX_shell_world
+	show_sound = event_radio_chatter
+	location = FROM
+
+	is_triggered_only = yes
+
+	trigger = {
+		FROM = {
+			has_star_flag = oeo_ruined_black_hole_shell_world
+		}
+	}
+
+	immediate = {}
+
+	option = {
+		name = FASCINATING
+		trigger = {}
+		hidden_effect = {
+			owner = { country_event = { id = story.5 days = 30 } }
+		}
+	}
+}

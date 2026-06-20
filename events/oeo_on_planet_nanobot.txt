@@ -1,0 +1,81 @@
+namespace = oeo_planet_nanobot
+
+planet_event = {
+	id = oeo_planet_nanobot.1
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		if = {
+			limit = { 
+				has_planet_flag = oeo_ring@ROOT
+			}
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						is_planet_class = pc_oeo_planetary_ringworld
+						has_planet_flag = oeo_ring@ROOT
+					}
+					if = {
+						limit = {
+							exists = owner
+							owner = { is_same_value = from.owner }
+						}
+						# already owned
+					}
+					else = {
+						set_owner = from.owner
+					}
+					every_owned_pop_group = {
+						limit = {
+							is_valid_pop_for_PLANET_KILLER_NANOBOTS = yes
+						}
+						modify_species = {
+							species = this
+							add_trait = trait_cybernetic
+							add_traits_at_start_of_list = yes
+							change_scoped_species = yes
+						}
+					}
+					every_owned_pop_group = {
+						limit = {
+							OR = {
+								has_trait = trait_hive_mind
+								has_trait = trait_mechanical
+								has_trait = trait_machine_unit
+							}
+						}
+						kill_all_pop = yes
+					}
+					every_owned_pop_group = {
+						limit = {
+							has_modifier = pop_recently_conquered
+						}
+						remove_modifier = pop_recently_conquered
+					}
+					every_owned_pop_group = {
+						set_citizenship_type = {
+							type = citizenship_full_machine
+							cooldown = yes
+						}
+					}
+					create_ambient_object = {
+						location = this
+						type = habitat_nanobot_object
+						duration = 5
+
+						use_3d_location = yes
+						base_angle_towards = star
+						entity_face_object = star
+
+						entity_offset = { min = 0 max = 0 }
+
+						entity_scale_to_size = yes
+						scale = 0.07
+					}
+				}
+			}
+		}
+	}
+}
+

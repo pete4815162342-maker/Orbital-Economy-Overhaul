@@ -1,0 +1,137 @@
+namespace = oeo_individual_dismantle
+
+planet_event = {
+	id = oeo_individual_dismantle.1
+	is_triggered_only = yes
+	hide_window = yes
+  
+	trigger = {
+		has_planet_flag = oeo_not_cancelled
+	}
+	immediate = {
+		remove_planet_flag = has_megastructure
+		remove_planet_flag = megastructure
+		remove_planet_flag = oeo_not_cancelled
+		remove_planet_flag = oeo_ring_built
+		if = {
+			limit = {
+				has_planet_flag = oeo_orbital@root
+			}
+			planet_event = { id = oeo_orbital_dismantle.1 }
+		}
+	}
+}
+planet_event = {
+	id = oeo_individual_dismantle.2
+	is_triggered_only = yes
+	hide_window = yes
+  
+	trigger = {
+		has_planet_flag = oeo_not_cancelled
+	}
+	immediate = {
+		remove_planet_flag = has_megastructure
+		remove_planet_flag = megastructure
+		remove_planet_flag = oeo_not_cancelled
+		remove_modifier = dyson_swarm_1_mod
+		remove_modifier = dyson_swarm_2_mod
+		remove_modifier = dyson_swarm_3_mod
+		remove_modifier = oeo_dyson_swarm_4_mod
+		remove_modifier = oeo_dyson_swarm_5_mod
+		remove_modifier = oeo_dyson_swarm_6_mod
+		remove_modifier = oeo_star_lifter_1_mod
+		remove_modifier = oeo_star_lifter_2_mod
+		remove_modifier = oeo_star_lifter_3_mod
+		remove_modifier = oeo_class_m_giant_mod
+		remove_modifier = oeo_class_m_mod
+		remove_modifier = oeo_class_f_mod
+		remove_modifier = oeo_class_g_mod
+		remove_modifier = oeo_class_k_mod
+		remove_modifier = oeo_class_a_mod
+		remove_modifier = oeo_class_b_mod
+		remove_modifier = oeo_class_o_mod
+		if = {
+			limit = {
+				has_planet_flag = oeo_energy_added
+			}
+			remove_deposit = d_energy_1
+			remove_planet_flag = oeo_energy_added
+		}
+		if = {
+			limit = {
+				has_planet_flag = oeo_energy_bonus
+			}
+			remove_planet_flag = oeo_energy_bonus
+		}
+		if = {
+			limit = {
+				has_planet_flag = oeo_energy_bonus_added
+			}
+			remove_deposit = d_energy_1
+			remove_planet_flag = oeo_energy_bonus_added
+		}
+		if = {
+			limit = {
+				has_planet_flag = oeo_matrioshka_deposits_added
+			}
+			remove_deposit = d_engineering_1
+			remove_deposit = d_physics_1
+			remove_deposit = d_society_1
+			remove_planet_flag = oeo_matrioshka_deposits_added
+		}
+		if = {
+			limit = {
+				has_planet_flag = oeo_star_lifter@root
+			}
+			remove_deposit = d_minerals_1
+			solar_system = {
+				every_system_ambient_object = {
+					limit = {
+						has_ambient_object_flag = oeo_star_lifter@root
+					}
+					destroy_ambient_object = this
+				}
+			}
+		}
+		if = {
+			limit = {
+				has_planet_flag = oeo_star_lifter_2
+			}
+			remove_deposit = d_minerals_1
+			remove_planet_flag = oeo_star_lifter_2
+		}
+		if = {
+			limit = {
+				has_planet_flag = oeo_star_lifter_3
+			}
+			remove_deposit = d_oeo_exotic_gas_very_small
+			remove_planet_flag = oeo_star_lifter_3
+		}
+		if = {
+			limit = {
+				has_planet_flag = oeo_orbital@root
+			}
+			planet_event = { id = oeo_orbital_dismantle.1 }
+		}
+	}
+}
+planet_event = {
+	id = oeo_individual_dismantle.4
+	is_triggered_only = yes
+	hide_window = yes
+  
+	trigger = {
+		has_planet_flag = oeo_not_cancelled
+	}
+	immediate = {
+		remove_planet_flag = has_megastructure
+		remove_planet_flag = megastructure
+		remove_planet_flag = oeo_not_cancelled
+		if = {
+			limit = {
+				has_planet_flag = oeo_orbital@root
+			}
+			planet_event = { id = oeo_orbital_dismantle.1 }
+		}
+	}
+}

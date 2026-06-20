@@ -1,0 +1,181 @@
+namespace = megastructures
+
+# Spawn a energy orbital
+# Fired by on_built by district_hab_energy
+planet_event = {
+	id = megastructures.200
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		is_planet_class = pc_habitat
+	}
+
+	immediate = {
+		solar_system = {
+			random_system_planet = {
+				limit = {
+					is_artificial = no
+					is_astral_scar = no
+					#######START OF EDITS###########
+					NOR = {
+						has_planet_flag = has_orbital
+						has_planet_flag = has_megastructure
+					}
+					########END of EDITS###############
+					has_orbital_energy_deposit = yes
+					habitat_owner_has_tech_for_deposit = yes
+				}
+				root.owner = {
+					save_event_target_as = habitat_owner
+				}
+				save_event_target_as = target_planet
+				if = {
+					limit = {
+						OR = {
+							is_moon = yes
+							is_asteroid = yes
+						}
+					}
+					solar_system = {
+						spawn_orbital_effect = {
+							TYPE = minor
+							HABITAT_OWNER = event_target:habitat_owner
+							TARGET_PLANET = event_target:target_planet
+						}
+					}
+				}
+				else = {
+					solar_system = {
+						spawn_orbital_effect = {
+							TYPE = major
+							HABITAT_OWNER = event_target:habitat_owner
+							TARGET_PLANET = event_target:target_planet
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# Spawn a mining orbital
+# Fired by on_built by district_hab_mining
+planet_event = {
+	id = megastructures.210
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		is_planet_class = pc_habitat
+	}
+
+	immediate = {
+		solar_system = {
+			random_system_planet = {
+				limit = {
+					is_artificial = no
+					is_astral_scar = no
+					#######START OF EDITS###########
+					NOR = {
+						has_planet_flag = has_orbital
+						has_planet_flag = has_megastructure
+					}
+					########END of EDITS###############
+					has_orbital_mining_deposit = yes
+					habitat_owner_has_tech_for_deposit = yes
+				}
+				root.owner = {
+					save_event_target_as = habitat_owner
+				}
+				save_event_target_as = target_planet
+				if = {
+					limit = {
+						OR = {
+							is_moon = yes
+							is_asteroid = yes
+						}
+					}
+					solar_system = {
+						spawn_orbital_effect = {
+							TYPE = minor
+							HABITAT_OWNER = event_target:habitat_owner
+							TARGET_PLANET = event_target:target_planet
+						}
+					}
+				}
+				else = {
+					solar_system = {
+						spawn_orbital_effect = {
+							TYPE = major
+							HABITAT_OWNER = event_target:habitat_owner
+							TARGET_PLANET = event_target:target_planet
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# Spawn a research orbital
+# Fired by on_built by district_hab_science
+planet_event = {
+	id = megastructures.220
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		is_planet_class = pc_habitat
+	}
+
+	immediate = {
+		solar_system = {
+			random_system_planet = {
+				limit = {
+					is_artificial = no
+					is_astral_scar = no
+					#######START OF EDITS###########
+					NOR = {
+						has_planet_flag = has_orbital
+						has_planet_flag = has_megastructure
+					}
+					########END of EDITS###############
+					has_deposit_for = shipclass_research_station
+					habitat_owner_has_tech_for_deposit = yes
+				}
+				root.owner = {
+					save_event_target_as = habitat_owner
+				}
+				save_event_target_as = target_planet
+				if = {
+					limit = {
+						OR = {
+							is_moon = yes
+							is_asteroid = yes
+						}
+					}
+					solar_system = {
+						spawn_orbital_effect = {
+							TYPE = minor
+							HABITAT_OWNER = event_target:habitat_owner
+							TARGET_PLANET = event_target:target_planet
+						}
+					}
+				}
+				else = {
+					solar_system = {
+						spawn_orbital_effect = {
+							TYPE = major
+							HABITAT_OWNER = event_target:habitat_owner
+							TARGET_PLANET = event_target:target_planet
+						}
+					}
+				}
+			}
+		}
+	}
+}

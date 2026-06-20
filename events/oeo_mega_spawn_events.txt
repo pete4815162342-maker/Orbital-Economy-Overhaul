@@ -1,0 +1,19 @@
+namespace = oeo_mega_spawn
+
+planet_event = {
+	id = oeo_mega_spawn.1
+	is_triggered_only = yes
+	hide_window = yes
+  
+	immediate = {
+		save_event_target_as = oeo_mega_target
+		solar_system = {
+			spawn_megastructure = {
+				type = "oeo_industrial_station_build_site_0"
+				owner = space_owner
+				planet = event_target:oeo_mega_target
+			}
+		}	
+	}
+}
+

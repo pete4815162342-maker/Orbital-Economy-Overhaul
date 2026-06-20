@@ -1,0 +1,46 @@
+namespace = oeo_game_start
+
+event = {
+	id = oeo_game_start.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_system = {
+			every_system_planet = {
+				limit = {
+					is_star = yes
+					NOR = {
+						is_planet_class = pc_black_hole
+						is_planet_class = pc_pulsar
+						is_planet_class = pc_neutron_star
+					}
+					NOR = {
+						has_deposit_for = shipclass_mining_station
+						has_deposit_for = shipclass_research_station
+					}
+				}
+				random_list = {
+					10 = { 
+						add_deposit = d_energy_1
+					}
+					5 = { 
+						add_deposit = d_energy_2
+					}
+					1 = { 
+						add_deposit = d_energy_3
+					}
+					10 = { 
+						add_deposit = d_physics_1
+					}
+					5 = { 
+						add_deposit = d_physics_2
+					}
+					1 = { 
+						add_deposit = d_physics_3
+					}
+				}
+			}
+		}
+	}
+}

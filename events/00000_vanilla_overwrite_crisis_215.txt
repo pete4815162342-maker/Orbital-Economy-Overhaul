@@ -1,0 +1,32 @@
+namespace = crisis
+
+# World Infested (HIDDEN)
+planet_event = {
+	id = crisis.215
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { exists = orbital_defence }
+			save_event_target_as = oeo_ruined_ring_planet
+			destroy_fleet = orbital_defence
+			set_planet_flag = ruined_orbital_ring_planet
+			solar_system = {
+				spawn_megastructure = {
+					type = orbital_ring_ruined
+					planet = event_target:oeo_ruined_ring_planet
+				}
+			}
+		}
+		every_country = {
+			limit = { has_event_chain = "prethoryn_scourge_chain" }
+			add_event_chain_counter = {
+				event_chain = "prethoryn_scourge_chain"
+				counter = "infested_worlds"
+				amount = 1
+			}
+		}
+	}
+}

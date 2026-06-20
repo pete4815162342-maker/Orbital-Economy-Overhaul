@@ -1,0 +1,257 @@
+namespace = oeo_extraction_scan
+
+country_event = {
+	id = oeo_extraction_scan.1
+	title = oeo_extraction_scan.1.name
+	desc = oeo_extraction_scan.1.desc
+	picture = GFX_evt_mining_operations
+	location = event_target:chosen_asteroid
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_planet_within_border = {
+			limit = {
+				exists = planet
+				is_asteroid = yes
+				NOT = {
+					has_deposit_for = shipclass_research_station
+				}
+			}
+			planet = {
+				save_event_target_as = chosen_asteroid
+			}
+		}
+	}
+
+	option = {
+		name = EXCELLENT
+
+		locked_random_list = {
+			# Minerals
+			90 = {
+				event_target:chosen_asteroid = { add_deposit = d_minerals_1 }
+			}
+			# Alloys
+			5 = {
+				event_target:chosen_asteroid = { add_deposit = d_alloys_1 }
+			}
+			# Rare Crystals
+			5 = {
+				event_target:chosen_asteroid = { add_deposit = d_rare_crystals_1 }
+			}
+		}
+	}
+}
+country_event = {
+	id = oeo_extraction_scan.2
+	title = oeo_extraction_scan.2.name
+	desc = oeo_extraction_scan.2.desc
+	picture = GFX_evt_arc_crucible
+	location = event_target:chosen_planet
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_planet_within_border = {
+			limit = {
+				exists = planet
+				NOT = {
+					has_deposit_for = shipclass_research_station
+				}
+				solar_system = {
+					any_system_megastructure = {
+						OR = {
+							is_megastructure_type = orbital_arc_furnace_1
+							is_megastructure_type = orbital_arc_furnace_2
+							is_megastructure_type = orbital_arc_furnace_3
+							is_megastructure_type = orbital_arc_furnace_4
+							is_megastructure_type = orbital_arc_furnace_restored
+						}
+					}
+				}
+			}
+			planet = {
+				save_event_target_as = chosen_planet
+			}
+		}
+	}
+
+	option = {
+		name = EXCELLENT
+		trigger = {
+			any_owned_megastructure = {
+				OR = {
+					is_megastructure_type = orbital_arc_furnace_1
+					is_megastructure_type = orbital_arc_furnace_2
+					is_megastructure_type = orbital_arc_furnace_3
+					is_megastructure_type = orbital_arc_furnace_4
+					is_megastructure_type = orbital_arc_furnace_restored
+				}
+			}
+		}
+		locked_random_list = {
+			# Minerals
+			80 = {
+				event_target:chosen_planet = { add_deposit = d_minerals_1 }
+			}
+			# Alloys
+			10 = {
+				event_target:chosen_planet = { add_deposit = d_alloys_1 }
+			}
+			# Rare Crystals
+			5 = {
+				event_target:chosen_planet = { add_deposit = d_rare_crystals_1 }
+			}
+			#Volatile Motes
+			5 = {
+				event_target:chosen_planet = { add_deposit = d_volatile_motes_1 }
+			}
+		}
+	}
+}
+country_event = {
+	id = oeo_extraction_scan.3
+	hide_window = yes
+	is_triggered_only = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		every_controlled_planet = {
+			limit = {
+				has_planet_flag = oeo_asteroid_mine
+			}
+			add_deposit = d_minerals_1
+			set_planet_flag = oeo_asteroid_mine_bonus
+		}
+	}
+}
+country_event = {
+	id = oeo_extraction_scan.4
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		owner = {
+			OR = {
+				has_tradition = tr_oeo_extraction_advanced_prospecting
+			}
+		}
+	}
+
+	immediate = {
+		every_owned_leader = {
+			limit = {
+				leader_class = scientist
+				NOT = { has_trait = leader_trait_prospector }
+			}
+			add_trait = {
+				trait = leader_trait_prospector
+				show_message = no
+			}
+		}
+		refresh_leader_pool = yes
+	}
+}
+country_event = {
+	id = oeo_extraction_scan.5
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		from = {
+			owner = {
+				has_tradition = tr_oeo_extraction_advanced_prospecting
+			}
+			leader_class = scientist
+			NOT = { has_trait = leader_trait_prospector }
+		}
+	}
+
+	immediate = {
+		from = {
+			add_trait = {
+				trait = leader_trait_prospector
+				show_message = no
+			}
+		}
+	}
+}
+namespace = oeo_star_seeding
+
+country_event = {
+	id = oeo_star_seeding.1
+	title = oeo_star_seeding.1.name
+	desc = oeo_star_seeding.1.desc
+	picture = GFX_evt_cosmic_storms_overfeed
+	location = event_target:chosen_star
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_planet_within_border = {
+			limit = {
+				exists = planet
+				is_star = yes
+				NOR = {
+					is_planet_class = pc_black_hole
+					is_planet_class = pc_neutron_star
+					is_planet_class = pc_pulsar
+				}
+				NOT = {
+					has_deposit_for = shipclass_research_station
+				}
+				solar_system = {
+					any_system_megastructure = {
+						OR = {
+							is_megastructure_type = dyson_swarm_1
+							is_megastructure_type = dyson_swarm_2
+							is_megastructure_type = dyson_swarm_3
+							is_megastructure_type = oeo_forge_star_build_site_0
+							is_megastructure_type = oeo_forge_star_build_site_1
+							is_megastructure_type = oeo_forge_star_build_site_2
+							is_megastructure_type = oeo_forge_star_restored
+						}
+					}
+				}
+			}
+			planet = {
+				save_event_target_as = chosen_star
+			}
+		}
+	}
+
+	option = {
+		name = EXCELLENT
+
+		locked_random_list = {
+			# Energy
+			95 = {
+				event_target:chosen_star = { add_deposit = d_energy_1 }
+			}
+			# Gases
+			5 = {
+				event_target:chosen_star = { add_deposit = d_exotic_gases_1 }
+			}
+		}
+	}
+}
+country_event = {
+	id = oeo_star_seeding.2
+	hide_window = yes
+	is_triggered_only = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		every_controlled_planet = {
+			limit = {
+				has_planet_flag = oeo_energy_bonus
+			}
+			add_deposit = d_energy_1
+			set_planet_flag = oeo_energy_bonus_added
+			remove_planet_flag = oeo_energy_bonus
+		}
+	}
+}

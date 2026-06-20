@@ -1,0 +1,32 @@
+namespace = oeo_planet_eaten
+
+planet_event = {
+	id = oeo_planet_eaten.1
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		if = {
+			limit = { 
+				has_planet_flag = oeo_ring@ROOT
+			}
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						is_planet_class = pc_oeo_planetary_ringworld
+						has_planet_flag = oeo_ring@ROOT
+					}
+					every_owned_pop_group = {
+						kill_pop_group = {
+							pop_group = this
+							percentage = 1
+						}
+					}
+					remove_all_buildings = yes
+					remove_planet = yes
+				}
+			}
+		}
+	}
+}
+

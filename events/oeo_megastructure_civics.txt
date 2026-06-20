@@ -1,0 +1,164 @@
+namespace = oeo_megastructure_civic
+
+country_event = {
+	id = oeo_megastructure_civic.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		owner = {
+			OR = {
+				has_valid_civic = civic_oeo_null_gravity_protocols
+				has_valid_civic = civic_oeo_orbital_industrialists
+				has_valid_civic = civic_oeo_orbital_focus
+				has_valid_civic = civic_oeo_orbital_pioneers
+			}
+		}
+	}
+
+	immediate = {
+		give_technology = { tech = tech_oeo_orbtital_industry_2 }
+		capital_scope = {
+			owner = {
+				save_event_target_as = oeo_asteroid_owner
+			}
+			solar_system = {
+				system_event = { id = oeo_megastructure_civic.2 days = 1 }
+			}
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						NOR = { 
+							has_planet_flag = has_megastructure
+							has_planet_flag = megastructure
+							has_planet_flag = has_orbital
+							is_colony = yes
+							is_star = yes
+						}	
+					}
+					set_planet_flag = has_megastructure
+					set_planet_flag = megastructure
+					save_event_target_as = oeo_solar_planet
+				}
+				spawn_megastructure = {
+					type = "oeo_energy_station_build_site_1"
+					planet = event_target:oeo_solar_planet
+					coords_from = event_target:oeo_solar_planet
+				}
+			}
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						NOR = { 
+							has_planet_flag = has_megastructure
+							has_planet_flag = megastructure
+							has_planet_flag = has_orbital
+							is_colony = yes
+							is_star = yes
+						}	
+					}
+					set_planet_flag = has_megastructure
+					set_planet_flag = megastructure
+					save_event_target_as = oeo_industrial_planet
+				}
+				spawn_megastructure = {
+					type = "oeo_industrial_station_build_site_0"
+					planet = event_target:oeo_industrial_planet
+					coords_from = event_target:oeo_industrial_planet
+				}
+			}
+			if = {
+				limit = {
+					owner = { 
+						OR = {
+							is_individual_machine = no
+							NOT = { has_valid_civic = civic_oeo_null_gravity_protocols }
+						}
+					}
+				}
+				solar_system = {
+					random_system_planet = {
+						limit = {
+							NOR = { 
+								has_planet_flag = has_megastructure
+								has_planet_flag = megastructure
+								has_planet_flag = has_orbital
+								is_colony = yes
+								is_star = yes
+							}	
+						}
+						set_planet_flag = has_megastructure
+						set_planet_flag = megastructure
+						save_event_target_as = oeo_hydro_planet
+					}
+					spawn_megastructure = {
+						type = "oeo_hydroponic_station_build_site_1"
+						planet = event_target:oeo_hydro_planet
+						coords_from = event_target:oeo_hydro_planet
+					}
+				}
+			}
+			if = {
+				limit = {
+					owner = {
+						OR = {
+							is_individual_machine = yes
+							has_valid_civic = civic_oeo_null_gravity_protocols
+						}
+					}
+				}
+				solar_system = {
+					random_system_planet = {
+						limit = {
+							NOR = { 
+								has_planet_flag = has_megastructure
+								has_planet_flag = megastructure
+								has_planet_flag = has_orbital
+								is_colony = yes
+								is_star = yes
+							}	
+						}
+						set_planet_flag = has_megastructure
+						set_planet_flag = megastructure
+						save_event_target_as = oeo_solar_planet_extra
+					}
+					spawn_megastructure = {
+						type = "oeo_energy_station_build_site_1"
+						planet = event_target:oeo_solar_planet
+						coords_from = event_target:oeo_solar_planet_extra
+					}
+				}
+			}
+		}
+	}
+}
+system_event = {
+	id = oeo_megastructure_civic.2
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		no_scope = {
+			spawn_system = {
+				min_jumps = 1
+				max_jumps = 3
+				#min_distance >= 5
+				#max_distance <= 20
+				initializer = oeo_asteroid_system_1
+				hyperlane = yes
+				authorize_spawn_on_galactic_core = no
+			}
+		}
+		no_scope = {
+			spawn_system = {
+				#min_distance >= 10
+				#max_distance <= 20
+				min_jumps = 1
+				max_jumps = 3
+				initializer = oeo_asteroid_system_2
+				hyperlane = yes
+				authorize_spawn_on_galactic_core = no
+			}
+		}
+	}
+}

@@ -1,0 +1,107 @@
+namespace = oeo_computation_events
+
+country_event = {
+	id = oeo_computation_events.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		owner = {
+			OR = {
+				has_tradition = tr_oeo_computation_artificial_assistants
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				has_tradition = tr_oeo_computation_artificial_assistants
+				OR = { 
+					NOT = { has_technology = tech_sapient_ai }
+					has_policy_flag = ai_outlawed
+				}
+			}
+			every_owned_leader = {
+				limit = {
+					leader_class = scientist
+					NOR = { 
+						has_trait = leader_trait_custom_AI_assistant
+						has_trait = leader_trait_sapient_AI_assistant 
+					}
+				}
+				add_trait = {
+					trait = leader_trait_custom_AI_assistant
+					show_message = no
+				}
+			}
+			refresh_leader_pool = yes
+		}
+		if = {
+			limit = {
+				has_tradition = tr_oeo_computation_artificial_assistants
+				has_technology = tech_sapient_ai
+				NOT = { has_policy_flag = ai_outlawed }
+			}
+			every_owned_leader = {
+				limit = {
+					leader_class = scientist
+					NOR = { 
+						has_trait = leader_trait_custom_AI_assistant
+						has_trait = leader_trait_sapient_AI_assistant 
+					}
+				}
+				add_trait = {
+					trait = leader_trait_sapient_AI_assistant 
+					show_message = no
+				}
+			}
+			refresh_leader_pool = yes
+		}
+	}
+}
+country_event = {
+	id = oeo_computation_events.2
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		has_tradition = tr_oeo_computation_artificial_assistants
+		from = {
+			leader_class = scientist
+			NOR = {
+				has_trait = leader_trait_custom_AI_assistant
+				has_trait = leader_trait_sapient_AI_assistant 
+			}
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				OR = {
+					NOT = { has_technology = tech_sapient_ai }
+					has_policy_flag = ai_outlawed
+				}
+			}
+			from = {
+				add_trait = {
+					trait = leader_trait_custom_AI_assistant
+					show_message = no
+				}
+			}
+		}
+		if = {
+			limit = {
+				has_technology = tech_sapient_ai
+				NOT = { has_policy_flag = ai_outlawed }
+			}
+			from = {
+				add_trait = {
+					trait = leader_trait_sapient_AI_assistant 
+					show_message = no
+				}
+			}
+		}
+	}
+}

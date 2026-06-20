@@ -1,0 +1,29 @@
+namespace = action
+
+# A planet has been rendered ownerless, it has an orbital ring or similar, though. The orbital ring is still there, but is about to be deleted
+# this = starbase
+# from = planet
+# fromfrom = old owner
+starbase_event = {
+	id = action.503
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		is_orbital_ring = yes
+	}
+
+	immediate = {
+		from = {
+			#Used event target to prevent erroneous orbital ring palcement#
+			save_event_target_as = oeo_ruined_ring_planet
+			solar_system = {
+				spawn_megastructure = {
+					type = orbital_ring_ruined
+					planet = event_target:oeo_ruined_ring_planet
+				}
+			}
+			set_planet_flag = ruined_orbital_ring_planet
+		}
+	}
+}

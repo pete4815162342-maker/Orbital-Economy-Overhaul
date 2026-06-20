@@ -1,0 +1,652 @@
+namespace = zzz_oeo_terraform_game_start
+event = {
+	id = zzz_oeo_terraform_game_start.1
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		every_system = {
+			limit = { has_special_star_flag_trigger = no }
+			remove_system_terraforming_candidates = yes
+		}
+		
+	}
+}
+country_event = {
+	id = zzz_oeo_terraform_game_start.2
+	hide_window = yes
+    is_triggered_only = yes
+	fire_only_once = yes
+	
+	trigger = { 
+		is_ai = no
+	}
+	
+	immediate = { 
+        set_country_flag = oeo_game_host
+    }
+}
+event = {
+	id = zzz_oeo_terraform_game_start.3
+	title = "zzz_oeo_terraform_game_start.3.name"
+	desc = "zzz_oeo_terraform_game_start.3.desc"
+	picture = GFX_evt_drilling_for_gas
+	is_triggered_only = yes
+	location = this
+	trigger = { 
+		is_ai = no
+		has_country_flag = oeo_game_host
+	}
+	option = {
+		name = "zzz_oeo_terraform_game_start.3.vanilla"
+		custom_tooltip = "zzz_oeo_terraform_game_start.3.vanilla.tooltip"
+		hidden_effect = {
+			every_system = {
+				limit = {
+					NOR = {
+						is_star_class = sc_black_hole
+						is_star_class = sc_neutron_star
+						is_star_class = sc_pulsar
+					}
+				}
+				every_system_planet = {
+					limit = {
+						OR = {
+							is_planet_class = pc_barren
+							is_planet_class = pc_barren_cold
+						}
+						NOR = {
+							has_deposit = d_nanites_deposit
+							has_anomaly = yes
+							has_modifier = terraforming_candidate
+						}
+						planet_size > 9
+						planet_size < 31
+					}
+					random_list = {
+						100 = {}
+						1 = {
+							add_modifier = { modifier = terraforming_candidate }
+						}
+					}
+				}
+				if = {
+					limit = { host_has_dlc = "Aquatics Species Pack" }
+					every_system_planet = {
+						limit = {
+							is_planet_class = pc_frozen
+							NOR = {
+								has_deposit = d_nanites_deposit
+								has_anomaly = yes
+								has_modifier = frozen_terraforming_candidate
+							}
+							planet_size > 9
+							planet_size < 31
+						}
+						random_list = {
+							100 = {}
+							1 = {
+								add_modifier = { modifier = frozen_terraforming_candidate }
+							}
+						}
+					}
+				}
+				if = {
+					limit = { host_has_dlc = "Toxoids Species Pack" }
+					every_system_planet = {
+						limit = {
+							is_planet_class = pc_toxic
+							NOR = {
+								has_deposit = d_nanites_deposit
+								has_anomaly = yes
+								has_modifier = toxic_terraforming_candidate
+							}
+							planet_size > 9
+							planet_size < 31
+						}
+						random_list = {
+							100 = {}
+							15 = {
+								add_modifier = { modifier = toxic_terraforming_candidate }
+								set_planet_flag = toxic_terraforming_candidate
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = "zzz_oeo_terraform_game_start.3.custom"
+		custom_tooltip = "zzz_oeo_terraform_game_start.3.custom.tooltip"
+		hidden_effect = {
+			every_system = {
+				limit = {
+					NOR = {
+						is_star_class = sc_black_hole
+						is_star_class = sc_neutron_star
+						is_star_class = sc_pulsar
+					}
+				}
+				every_system_planet = {
+					limit = {
+						OR = {
+							is_planet_class = pc_barren
+							is_planet_class = pc_barren_cold
+						}
+						NOR = {
+							has_deposit = d_nanites_deposit
+							has_anomaly = yes
+							has_modifier = terraforming_candidate
+						}
+						planet_size > 9
+						planet_size < 31
+					}
+					random_list = {
+						100= {}
+						1 = {
+							add_modifier = { modifier = terraforming_candidate }
+							modifier = {
+								factor = 3
+							}
+						}
+					}
+				}
+				if = {
+					limit = { host_has_dlc = "Aquatics Species Pack" }
+					every_system_planet = {
+						limit = {
+							is_planet_class = pc_frozen
+							NOR = {
+								has_deposit = d_nanites_deposit
+								has_anomaly = yes
+								has_modifier = frozen_terraforming_candidate
+							}
+							planet_size > 9
+							planet_size < 31
+						}
+						random_list = {
+							100 = {}
+							1 = {
+								add_modifier = { modifier = frozen_terraforming_candidate }
+								modifier = {
+									factor = 5
+								}
+							}
+						}
+					}
+				}
+				if = {
+					limit = { host_has_dlc = "Toxoids Species Pack" }
+					every_system_planet = {
+						limit = {
+							is_planet_class = pc_toxic
+							NOR = {
+								has_deposit = d_nanites_deposit
+								has_anomaly = yes
+								has_modifier = toxic_terraforming_candidate
+							}
+							planet_size > 9
+							planet_size < 31
+						}
+						random_list = {
+							800 = {}
+							1 = {
+								add_modifier = { modifier = toxic_terraforming_candidate }
+								set_planet_flag = toxic_terraforming_candidate
+								modifier = {
+									factor = 2.5
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = "zzz_oeo_terraform_game_start.3.low"
+		custom_tooltip = "zzz_oeo_terraform_game_start.3.low.tooltip"
+		hidden_effect = {
+			every_system = {
+				limit = {
+					NOR = {
+						is_star_class = sc_black_hole
+						is_star_class = sc_neutron_star
+						is_star_class = sc_pulsar
+					}
+				}
+				every_system_planet = {
+					limit = {
+						OR = {
+							is_planet_class = pc_barren
+							is_planet_class = pc_barren_cold
+						}
+						NOR = {
+							has_deposit = d_nanites_deposit
+							has_anomaly = yes
+							has_modifier = terraforming_candidate
+						}
+						planet_size > 9
+						planet_size < 31
+					}
+					random_list = {
+						100= {}
+						1 = {
+							add_modifier = { modifier = terraforming_candidate }
+							modifier = {
+								factor = 1.5
+							}
+						}
+					}
+				}
+				if = {
+					limit = { host_has_dlc = "Aquatics Species Pack" }
+					every_system_planet = {
+						limit = {
+							is_planet_class = pc_frozen
+							NOR = {
+								has_deposit = d_nanites_deposit
+								has_anomaly = yes
+								has_modifier = frozen_terraforming_candidate
+							}
+							planet_size > 9
+							planet_size < 31
+						}
+						random_list = {
+							100 = {}
+							1 = {
+								add_modifier = { modifier = frozen_terraforming_candidate }
+								modifier = {
+									factor = 1.5
+								}
+							}
+						}
+					}
+				}
+				if = {
+					limit = { host_has_dlc = "Toxoids Species Pack" }
+					every_system_planet = {
+						limit = {
+							is_planet_class = pc_toxic
+							NOR = {
+								has_deposit = d_nanites_deposit
+								has_anomaly = yes
+								has_modifier = toxic_terraforming_candidate
+							}
+							planet_size > 9
+							planet_size < 31
+						}
+						random_list = {
+							800 = {}
+							1 = {
+								add_modifier = { modifier = toxic_terraforming_candidate }
+								set_planet_flag = toxic_terraforming_candidate
+								modifier = {
+									factor = 1.5
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = "zzz_oeo_terraform_game_start.3.medium"
+		custom_tooltip = "zzz_oeo_terraform_game_start.3.medium.tooltip"
+		hidden_effect = {
+			every_system = {
+				limit = {
+					NOR = {
+						is_star_class = sc_black_hole
+						is_star_class = sc_neutron_star
+						is_star_class = sc_pulsar
+					}
+				}
+				every_system_planet = {
+					limit = {
+						OR = {
+							is_planet_class = pc_barren
+							is_planet_class = pc_barren_cold
+						}
+						NOR = {
+							has_deposit = d_nanites_deposit
+							has_anomaly = yes
+							has_modifier = terraforming_candidate
+						}
+						planet_size > 9
+						planet_size < 31
+					}
+					random_list = {
+						100 = {}
+						1 = {
+							add_modifier = { modifier = terraforming_candidate }
+							modifier = {
+								factor = 2
+							}
+						}
+					}
+				}
+				if = {
+					limit = { host_has_dlc = "Aquatics Species Pack" }
+					every_system_planet = {
+						limit = {
+							is_planet_class = pc_frozen
+							NOR = {
+								has_deposit = d_nanites_deposit
+								has_anomaly = yes
+								has_modifier = frozen_terraforming_candidate
+							}
+							planet_size > 9
+							planet_size < 31
+						}
+						random_list = {
+							100 = {}
+							1 = {
+								add_modifier = { modifier = frozen_terraforming_candidate }
+								modifier = {
+									factor = 2
+								}
+							}
+						}
+					}
+				}
+				if = {
+					limit = { host_has_dlc = "Toxoids Species Pack" }
+					every_system_planet = {
+						limit = {
+							is_planet_class = pc_toxic
+							NOR = {
+								has_deposit = d_nanites_deposit
+								has_anomaly = yes
+								has_modifier = toxic_terraforming_candidate
+							}
+							planet_size > 9
+							planet_size < 31
+						}
+						random_list = {
+							100 = {}
+							15 = {
+								add_modifier = { modifier = toxic_terraforming_candidate }
+								set_planet_flag = toxic_terraforming_candidate
+								modifier = {
+									factor = 2
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = "zzz_oeo_terraform_game_start.3.high"
+		custom_tooltip = "zzz_oeo_terraform_game_start.3.high.tooltip"
+		hidden_effect = {
+			every_system = {
+				limit = {
+					NOR = {
+						is_star_class = sc_black_hole
+						is_star_class = sc_neutron_star
+						is_star_class = sc_pulsar
+					}
+				}
+				every_system_planet = {
+					limit = {
+						OR = {
+							is_planet_class = pc_barren
+							is_planet_class = pc_barren_cold
+						}
+						NOR = {
+							has_deposit = d_nanites_deposit
+							has_anomaly = yes
+							has_modifier = terraforming_candidate
+						}
+						planet_size > 9
+						planet_size < 31
+					}
+					random_list = {
+						100 = {}
+						1 = {
+							add_modifier = { modifier = terraforming_candidate }
+							modifier = {
+								factor = 2.5
+							}
+						}
+					}
+				}
+				if = {
+					limit = { host_has_dlc = "Aquatics Species Pack" }
+					every_system_planet = {
+						limit = {
+							is_planet_class = pc_frozen
+							NOR = {
+								has_deposit = d_nanites_deposit
+								has_anomaly = yes
+								has_modifier = frozen_terraforming_candidate
+							}
+							planet_size > 9
+							planet_size < 31
+						}
+						random_list = {
+							100 = {}
+							1 = {
+								add_modifier = { modifier = frozen_terraforming_candidate }
+								modifier = {
+									factor = 2.5
+								}
+							}
+						}
+					}
+				}
+				if = {
+					limit = { host_has_dlc = "Toxoids Species Pack" }
+					every_system_planet = {
+						limit = {
+							is_planet_class = pc_toxic
+							NOR = {
+								has_deposit = d_nanites_deposit
+								has_anomaly = yes
+								has_modifier = toxic_terraforming_candidate
+							}
+							planet_size > 9
+							planet_size < 31
+						}
+						random_list = {
+							100 = {}
+							15 = {
+								add_modifier = { modifier = toxic_terraforming_candidate }
+								set_planet_flag = toxic_terraforming_candidate
+								modifier = {
+									factor = 2.5
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = "zzz_oeo_terraform_game_start.3.super"
+		custom_tooltip = "zzz_oeo_terraform_game_start.3.super.tooltip"
+		hidden_effect = {
+			every_system = {
+				limit = {
+					NOR = {
+						is_star_class = sc_black_hole
+						is_star_class = sc_neutron_star
+						is_star_class = sc_pulsar
+					}
+				}
+				every_system_planet = {
+					limit = {
+						OR = {
+							is_planet_class = pc_barren
+							is_planet_class = pc_barren_cold
+						}
+						NOR = {
+							has_deposit = d_nanites_deposit
+							has_anomaly = yes
+							has_modifier = terraforming_candidate
+						}
+						planet_size > 9
+						planet_size < 31
+					}
+					random_list = {
+						100 = {}
+						1 = {
+							add_modifier = { modifier = terraforming_candidate }
+							modifier = {
+								factor = 3
+							}
+						}
+					}
+				}
+				if = {
+					limit = { host_has_dlc = "Aquatics Species Pack" }
+					every_system_planet = {
+						limit = {
+							is_planet_class = pc_frozen
+							NOR = {
+								has_deposit = d_nanites_deposit
+								has_anomaly = yes
+								has_modifier = frozen_terraforming_candidate
+							}
+							planet_size > 9
+							planet_size < 31
+						}
+						random_list = {
+							100 = {}
+							1 = {
+								add_modifier = { modifier = frozen_terraforming_candidate }
+								modifier = {
+									factor = 3
+								}
+							}
+						}
+					}
+				}
+				if = {
+					limit = { host_has_dlc = "Toxoids Species Pack" }
+					every_system_planet = {
+						limit = {
+							is_planet_class = pc_toxic
+							NOR = {
+								has_deposit = d_nanites_deposit
+								has_anomaly = yes
+								has_modifier = toxic_terraforming_candidate
+							}
+							planet_size > 9
+							planet_size < 31
+						}
+						random_list = {
+							100 = {}
+							15 = {
+								add_modifier = { modifier = toxic_terraforming_candidate }
+								set_planet_flag = toxic_terraforming_candidate
+								modifier = {
+									factor = 3
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = "zzz_oeo_terraform_game_start.3.extreme"
+		custom_tooltip = "zzz_oeo_terraform_game_start.3.extreme.tooltip"
+		hidden_effect = {
+			every_system = {
+				limit = {
+					NOR = {
+						is_star_class = sc_black_hole
+						is_star_class = sc_neutron_star
+						is_star_class = sc_pulsar
+					}
+				}
+				every_system_planet = {
+					limit = {
+						OR = {
+							is_planet_class = pc_barren
+							is_planet_class = pc_barren_cold
+						}
+						NOR = {
+							has_deposit = d_nanites_deposit
+							has_anomaly = yes
+							has_modifier = terraforming_candidate
+						}
+						planet_size > 9
+						planet_size < 31
+					}
+					random_list = {
+						100 = {}
+						1 = {
+							add_modifier = { modifier = terraforming_candidate }
+							modifier = {
+								factor = 4
+							}
+						}
+					}
+				}
+				if = {
+					limit = { host_has_dlc = "Aquatics Species Pack" }
+					every_system_planet = {
+						limit = {
+							is_planet_class = pc_frozen
+							NOR = {
+								has_deposit = d_nanites_deposit
+								has_anomaly = yes
+								has_modifier = frozen_terraforming_candidate
+							}
+							planet_size > 9
+							planet_size < 31
+						}
+						random_list = {
+							100 = {}
+							1 = {
+								add_modifier = { modifier = frozen_terraforming_candidate }
+								modifier = {
+									factor = 4
+								}
+							}
+						}
+					}
+				}
+				if = {
+					limit = { host_has_dlc = "Toxoids Species Pack" }
+					every_system_planet = {
+						limit = {
+							is_planet_class = pc_toxic
+							NOR = {
+								has_deposit = d_nanites_deposit
+								has_anomaly = yes
+								has_modifier = toxic_terraforming_candidate
+							}
+							planet_size > 9
+							planet_size < 31
+						}
+						random_list = {
+							100 = {}
+							15 = {
+								add_modifier = { modifier = toxic_terraforming_candidate }
+								set_planet_flag = toxic_terraforming_candidate
+								modifier = {
+									factor = 4
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = "zzz_oeo_terraform_game_start.3.none"
+		custom_tooltip = "zzz_oeo_terraform_game_start.3.none.tooltip"
+	}
+}
+
+

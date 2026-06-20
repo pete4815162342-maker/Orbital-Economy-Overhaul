@@ -1,0 +1,43 @@
+namespace = oeo_planet_neutron
+
+planet_event = {
+	id = oeo_planet_neutron.1
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		if = {
+			limit = { 
+				has_planet_flag = oeo_ring@ROOT
+			}
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						is_planet_class = pc_oeo_planetary_ringworld
+						has_planet_flag = oeo_ring@ROOT
+					}
+					destroy_colony = yes
+					add_modifier = {
+						modifier = neutron_bombarded
+						days = 3600
+					}
+					create_ambient_object = {
+						location = this
+						type = habitat_neutron_object
+						play_animation_once = yes
+						duration = 5
+
+						use_3d_location = yes
+						base_angle_towards = star
+						entity_face_object = star
+
+						entity_offset = { min = 0 max = 0 }
+
+						entity_scale_to_size = yes
+						scale = 0.07
+					}
+				}
+			}
+		}
+	}
+}

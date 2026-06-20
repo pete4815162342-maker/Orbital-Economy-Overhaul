@@ -1,0 +1,77 @@
+namespace = oeo_planet_godray
+
+planet_event = {
+	id = oeo_planet_godray.1
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		if = {
+			limit = { 
+				has_planet_flag = oeo_ring@ROOT
+			}
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						is_planet_class = pc_oeo_planetary_ringworld
+						has_planet_flag = oeo_ring@ROOT
+					}
+					every_owned_pop_group = {
+						limit = {
+							has_any_ethic = no
+						}
+						while = {
+							count = value:per_100_pop_amount #For every 100 pops iterate through this loop once
+							from.owner = {
+								if = {
+									limit = { has_ascension_perk = ap_become_the_crisis }
+									complete_crisis_objective = crisobj_purge_pops
+								}
+							}
+						}
+						kill_all_pop = yes
+					}
+					every_owned_pop_group = {
+						limit = {
+							has_any_ethic = yes
+						}
+						pop_group_transfer_ethic = {
+							POP_GROUP = this
+							ETHOS = ethic_spiritualist
+							PERCENTAGE = 1 # 100%
+						}
+					}
+					add_modifier = {
+						modifier = god_rayed
+						days = 3600
+					}
+					if = {
+						limit = {
+							exists = owner
+							owner = { is_same_value = from.owner }
+						}
+						add_modifier = {
+							modifier = uneasy_faith
+							days = 3600
+						}
+					}
+					create_ambient_object = {
+						location = this
+						type = habitat_divine_object
+						play_animation_once = yes
+						duration = 5
+
+						use_3d_location = yes
+						base_angle_towards = star
+						entity_face_object = star
+
+						entity_offset = { min = 0 max = 0 }
+
+						entity_scale_to_size = yes
+						scale = 0.07
+					}
+				}
+			}
+		}
+	}
+}

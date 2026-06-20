@@ -1,0 +1,18 @@
+namespace = oeo_core_drill
+
+planet_event = {
+	id = oeo_core_drill.2
+	is_triggered_only = yes
+	hide_window = yes
+  
+	trigger = {
+	}
+	immediate = {
+		change_pc = pc_shattered
+		remove_planet_flag = has_megastructure
+		remove_planet_flag = megastructure
+		remove_megastructure = fromfromfrom
+		add_deposit = d_minerals_5
+		planet_event = { id = oeo_orbital_dismantle.1 }
+	}
+}

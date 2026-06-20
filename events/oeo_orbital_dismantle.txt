@@ -1,0 +1,27 @@
+namespace = oeo_orbital_dismantle
+
+planet_event = {
+	id = oeo_orbital_dismantle.1
+	is_triggered_only = yes
+	hide_window = yes
+	
+	trigger = {
+		has_planet_flag = oeo_orbital@root
+	}
+	
+	immediate = {
+		solar_system = {
+			every_system_megastructure = {
+				limit = {
+					has_megastructure_flag = oeo_orbital@root
+				}
+				remove_megastructure = this
+			}
+		}
+		remove_planet_flag = oeo_orbital@root
+		remove_planet_flag = has_orbital
+	}
+}
+
+
+

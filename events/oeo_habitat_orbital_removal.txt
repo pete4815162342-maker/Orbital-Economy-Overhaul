@@ -1,0 +1,325 @@
+namespace = oeo_habitat_orbital
+#Removals Habitat Orbitals
+country_event = {
+	id = oeo_habitat_orbital.1
+	is_triggered_only = yes
+	hide_window = yes
+	
+	trigger = {
+		#Orbital Check
+		from.planet = {
+			has_planet_flag = oeo_orbital@this
+		}
+	}
+	
+	immediate = {
+		#Removes Orbital
+		solar_system = {
+			every_system_megastructure = {
+				limit = {
+					has_megastructure_flag = oeo_orbital@from.planet
+				}
+				remove_megastructure = this
+			}
+		}
+		#Flag Cleanup and Deposit Cleanup
+		from.planet = {
+			remove_planet_flag = oeo_orbital@this
+			remove_planet_flag = has_orbital
+			planet_event = { id = oeo_habitat_orbital.2 days = 1 }
+		}
+		if = {
+			limit = {
+				from = {
+					OR = {
+						is_megastructure_type = oeo_hydroponic_station_build_site_1
+						is_megastructure_type = oeo_asteroid_mine
+						is_megastructure_type = oeo_energy_station_build_site_1
+						is_megastructure_type = oeo_industrial_station_build_site_0
+						is_megastructure_type = dyson_swarm_1
+						is_megastructure_type = oeo_orbital_drill_build_site_1
+						is_megastructure_type = quantum_catapult_0
+						is_megastructure_type = dyson_sphere_0
+						is_megastructure_type = spy_orb_0
+						is_megastructure_type = think_tank_0
+						is_megastructure_type = matter_decompressor_0
+						is_megastructure_type = strategic_coordination_center_0
+						is_megastructure_type = mega_art_installation_0
+						is_megastructure_type = interstellar_assembly_0
+						is_megastructure_type = mega_shipyard_0
+					}
+				}
+			}
+			from = {
+				remove_megastructure = this
+			}
+		}
+	}
+}
+
+#Prevents orbital deposits appearing erroneously
+
+planet_event = {
+	id = oeo_habitat_orbital.2
+	is_triggered_only = yes
+	hide_window = yes
+  
+	immediate = {
+		save_event_target_as = oeo_mega_target
+		if = {
+			limit = {
+				root = {
+					has_planet_flag = oeo_hydroponics
+				}
+			}
+			solar_system = {
+				spawn_megastructure = {
+					type = "oeo_hydroponic_station_build_site_1"
+					owner = space_owner
+					planet = event_target:oeo_mega_target
+				}
+			}
+			root = {
+				remove_planet_flag = oeo_hydroponics
+			}
+		}
+		if = {
+			limit = {
+				root = {
+					has_planet_flag = oeo_asteroid_base
+				}
+			}
+			solar_system = {
+				spawn_megastructure = {
+					type = "oeo_asteroid_mine"
+					owner = space_owner
+					planet = event_target:oeo_mega_target
+				}
+			}
+			root = {
+				remove_planet_flag = oeo_asteroid_base
+			}
+		}
+		if = {
+			limit = {
+				root = {
+					has_planet_flag = oeo_solar
+				}
+			}
+			solar_system = {
+				spawn_megastructure = {
+					type = "oeo_energy_station_build_site_1"
+					owner = space_owner
+					planet = event_target:oeo_mega_target
+				}
+			}	
+			root = {
+				remove_planet_flag = oeo_solar
+			}
+		}
+		if = {
+			limit = {
+				root = {
+					has_planet_flag = oeo_industrial
+				}
+			}
+			solar_system = {
+				spawn_megastructure = {
+					type = "oeo_industrial_station_build_site_0"
+					owner = space_owner
+					planet = event_target:oeo_mega_target
+				}
+			}
+			root = {
+				remove_planet_flag = oeo_industrial
+			}
+		}
+		if = {
+			limit = {
+				root = {
+					has_planet_flag = oeo_swarm
+				}
+			}
+			solar_system = {
+				spawn_megastructure = {
+					type = "dyson_swarm_1"
+					owner = space_owner
+					planet = event_target:oeo_mega_target
+				}
+			}
+			root = {
+				remove_planet_flag = oeo_swarm
+			}
+		}
+		if = {
+			limit = {
+				root = {
+					has_planet_flag = oeo_drill
+				}
+			}
+			solar_system = {
+				spawn_megastructure = {
+					type = "oeo_orbital_drill_build_site_1"
+					owner = space_owner
+					planet = event_target:oeo_mega_target
+				}
+			}
+			root = {
+				remove_planet_flag = oeo_drill
+			}
+		}
+		if = {
+			limit = {
+				root = {
+					has_planet_flag = oeo_catapult
+				}
+			}
+			solar_system = {
+				spawn_megastructure = {
+					type = "quantum_catapult_0"
+					owner = space_owner
+					planet = event_target:oeo_mega_target
+				}
+			}
+			root = {
+				remove_planet_flag = oeo_catapult
+			}
+		}
+		if = {
+			limit = {
+				root = {
+					has_planet_flag = oeo_sphere
+				}
+			}
+			solar_system = {
+				spawn_megastructure = {
+					type = "dyson_sphere_0"
+					owner = space_owner
+					planet = event_target:oeo_mega_target
+				}
+			}	
+			root = {
+				remove_planet_flag = oeo_sphere
+			}
+		}
+		if = {
+			limit = {
+				root = {
+					has_planet_flag = oeo_orb
+				}
+			}
+			solar_system = {
+				spawn_megastructure = {
+					type = "spy_orb_0"
+					owner = space_owner
+					planet = event_target:oeo_mega_target
+				}
+			}
+			root = {
+				remove_planet_flag = oeo_orb
+			}
+		}
+		if = {
+			limit = {
+				root = {
+					has_planet_flag = oeo_think
+				}
+			}
+			solar_system = {
+				spawn_megastructure = {
+					type = "think_tank_0"
+					owner = space_owner
+					planet = event_target:oeo_mega_target
+				}
+			}
+			root = {
+				remove_planet_flag = oeo_think
+			}
+		}
+		if = {
+			limit = {
+				root = {
+					has_planet_flag = oeo_matter
+				}
+			}
+			solar_system = {
+				spawn_megastructure = {
+					type = "matter_decompressor_0"
+					owner = space_owner
+					planet = event_target:oeo_mega_target
+				}
+			}	
+			root = {
+				remove_planet_flag = oeo_matter
+			}
+		}
+		if = {
+			limit = {
+				root = {
+					has_planet_flag = oeo_strategic
+				}
+			}
+			solar_system = {
+				spawn_megastructure = {
+					type = "strategic_coordination_center_0"
+					owner = space_owner
+					planet = event_target:oeo_mega_target
+				}
+			}
+			root = {
+				remove_planet_flag = oeo_strategic
+			}
+		}
+		if = {
+			limit = {
+				root = {
+					has_planet_flag = oeo_art
+				}
+			}
+			solar_system = {
+				spawn_megastructure = {
+					type = "mega_art_installation_0"
+					owner = space_owner
+					planet = event_target:oeo_mega_target
+				}
+			}	
+			root = {
+				remove_planet_flag = oeo_art
+			}
+		}
+		if = {
+			limit = {
+				root = {
+					has_planet_flag = oeo_assembly
+				}
+			}
+			solar_system = {
+				spawn_megastructure = {
+					type = "interstellar_assembly_0"
+					owner = space_owner
+					planet = event_target:oeo_mega_target
+				}
+			}	
+			root = {
+				remove_planet_flag = oeo_assembly
+			}
+		}
+		if = {
+			limit = {
+				root = {
+					has_planet_flag = oeo_shipyard
+				}
+			}
+			solar_system = {
+				spawn_megastructure = {
+					type = "mega_shipyard_0"
+					owner = space_owner
+					planet = event_target:oeo_mega_target
+				}
+			}
+			root = {
+				remove_planet_flag = oeo_shipyard
+			}
+		}
+	}
+}
