@@ -1,0 +1,38 @@
+spriteTypes = {
+	spriteType = {
+		name = GFX_oeo_asteroid_mine_build_icon
+		textureFile = gfx/interface/icons/megastructures/megastructures_build_menu/oeo_asteroid_ore_processor.dds
+	}
+	spriteType = {
+		name = GFX_oeo_hydroponic_station_build_site_1_build_icon
+		textureFile = gfx/interface/icons/megastructures/megastructures_build_menu/oeo_zero_g_hydroponics.dds
+	}
+	spriteType = {
+		name = GFX_oeo_energy_station_build_site_1_build_icon
+		textureFile = gfx/interface/icons/megastructures/megastructures_build_menu/oeo_solar_collection_station.dds
+	}
+	spriteType = {
+		name = GFX_oeo_industrial_station_build_site_0_build_icon
+		textureFile = gfx/interface/icons/megastructures/megastructures_build_menu/oeo_industrial.dds
+	}
+	spriteType = {
+		name = GFX_oeo_orbital_drill_build_site_1_build_icon
+		textureFile = gfx/interface/icons/megastructures/megastructures_build_menu/oeo_orbital_drill.dds
+	}
+	spriteType = {
+		name = GFX_oeo_orbital_arcology_build_site_0_build_icon
+		textureFile = gfx/interface/icons/megastructures/megastructures_build_menu/oeo_orbital_arcology.dds
+	}
+	spriteType = {
+		name = GFX_oeo_ring_world_repair_build_icon
+		textureFile = gfx/interface/icons/megastructures/megastructures_build_menu/oeo_ring.dds
+	}
+	spriteType = {
+		name = GFX_oeo_arcology_ring_repair_build_icon
+		textureFile = gfx/interface/icons/megastructures/megastructures_build_menu/oeo_ring.dds
+	}
+	spriteType = {
+		name = GFX_oeo_ring_world_expansion_build_icon
+		textureFile = gfx/interface/icons/megastructures/megastructures_build_menu/oeo_ring.dds
+	}
+}

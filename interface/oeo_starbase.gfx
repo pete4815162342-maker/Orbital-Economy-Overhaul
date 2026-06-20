@@ -1,0 +1,62 @@
+spriteTypes = {
+	spriteType = {
+		name = "GFX_oeo_spaceport_module_metallurgy"
+		texturefile = "gfx/interface/icons/modules/oeo_spaceport_module_metallurgy.dds"
+	}
+	spriteType = {
+		name = "GFX_oeo_spaceport_module_factory"
+		texturefile = "gfx/interface/icons/modules/oeo_spaceport_module_factory.dds"
+	}
+	spriteType = {
+		name = "GFX_oeo_planet_ring_mining_bay"
+		texturefile = "gfx/interface/icons/modules/oeo_planet_ring_mining_bay.dds"
+	}
+	spriteType = {
+		name = "GFX_oeo_brown_dwarf_mining_bay"
+		texturefile = "gfx/interface/icons/modules/oeo_brown_dwarf_mining_bay.dds"
+	}
+	spriteType = {
+		name = "GFX_oeo_spaceport_module_gas"
+		texturefile = "gfx/interface/icons/modules/oeo_spaceport_module_gas.dds"
+	}
+	spriteType = {
+		name = "GFX_oeo_spaceport_module_crystals"
+		texturefile = "gfx/interface/icons/modules/oeo_spaceport_module_crystals.dds"
+	}
+	spriteType = {
+		name = "GFX_oeo_spaceport_module_motes"
+		texturefile = "gfx/interface/icons/modules/oeo_spaceport_module_motes.dds"
+	}
+	spriteType = {
+		name = "GFX_oeo_asteroid_mining_bay"
+		texturefile = "gfx/interface/icons/modules/oeo_asteroid_mining_bay.dds"
+	}
+	spriteType = {
+		name = "GFX_oeo_shattered_harvesting_hangar"
+		texturefile = "gfx/interface/icons/modules/oeo_shattered_harvesting_hangar.dds"
+	}
+	spriteType = {
+		name = "GFX_oeo_hectostructure_logistics_dock"
+		texturefile = "gfx/interface/icons/modules/oeo_hectostructure_logistics_dock.dds"
+	}
+	spriteType = {
+		name = "GFX_oeo_system_agriculture_hub"
+		texturefile = "gfx/interface/icons/modules/oeo_system_agriculture_hub.dds"
+	}
+	spriteType = {
+		name = "GFX_oeo_system_energy_depot"
+		texturefile = "gfx/interface/icons/modules/oeo_system_energy_depot.dds"
+	}
+	spriteType = {
+		name = "GFX_oeo_physicist_lab"
+		texturefile = "gfx/interface/icons/modules/oeo_physicist_lab.dds"
+	}
+	spriteType = {
+		name = "GFX_oeo_society_lab"
+		texturefile = "gfx/interface/icons/modules/oeo_society_lab.dds"
+	}
+	spriteType = {
+		name = "GFX_oeo_engineering_lab"
+		texturefile = "gfx/interface/icons/modules/oeo_engineering_lab.dds"
+	}
+}

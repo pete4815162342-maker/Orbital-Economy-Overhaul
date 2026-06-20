@@ -1,0 +1,94 @@
+spriteTypes = {
+	spriteType = {
+		name = GFX_oeo_hydroponic_station_build_site_1_outliner_icon
+		textureFile = gfx/interface/icons/megastructures/oeo_food.dds
+	}
+	spriteType = {
+		name = GFX_oeo_energy_station_build_site_1_outliner_icon
+		textureFile = gfx/interface/icons/megastructures/oeo_energy.dds
+	}
+	spriteType = {
+		name = GFX_oeo_asteroid_mine_outliner_icon
+		textureFile = gfx/interface/icons/megastructures/oeo_asteroid_miner.dds
+	}
+	spriteType = {
+		name = GFX_oeo_industrial_station_ruined_outliner_icon
+		textureFile = gfx/interface/icons/megastructures/oeo_generic_station_ruined.dds
+	}
+	spriteType = {
+		name = GFX_oeo_industrial_station_restored_outliner_icon
+		textureFile = gfx/interface/icons/megastructures/oeo_generic_station.dds
+	}
+	spriteType = {
+		name = GFX_oeo_industrial_station_build_site_0_outliner_icon
+		textureFile = gfx/interface/icons/megastructures/oeo_generic_station.dds
+	}
+	spriteType = {
+		name = GFX_oeo_forge_star_build_site_0_outliner_icon
+		textureFile = gfx/interface/icons/megastructures/oeo_star_lifter.dds
+	}
+	spriteType = {
+		name = GFX_oeo_forge_star_build_site_1_outliner_icon
+		textureFile = gfx/interface/icons/megastructures/oeo_star_lifter.dds
+	}
+	spriteType = {
+		name = GFX_oeo_forge_star_build_site_2_outliner_icon
+		textureFile = gfx/interface/icons/megastructures/oeo_star_lifter.dds
+	}
+	spriteType = {
+		name = GFX_oeo_forge_star_restored_outliner_icon
+		textureFile = gfx/interface/icons/megastructures/oeo_star_lifter.dds
+	}
+	spriteType = {
+		name = GFX_oeo_star_lifter_ruined_outliner_icon
+		textureFile = gfx/interface/icons/megastructures/oeo_star_lifter_ruined.dds
+	}
+	spriteType = {
+		name = GFX_oeo_orbital_drill_build_site_1_outliner_icon
+		textureFile = gfx/interface/icons/megastructures/oeo_drill.dds
+	}
+	spriteType = {
+		name = GFX_oeo_orbital_drill_build_site_2_outliner_icon
+		textureFile = gfx/interface/icons/megastructures/oeo_drill.dds
+	}
+	spriteType = {
+		name = GFX_oeo_matrioshka_brain_0_outliner_icon
+		textureFile = gfx/interface/icons/megastructures/oeo_matrioshka.dds
+	}
+	spriteType = {
+		name = GFX_oeo_matrioshka_brain_1_outliner_icon
+		textureFile = gfx/interface/icons/megastructures/oeo_matrioshka.dds
+	}
+	spriteType = {
+		name = GFX_oeo_matrioshka_brain_2_outliner_icon
+		textureFile = gfx/interface/icons/megastructures/oeo_matrioshka.dds
+	}
+	spriteType = {
+		name = GFX_oeo_orbital_arcology_build_site_0_outliner_icon
+		textureFile = gfx/interface/icons/megastructures/oeo_arcology_ring.dds
+	}
+	spriteType = {
+		name = GFX_dyson_sphere_2_non_swarm_outliner_icon
+		textureFile = gfx/interface/icons/megastructures/dyson_sphere.dds
+	}
+	spriteType = {
+		name = GFX_oeo_ruined_black_hole_shellworld_outliner_icon
+		textureFile = gfx/interface/icons/megastructures/oeo_shellworld_ruined.dds
+	}
+	spriteType = {
+		name = GFX_oeo_ruined_black_hole_shellworld_2_outliner_icon
+		textureFile = gfx/interface/icons/megastructures/oeo_shellworld_ruined.dds
+	}
+	spriteType = {
+		name = GFX_oeo_mega_recycler_ruined_outliner_icon
+		textureFile = gfx/interface/icons/megastructures/oeo_mega_recycler_ruined.dds
+	}
+	spriteType = {
+		name = GFX_oeo_mega_recycler_restored_outliner_icon
+		textureFile = gfx/interface/icons/megastructures/oeo_mega_recycler.dds
+	}
+	spriteType = {
+		name = "GFX_orbital_arc_furnace_4_outliner_icon"
+		textureFile = "gfx/interface/icons/megastructures/orbital_arc_furnace_3.dds"
+	}
+}

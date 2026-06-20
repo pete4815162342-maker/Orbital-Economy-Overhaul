@@ -1,0 +1,9 @@
+
+spriteTypes = {
+	spriteType = {
+		name = "GFX_shell_world"
+		texturefile = "gfx/event_pictures/shell_world.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+}

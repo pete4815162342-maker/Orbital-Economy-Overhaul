@@ -1,0 +1,22 @@
+spriteTypes = {
+	spriteType = {
+		name = "GFX_ap_oeo_civil_ascendancy"
+		textureFile = "gfx/interface/icons/ascension_perks/ap_oeo_civil_ascendancy.dds"
+	}
+	spriteType = {
+		name = "GFX_ap_oeo_capacity_for_exceptionalism"
+		textureFile = "gfx/interface/icons/ascension_perks/ap_oeo_capacity_for_exceptionalism.dds"
+	}
+	spriteType = {
+		name = "GFX_ap_oeo_populist_prerogative"
+		textureFile = "gfx/interface/icons/ascension_perks/ap_oeo_populist_prerogative.dds"
+	}
+	spriteType = {
+		name = "GFX_ap_oeo_heliocentric_engineering"
+		textureFile = "gfx/interface/icons/ascension_perks/ap_oeo_heliocentric_engineering.dds"
+	}
+	spriteType = {
+		name = "GFX_ap_oeo_rings_of_power"
+		textureFile = "gfx/interface/icons/ascension_perks/ap_oeo_rings_of_power.dds"
+	}
+}

@@ -1,0 +1,50 @@
+spriteTypes = {
+	spriteType = {
+		name = "GFX_oeo_deca"
+		texturefile = "gfx/interface/planetview/oeo_dec_generic.dds"
+	}
+	spriteType = {
+		name = "GFX_oeo_hecto"
+		texturefile = "gfx/interface/planetview/oeo_hecto_generic.dds"
+	}
+	spriteType = {
+		name = "GFX_oeo_kilo"
+		texturefile = "gfx/interface/planetview/oeo_kilo_generic.dds"
+	}
+	spriteType = {
+		name = "GFX_oeo_collector"
+		texturefile = "gfx/interface/planetview/oeo_collector.dds"
+	}
+	spriteType = {
+		name = "GFX_oeo_planet_ring"
+		texturefile = "gfx/interface/planetview/oeo_planetary_ringworld.dds"
+	}
+	spriteType = {
+		name = "GFX_oeo_hydroponics"
+		texturefile = "gfx/interface/planetview/oeo_hydroponics.dds"
+	}
+	spriteType = {
+		name = "GFX_oeo_star_lifter"
+		texturefile = "gfx/interface/planetview/oeo_star_lifter.dds"
+	}
+	spriteType = {
+		name = "GFX_oeo_research"
+		texturefile = "gfx/interface/planetview/oeo_research.dds"
+	}
+	spriteType = {
+		name = "GFX_oeo_core_drill"
+		texturefile = "gfx/interface/planetview/oeo_core_drill.dds"
+	}
+	spriteType = {
+		name = "GFX_oeo_asteroid"
+		texturefile = "gfx/interface/planetview/oeo_asteroid.dds"
+	}
+	spriteType = {
+		name = "GFX_oeo_matrioshka"
+		texturefile = "gfx/interface/planetview/oeo_matrioshka.dds"
+	}
+	spriteType = {
+		name = "GFX_oeo_recycler"
+		texturefile = "gfx/interface/planetview/oeo_mega_recycler.dds"
+	}
+}

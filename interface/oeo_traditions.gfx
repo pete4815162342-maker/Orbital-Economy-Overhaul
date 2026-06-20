@@ -1,0 +1,229 @@
+spriteTypes = {
+
+	spriteType = {
+		name = "GFX_tradition_hex_bg_tradition_oeo_engineering"
+		textureFile = "gfx/interface/traditions/tradition_hex_bg_oeo_engineering.dds"
+	}
+	spriteType = {
+		name = "GFX_tradition_category_bg_tradition_oeo_engineering"
+		textureFile = "gfx/interface/tiles/tradition_category_tile_tradition_oeo_engineering.dds"
+	}
+	corneredTileSpriteType = {
+		name = "GFX_tradition_category_tile_tradition_oeo_engineering"
+		textureFile = "gfx/interface/tiles/tradition_category_tile_tradition_oeo_engineering.dds"
+		borderSize = { x=140 y=140 }
+		effectFile = "gfx/FX/buttonstate_onlydisable.shader"
+	}
+	spriteType = {
+		name = "GFX_tradition_category_icon_tradition_oeo_engineering"
+		textureFile = "gfx/interface/icons/traditions/tree_icons/tradition_icon_oeo_engineering.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_oeo_engineering_engineered_efficiency"
+		textureFile = "gfx/interface/icons/traditions/tr_oeo_engineering_engineered_efficiency.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_oeo_engineering_waste_not_want_not"
+		textureFile = "gfx/interface/icons/traditions/tr_oeo_engineering_waste_not_want_not.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_oeo_engineering_terrestrial_ambitions"
+		textureFile = "gfx/interface/icons/traditions/tr_oeo_engineering_terrestrial_ambitions.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_oeo_engineering_mega_logistics"
+		textureFile = "gfx/interface/icons/traditions/tr_oeo_engineering_mega_logistics.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_oeo_engineering_galactic_wonders"
+		textureFile = "gfx/interface/icons/traditions/tr_oeo_engineering_galactic_wonders.dds"
+	}
+	spriteType = {
+		name = "GFX_council_agenda_icon_agenda_oeo_construction_boom"
+		texturefile = "gfx/interface/icons/agenda_icons/agenda_oeo_construction_boom.dds"
+	}
+	spriteType = {
+		name = "GFX_council_agenda_icon_agenda_oeo_construction_research"
+		texturefile = "gfx/interface/icons/agenda_icons/agenda_oeo_construction_research.dds"
+	}
+	spriteType = {
+		name = "GFX_tradition_hex_bg_tradition_oeo_extraction"
+		textureFile = "gfx/interface/traditions/tradition_hex_bg_oeo_extraction.dds"
+	}
+	spriteType = {
+		name = "GFX_tradition_category_bg_tradition_oeo_extraction"
+		textureFile = "gfx/interface/tiles/tradition_category_tile_tradition_oeo_extraction.dds"
+	}
+	corneredTileSpriteType = {
+		name = "GFX_tradition_category_tile_tradition_oeo_extraction"
+		textureFile = "gfx/interface/tiles/tradition_category_tile_tradition_oeo_extraction.dds"
+		borderSize = { x=140 y=140 }
+		effectFile = "gfx/FX/buttonstate_onlydisable.shader"
+	}
+	spriteType = {
+		name = "GFX_tradition_category_icon_tradition_oeo_extraction"
+		textureFile = "gfx/interface/icons/traditions/tree_icons/tradition_icon_oeo_extraction.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_oeo_extraction_fires_of_ambition"
+		textureFile = "gfx/interface/icons/traditions/tr_oeo_extraction_fires_of_ambition.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_oeo_extraction_tend_the_furnaces"
+		textureFile = "gfx/interface/icons/traditions/tr_oeo_extraction_tend_the_furnaces.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_oeo_extraction_asteroid_economy"
+		textureFile = "gfx/interface/icons/traditions/tr_oeo_extraction_asteroid_economy.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_oeo_extraction_advanced_prospecting"
+		textureFile = "gfx/interface/icons/traditions/tr_oeo_extraction_advanced_prospecting.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_oeo_extraction_drill_baby_drill"
+		textureFile = "gfx/interface/icons/traditions/tr_oeo_extraction_drill_baby_drill.dds"
+	}
+	spriteType = {
+		name = "GFX_council_agenda_icon_agenda_oeo_thorough_scanning"
+		texturefile = "gfx/interface/icons/agenda_icons/agenda_oeo_thorough_scanning.dds"
+	}
+	spriteType = {
+		name = "GFX_council_agenda_icon_agenda_oeo_furnace_overload"
+		texturefile = "gfx/interface/icons/agenda_icons/agenda_oeo_furnace_overload.dds"
+	}
+	spriteType = {
+		name = "GFX_council_agenda_icon_agenda_oeo_extraction_economy"
+		texturefile = "gfx/interface/icons/agenda_icons/agenda_oeo_extraction_economy.dds"
+	}
+	spriteType = {
+		name = "GFX_tradition_hex_bg_tradition_oeo_star_husbandry"
+		textureFile = "gfx/interface/traditions/tradition_hex_bg_oeo_star_husbandry.dds"
+	}
+	spriteType = {
+		name = "GFX_tradition_category_bg_tradition_oeo_star_husbandry"
+		textureFile = "gfx/interface/tiles/tradition_category_tile_tradition_oeo_star_husbandry.dds"
+	}
+	corneredTileSpriteType = {
+		name = "GFX_tradition_category_tile_tradition_oeo_star_husbandry"
+		textureFile = "gfx/interface/tiles/tradition_category_tile_tradition_oeo_star_husbandry.dds"
+		borderSize = { x=140 y=140 }
+		effectFile = "gfx/FX/buttonstate_onlydisable.shader"
+	}
+	spriteType = {
+		name = "GFX_tradition_category_icon_tradition_oeo_star_husbandry"
+		textureFile = "gfx/interface/icons/traditions/tree_icons/tradition_icon_oeo_star_husbandry.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_oeo_star_husbandry_solar_scaling"
+		textureFile = "gfx/interface/icons/traditions/tr_oeo_star_husbandry_solar_scaling.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_oeo_star_husbandry_cage_the_stars"
+		textureFile = "gfx/interface/icons/traditions/tr_oeo_star_husbandry_cage_the_stars.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_oeo_star_husbandry_perfected_photovoltaics"
+		textureFile = "gfx/interface/icons/traditions/tr_oeo_star_husbandry_perfected_photovoltaics.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_oeo_star_husbandry_power_lifting"
+		textureFile = "gfx/interface/icons/traditions/tr_oeo_star_husbandry_power_lifting.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_oeo_star_husbandry_decentralized_fuel_depots"
+		textureFile = "gfx/interface/icons/traditions/tr_oeo_star_husbandry_decentralized_fuel_depots.dds"
+	}
+	spriteType = {
+		name = "GFX_council_agenda_icon_agenda_oeo_solar_husbandry_research"
+		texturefile = "gfx/interface/icons/agenda_icons/agenda_oeo_solar_husbandry_research.dds"
+	}
+	spriteType = {
+		name = "GFX_council_agenda_icon_agenda_oeo_star_seeding"
+		texturefile = "gfx/interface/icons/agenda_icons/agenda_oeo_star_seeding.dds"
+	}
+	spriteType = {
+		name = "GFX_tradition_hex_bg_tradition_oeo_computation"
+		textureFile = "gfx/interface/traditions/tradition_hex_bg_oeo_computation.dds"
+	}
+	spriteType = {
+		name = "GFX_tradition_category_bg_tradition_oeo_computation"
+		textureFile = "gfx/interface/tiles/tradition_category_tile_tradition_oeo_computation.dds"
+	}
+	corneredTileSpriteType = {
+		name = "GFX_tradition_category_tile_tradition_oeo_computation"
+		textureFile = "gfx/interface/tiles/tradition_category_tile_tradition_oeo_computation.dds"
+		borderSize = { x=140 y=140 }
+		effectFile = "gfx/FX/buttonstate_onlydisable.shader"
+	}
+	spriteType = {
+		name = "GFX_tradition_category_icon_tradition_oeo_computation"
+		textureFile = "gfx/interface/icons/traditions/tree_icons/tradition_icon_oeo_computation.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_oeo_computation_artificial_assistants"
+		textureFile = "gfx/interface/icons/traditions/tr_oeo_computation_artificial_assistants.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_oeo_computation_layered_dyson_computing"
+		textureFile = "gfx/interface/icons/traditions/tr_oeo_computation_layered_dyson_computing.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_oeo_planetary_neural_networks"
+		textureFile = "gfx/interface/icons/traditions/tr_oeo_planetary_neural_networks.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_oeo_computation_star_cluster_brute_force"
+		textureFile = "gfx/interface/icons/traditions/tr_oeo_computation_star_cluster_brute_force.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_oeo_computation_supersymmetry_ciphers"
+		textureFile = "gfx/interface/icons/traditions/tr_oeo_computation_supersymmetry_ciphers.dds"
+	}
+	spriteType = {
+		name = "GFX_council_agenda_icon_agenda_oeo_mandatory_overclocking"
+		texturefile = "gfx/interface/icons/agenda_icons/agenda_oeo_mandatory_overclocking.dds"
+	}
+	spriteType = {
+		name = "GFX_tradition_hex_bg_tradition_oeo_verticality"
+		textureFile = "gfx/interface/traditions/tradition_hex_bg_oeo_verticality.dds"
+	}
+	spriteType = {
+		name = "GFX_tradition_category_bg_tradition_oeo_verticality"
+		textureFile = "gfx/interface/tiles/tradition_category_tile_tradition_oeo_verticality.dds"
+	}
+	corneredTileSpriteType = {
+		name = "GFX_tradition_category_tile_tradition_oeo_verticality"
+		textureFile = "gfx/interface/tiles/tradition_category_tile_tradition_oeo_verticality.dds"
+		borderSize = { x=140 y=140 }
+		effectFile = "gfx/FX/buttonstate_onlydisable.shader"
+	}
+	spriteType = {
+		name = "GFX_tradition_category_icon_tradition_oeo_verticality"
+		textureFile = "gfx/interface/icons/traditions/tree_icons/tradition_icon_oeo_verticality.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_oeo_verticality_extreme_density"
+		textureFile = "gfx/interface/icons/traditions/tr_oeo_verticality_extreme_density.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_oeo_verticality_efficient_zoning"
+		textureFile = "gfx/interface/icons/traditions/tr_oeo_verticality_efficient_zoning.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_oeo_verticality_vertical_integration"
+		textureFile = "gfx/interface/icons/traditions/tr_oeo_verticality_vertical_integration.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_oeo_verticality_layered_urban_sprawl"
+		textureFile = "gfx/interface/icons/traditions/tr_oeo_verticality_layered_urban_sprawl.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_oeo_verticality_as_below_so_above"
+		textureFile = "gfx/interface/icons/traditions/tr_oeo_verticality_as_below_so_above.dds"
+	}
+	spriteType = {
+		name = "GFX_council_agenda_icon_agenda_oeo_solid_foundations"
+		texturefile = "gfx/interface/icons/agenda_icons/agenda_oeo_solid_foundations.dds"
+	}
+}
