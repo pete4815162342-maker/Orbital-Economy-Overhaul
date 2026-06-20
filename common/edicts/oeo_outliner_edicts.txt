@@ -1,0 +1,336 @@
+#####Edicts hide megastructures in outliner########
+@EdictPerpetual = -1
+zzz_01_oeo_hydroponics_view = {
+	length = @EdictPerpetual
+	icon = "GFX_oeo_edict_icon"
+	potential = { 
+		any_owned_megastructure = { is_megastructure_type = oeo_hydroponic_station_build_site_1 }
+	}
+	effect = {
+		custom_tooltip = oeo_edict_tooltip
+		set_country_flag = oeo_hydroponics_outliner
+	}
+	on_disabled = {
+		remove_country_flag = oeo_hydroponics_outliner
+	}
+}
+zzz_02_oeo_solar_view = {
+	length = @EdictPerpetual
+	icon = "GFX_oeo_edict_icon"
+	potential = { 
+		any_owned_megastructure = { is_megastructure_type = oeo_energy_station_build_site_1 }
+	}
+	effect = {
+		custom_tooltip = oeo_edict_tooltip
+		set_country_flag = oeo_solar_outliner
+	}
+	on_disabled = {
+		remove_country_flag = oeo_solar_outliner
+	}
+}
+zzz_03_oeo_miner_view = {
+	length = @EdictPerpetual
+	icon = "GFX_oeo_edict_icon"
+	potential = { 
+		any_owned_megastructure = { is_megastructure_type = oeo_asteroid_mine }
+	}
+	effect = {
+		custom_tooltip = oeo_edict_tooltip
+		set_country_flag = oeo_miner_outliner
+	}
+	on_disabled = {
+		remove_country_flag = oeo_miner_outliner
+	}
+}
+zzz_05_oeo_industrial_view = {
+	length = @EdictPerpetual
+	icon = "GFX_oeo_edict_icon"
+	potential = { 
+		any_owned_megastructure = { is_megastructure_type = oeo_industrial_station_build_site_0 }
+	}
+	effect = {
+		custom_tooltip = oeo_edict_tooltip
+		set_country_flag = oeo_industrial_outliner
+	}
+	on_disabled = {
+		remove_country_flag = oeo_industrial_outliner
+	}
+}
+zzz_21_oeo_drill_view = {
+	length = @EdictPerpetual
+	icon = "GFX_oeo_edict_icon"
+	potential = { 
+		any_owned_megastructure = { 
+			OR = { 
+				is_megastructure_type = oeo_orbital_drill_minerals
+				is_megastructure_type = oeo_orbital_drill_gas
+				is_megastructure_type = oeo_orbital_drill_crystal
+				is_megastructure_type = oeo_orbital_drill_motes
+			}
+		}
+	}
+	effect = {
+		custom_tooltip = oeo_edict_tooltip
+		set_country_flag = oeo_drill_outliner
+	}
+	on_disabled = {
+		remove_country_flag = oeo_drill_outliner
+	}
+}
+zzz_22_oeo_swarm_view = {
+	length = @EdictPerpetual
+	icon = "GFX_oeo_edict_icon"
+	potential = { 
+		any_owned_megastructure = { is_megastructure_type = dyson_swarm_3 }
+	}
+	effect = {
+		custom_tooltip = oeo_edict_tooltip
+		set_country_flag = oeo_swarm_outliner
+	}
+	on_disabled = {
+		remove_country_flag = oeo_swarm_outliner
+	}
+}
+zzz_23_oeo_matrioshka_view = {
+	length = @EdictPerpetual
+	icon = "GFX_oeo_edict_icon"
+	potential = { 
+		any_owned_megastructure = { is_megastructure_type = oeo_matrioshka_brain_2 }
+	}
+	effect = {
+		custom_tooltip = oeo_edict_tooltip
+		set_country_flag = oeo_matrioshka_outliner
+	}
+	on_disabled = {
+		remove_country_flag = oeo_matrioshka_outliner
+	}
+}
+zzz_24_oeo_lifter_view = {
+	length = @EdictPerpetual
+	icon = "GFX_oeo_edict_icon"
+	potential = { 
+		any_owned_megastructure = {
+			OR = {
+				is_megastructure_type = oeo_forge_star_build_site_2
+				is_megastructure_type = oeo_forge_star_restored
+			}
+		}
+	}
+	effect = {
+		custom_tooltip = oeo_edict_tooltip
+		set_country_flag = oeo_lifter_outliner
+	}
+	on_disabled = {
+		remove_country_flag = oeo_lifter_outliner
+	}
+}
+zzz_25_oeo_arc_furnace_view = {
+	length = @EdictPerpetual
+	icon = "GFX_oeo_edict_icon"
+	potential = { 
+		any_owned_megastructure = {
+			OR = {
+				is_megastructure_type = orbital_arc_furnace_restored 
+				is_megastructure_type = orbital_arc_furnace_4
+			}
+		}
+	}
+	effect = {
+		custom_tooltip = oeo_edict_tooltip
+		set_country_flag = oeo_arc_furnace_outliner
+	}
+	on_disabled = {
+		remove_country_flag = oeo_arc_furnace_outliner
+	}
+}
+zzz_30_oeo_sphere_view = {
+	length = @EdictPerpetual
+	icon = "GFX_oeo_edict_icon"
+	potential = { 
+		any_owned_megastructure = { 
+			OR = {
+				is_megastructure_type = dyson_sphere_disco_restored 
+				is_megastructure_type = dyson_sphere_disco
+				is_megastructure_type = dyson_sphere_restored 
+				is_megastructure_type = dyson_sphere_5
+			}
+		}
+	}
+	effect = {
+		custom_tooltip = oeo_edict_tooltip
+		set_country_flag = oeo_sphere_outliner
+	}
+	on_disabled = {
+		remove_country_flag = oeo_sphere_outliner
+	}
+}
+zzz_33_oeo_think_view = {
+	length = @EdictPerpetual
+	icon = "GFX_oeo_edict_icon"
+	potential = { 
+		any_owned_megastructure = { 
+			OR = {
+				is_megastructure_type = think_tank_4
+				is_megastructure_type = think_tank_restored
+				is_megastructure_type = think_tank_3
+			}
+		}
+	}
+	effect = {
+		custom_tooltip = oeo_edict_tooltip
+		set_country_flag = oeo_think_outliner
+	}
+	on_disabled = {
+		remove_country_flag = oeo_think_outliner
+	}
+}
+zzz_34_oeo_spy_view = {
+	length = @EdictPerpetual
+	icon = "GFX_oeo_edict_icon"
+	potential = { 
+		any_owned_megastructure = { 
+			OR = {
+				is_megastructure_type = spy_orb_4
+				is_megastructure_type = spy_orb_restored
+			}
+		}
+	}
+	effect = {
+		custom_tooltip = oeo_edict_tooltip
+		set_country_flag = oeo_spy_outliner
+	}
+	on_disabled = {
+		remove_country_flag = oeo_spy_outliner
+	}
+}
+zzz_35_oeo_matter_view = {
+	length = @EdictPerpetual
+	icon = "GFX_oeo_edict_icon"
+	potential = { 
+		any_owned_megastructure = { 
+			OR = {
+				is_megastructure_type = matter_decompressor_4
+				is_megastructure_type = matter_decompressor_restored
+			}
+		}
+	}
+	effect = {
+		custom_tooltip = oeo_edict_tooltip
+		set_country_flag = oeo_matter_outliner
+	}
+	on_disabled = {
+		remove_country_flag = oeo_matter_outliner
+	}
+}
+zzz_36_oeo_center_view = {
+	length = @EdictPerpetual
+	icon = "GFX_oeo_edict_icon"
+	potential = { 
+		any_owned_megastructure = { 
+			OR = {
+				is_megastructure_type = strategic_coordination_center_3
+				is_megastructure_type = strategic_coordination_center_restored
+			}
+		}
+	}
+	effect = {
+		custom_tooltip = oeo_edict_tooltip
+		set_country_flag = oeo_center_outliner
+	}
+	on_disabled = {
+		remove_country_flag = oeo_center_outliner
+	}
+}
+zzz_37_oeo_art_view = {
+	length = @EdictPerpetual
+	icon = "GFX_oeo_edict_icon"
+	potential = { 
+		any_owned_megastructure = { 
+			OR = {
+				is_megastructure_type = mega_art_installation_3
+				is_megastructure_type = mega_art_installation_restored
+				is_megastructure_type = mega_art_installation_4
+				is_megastructure_type = mega_art_installation_restored_2
+			}
+		}
+	}
+	effect = {
+		custom_tooltip = oeo_edict_tooltip
+		set_country_flag = oeo_art_outliner
+	}
+	on_disabled = {
+		remove_country_flag = oeo_art_outliner
+	}
+}
+zzz_38_oeo_assembly_view = {
+	length = @EdictPerpetual
+	icon = "GFX_oeo_edict_icon"
+	potential = { 
+		any_owned_megastructure = { 
+			OR = {
+				is_megastructure_type = interstellar_assembly_4
+				is_megastructure_type = interstellar_assembly_restored
+			}
+		}
+	}
+	effect = {
+		custom_tooltip = oeo_edict_tooltip
+		set_country_flag = oeo_assembly_outliner
+	}
+	on_disabled = {
+		remove_country_flag = oeo_assembly_outliner
+	}
+}
+zzz_39_oeo_shipyard_view = {
+	length = @EdictPerpetual
+	icon = "GFX_oeo_edict_icon"
+	potential = { 
+		any_owned_megastructure = { 
+			OR = {
+				is_megastructure_type = mega_shipyard_3
+				is_megastructure_type = mega_shipyard_restored
+			}
+		}
+	}
+	effect = {
+		custom_tooltip = oeo_edict_tooltip
+		set_country_flag = oeo_shipyard_outliner
+	}
+	on_disabled = {
+		remove_country_flag = oeo_shipyard_outliner
+	}
+}
+zzz_40_oeo_catapult_view = {
+	length = @EdictPerpetual
+	icon = "GFX_oeo_edict_icon"
+	potential = { 
+		any_owned_megastructure = { 
+			OR = {
+				is_megastructure_type = quantum_catapult_3
+				is_megastructure_type = quantum_catapult_restored
+				is_megastructure_type = quantum_catapult_improved_slingshot
+			}
+		}
+	}
+	effect = {
+		custom_tooltip = oeo_edict_tooltip
+		set_country_flag = oeo_catapult_outliner
+	}
+	on_disabled = {
+		remove_country_flag = oeo_catapult_outliner
+	}
+}
+zzz_41_oeo_recycler_view = {
+	length = @EdictPerpetual
+	icon = "GFX_oeo_edict_icon"
+	potential = { 
+		any_owned_megastructure = { is_megastructure_type = oeo_mega_recycler_restored }
+	}
+	effect = {
+		custom_tooltip = oeo_edict_tooltip
+		set_country_flag = oeo_recycler_outliner
+	}
+	on_disabled = {
+		remove_country_flag = oeo_recycler_outliner
+	}
+}
