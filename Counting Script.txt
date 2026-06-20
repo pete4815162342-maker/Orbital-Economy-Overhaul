@@ -1,0 +1,8 @@
+effect export_trigger_value_to_variable = { variable = HABITABLE_COUNT trigger = count_galaxy_planet parameters = { limit = { is_colonizable = yes has_owner = no solar_system = { has_special_star_flag_trigger = no } } } }
+
+effect export_trigger_value_to_variable = { variable = TERRAFORM_COUNT trigger = count_galaxy_planet parameters = { limit = { has_modifier = terraforming_candidate } } }
+Medium: 13
+effect export_trigger_value_to_variable = { variable = FROZEN_COUNT trigger = count_galaxy_planet parameters = { limit = { has_modifier = frozen_terraforming_candidate } } }
+Medium: 3
+effect export_trigger_value_to_variable = { variable = TOXIC_COUNT trigger = count_galaxy_planet parameters = { limit = { has_modifier = toxic_terraforming_candidate } } }
+Medium: 31
