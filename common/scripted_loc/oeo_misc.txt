@@ -1,0 +1,8 @@
+defined_text = {
+	name = GetEpamAsteroidSystemCount
+	value = value:oeo_num_system_unused_asteroids
+}
+defined_text = {
+	name = GetEpamCitadelSystemCount
+	value = value:oeo_num_system_citadels
+}
