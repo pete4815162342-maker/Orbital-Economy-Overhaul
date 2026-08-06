@@ -1,0 +1,356 @@
+oeo_matrioshka_brain_0 = {
+    entity = "oeo_matrioshka_brain_entity0"
+	construction_entity = "oeo_matrioshka_brain_entity0"
+	portrait = "GFX_oeo_matrioshka"
+	place_entity_on_planet_plane = yes
+	use_planet_resource = yes
+	construction_blocks_and_blocked_by = none
+	build_time = @oeo_matrioshka1_build_time
+	upgrade_from = { dyson_swarm_3 }
+	potential = { has_technology = tech_oeo_matrioshka_brain }
+	possible = {
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+	}
+	resources = {
+		category = megastructures_oeo_kilostructures
+		cost = { unity = @oeo_matrioshka1_unity_cost }
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = @oeo_matrioshka1_alloy_cost
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = @oeo_matrioshka1_alloy_cost
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = @oeo_matrioshka1_alloy_cost
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = { trade = @oeo_matrioshka1_trade_upkeep }
+	}
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = oeo_virtual_reality
+			}
+		}
+		oeo_matrioshka_pop_bonus_workforce_mult = 0.01
+	}
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = oeo_automation
+			}
+		}
+		bonus_automated_workforce_mult = 0.01
+	}
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = oeo_research
+			}
+		}
+		planet_researchers_produces_mult = 0.01
+	}
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = oeo_administrative
+			}
+		}
+		planet_jobs_unity_produces_mult = 0.01
+	}
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = oeo_logistics
+			}
+		}
+		planet_jobs_trade_produces_mult = 0.01
+	}
+	dismantle_cost = {
+		category = megastructures
+		cost = { energy = @oeo_matrioshka1_alloy_cost }
+	}
+	dismantle_time = 360
+	dismantle_potential = {	always = yes }
+	dismantle_possible = {
+		custom_tooltip = {
+			fail_text = "oeo_dismantle_cooldown" 
+			NOT = { has_megastructure_flag = oeo_dismantle_cooldown }
+		}
+	}
+	on_dismantle_start = {
+		fromfrom.planet = {
+			set_planet_flag = oeo_not_cancelled
+			planet_event = { id = oeo_individual_dismantle.2 days = 361 }
+		}
+	}
+	on_dismantle_cancel = {
+		fromfrom = { set_timed_megastructure_flag = { flag = oeo_dismantle_cooldown days = 360 } }
+		fromfrom.planet = { remove_planet_flag = oeo_not_cancelled }
+	}
+	on_dismantle_complete = {
+		from = {
+			add_resource = {
+				alloys = @oeo_matrioshka1_alloy_cost
+				mult = modifier:megastructure_dismantle_refund_mult
+			}
+		}
+	}
+	on_build_complete = {
+		fromfrom.planet = {
+			set_planet_flag = has_megastructure
+			set_planet_flag = megastructure
+			add_deposit = d_engineering_1
+			add_deposit = d_physics_1
+			add_deposit = d_society_1
+			set_planet_flag = oeo_matrioshka_deposits_added
+			#add_modifier = { modifier = "oeo_dyson_swarm_4_mod" days = -1 }
+			#remove_modifier = dyson_swarm_3_mod	
+		}
+	}
+}
+oeo_matrioshka_brain_1 = {
+    entity = "oeo_matrioshka_brain_entity1"
+	construction_entity = "oeo_matrioshka_brain_entity1"
+	portrait = "GFX_oeo_matrioshka"
+	place_entity_on_planet_plane = yes
+	use_planet_resource = yes
+	construction_blocks_and_blocked_by = none
+	build_time = @oeo_matrioshka2_build_time
+	upgrade_from = { oeo_matrioshka_brain_0 }
+	potential = { has_technology = tech_oeo_matrioshka_brain }
+	resources = {
+		category = megastructures_oeo_kilostructures
+		cost = { unity = @oeo_matrioshka2_unity_cost }
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = @oeo_matrioshka2_alloy_cost
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = @oeo_matrioshka2_alloy_cost
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = @oeo_matrioshka2_alloy_cost
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = { trade = @oeo_matrioshka2_trade_upkeep }
+	}
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = oeo_virtual_reality
+			}
+		}
+		oeo_matrioshka_pop_bonus_workforce_mult = 0.02
+	}
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = oeo_automation
+			}
+		}
+		bonus_automated_workforce_mult = 0.02
+	}
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = oeo_research
+			}
+		}
+		planet_researchers_produces_mult = 0.02
+	}
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = oeo_administrative
+			}
+		}
+		planet_jobs_unity_produces_mult = 0.02
+	}
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = oeo_logistics
+			}
+		}
+		planet_jobs_trade_produces_mult = 0.02
+	}
+	dismantle_cost = {
+		category = megastructures
+		cost = { energy = @oeo_matrioshka2_alloy_cost }
+	}
+	dismantle_time = 360
+	dismantle_potential = {	always = yes }
+	dismantle_possible = {
+		custom_tooltip = {
+			fail_text = "oeo_dismantle_cooldown" 
+			NOT = { has_megastructure_flag = oeo_dismantle_cooldown }
+		}
+	}
+	on_dismantle_start = {
+		fromfrom.planet = {
+			set_planet_flag = oeo_not_cancelled
+			planet_event = { id = oeo_individual_dismantle.2 days = 361 }
+		}
+	}
+	on_dismantle_cancel = {
+		fromfrom = { set_timed_megastructure_flag = { flag = oeo_dismantle_cooldown days = 360 } }
+		fromfrom.planet = { remove_planet_flag = oeo_not_cancelled }
+	}
+	on_dismantle_complete = {
+		from = {
+			add_resource = {
+				alloys = @oeo_matrioshka2_alloy_cost
+				mult = modifier:megastructure_dismantle_refund_mult
+			}
+		}
+	}
+	on_build_complete = {
+		fromfrom.planet = {
+			#add_modifier = { modifier = "oeo_dyson_swarm_5_mod" days = -1 }
+			#remove_modifier = oeo_dyson_swarm_4_mod
+			add_modifier = { modifier = "oeo_dyson_swarm_4_mod" days = -1 }
+			remove_modifier = dyson_swarm_3_mod
+		}
+	}
+}
+oeo_matrioshka_brain_2 = {
+    entity = "oeo_matrioshka_brain_entity2"
+	construction_entity = "oeo_matrioshka_brain_entity2"
+	portrait = "GFX_oeo_matrioshka"
+	place_entity_on_planet_plane = yes
+	use_planet_resource = yes
+	construction_blocks_and_blocked_by = none
+	build_time = @oeo_matrioshka3_build_time
+	outliner_trigger = {
+		exists = owner
+		owner = {
+			NOT = { has_country_flag = oeo_matrioshka_outliner }
+		}
+	}
+	upgrade_from = { oeo_matrioshka_brain_1 }
+	potential = { has_technology = tech_oeo_matrioshka_brain }
+	resources = {
+		category = megastructures_oeo_kilostructures
+		cost = { unity = @oeo_matrioshka3_unity_cost }
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = @oeo_matrioshka3_alloy_cost
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = @oeo_matrioshka3_alloy_cost
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = @oeo_matrioshka3_alloy_cost
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = { trade = @oeo_matrioshka3_trade_upkeep }
+	}
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = oeo_virtual_reality
+			}
+		}
+		oeo_matrioshka_pop_bonus_workforce_mult = 0.03
+	}
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = oeo_automation
+			}
+		}
+		bonus_automated_workforce_mult = 0.03
+	}
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = oeo_research
+			}
+		}
+		planet_researchers_produces_mult = 0.05
+	}
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = oeo_administrative
+			}
+		}
+		planet_jobs_unity_produces_mult = 0.05
+	}
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = oeo_logistics
+			}
+		}
+		planet_jobs_trade_produces_mult = 0.05
+	}
+	dismantle_cost = {
+		category = megastructures
+		cost = { energy = @oeo_matrioshka3_alloy_cost }
+	}
+	dismantle_time = 360
+	dismantle_potential = {	always = yes }
+	dismantle_possible = {
+		custom_tooltip = {
+			fail_text = "oeo_dismantle_cooldown" 
+			NOT = { has_megastructure_flag = oeo_dismantle_cooldown }
+		}
+	}
+	on_dismantle_start = {
+		fromfrom.planet = {
+			set_planet_flag = oeo_not_cancelled
+			planet_event = { id = oeo_individual_dismantle.2 days = 361 }
+		}
+	}
+	on_dismantle_cancel = {
+		fromfrom = { set_timed_megastructure_flag = { flag = oeo_dismantle_cooldown days = 360 } }
+		fromfrom.planet = { remove_planet_flag = oeo_not_cancelled }
+	}
+	on_dismantle_complete = {
+		from = {
+			add_resource = {
+				alloys = @oeo_matrioshka3_alloy_cost
+				mult = modifier:megastructure_dismantle_refund_mult
+			}
+		}
+	}
+	on_build_complete = {
+		fromfrom.planet = {
+			#add_modifier = { modifier = "oeo_dyson_swarm_6_mod" days = -1 }
+			#remove_modifier = oeo_dyson_swarm_5_mod
+			add_modifier = { modifier = "oeo_dyson_swarm_5_mod" days = -1 }
+			remove_modifier = oeo_dyson_swarm_4_mod
+		}
+	}
+}

@@ -1,0 +1,96 @@
+oeo_ruined_black_hole_shellworld = {
+	entity = "oeo_ruined_planet_entity"
+	construction_entity = "oeo_ruined_planet_entity"
+	portrait = "GFX_megastructure_construction_background"
+	place_entity_on_planet_plane = yes
+	
+	potential = {
+		always = no
+	}
+
+	build_time = 4800
+	resources = {
+		category = megastructures
+		cost = {}
+	}
+
+	on_build_complete = {
+		every_system_planet = {
+			limit = { is_planet_class = pc_black_hole }
+			set_planet_flag = shroud_storm_changed
+			set_planet_size = 32
+			set_planet_flag = has_megastructure
+			clear_deposits = yes
+		}
+	}
+}
+
+oeo_ruined_black_hole_shellworld_2 = {
+	entity = ""
+	construction_entity = ""
+	portrait = "GFX_megastructure_construction_background"
+	place_entity_on_planet_plane = yes
+	possible = {
+		from = { has_technology = tech_mega_engineering }
+	}
+
+	upgrade_from = { oeo_ruined_black_hole_shellworld }
+	build_time = 4800
+	resources = {
+		category = megastructures
+		cost = {
+			influence = 500
+		}
+		cost = {
+			unity = 10000
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = no
+			}
+			alloys = 25000
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			alloys = 25000
+			mult = 0.5
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			food = 25000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+	}
+
+	on_build_complete = {
+		from = {
+			set_country_flag = has_built_or_repaired_megastructure
+		}
+		every_system_planet = {
+			limit = { is_planet_class = pc_black_hole }
+			set_planet_size = 32
+			clear_deposits = yes
+		}
+		spawn_planet = {
+			class = "pc_oeo_black_hole_shellworld"
+			location = fromfrom
+			has_ring = no
+
+			init_effect = {
+				set_name = "Shellworld"
+				set_surveyed = { surveyed = yes surveyor = from }
+				set_all_comms_surveyed = yes
+				clear_blockers = yes
+				set_planet_flag = megastructure			# Vanilla uses to check if a megastrucure can be built here
+				set_planet_flag = has_megastructure		# Vanilla uses to check if an orbital station can be built here
+				set_planet_flag = has_oeo_planet_mega
+				set_planet_flag = colony_event			# Vanilla uses to prevent unwanted events on planets
+			}
+		}
+		remove_megastructure = fromfrom
+	}
+}

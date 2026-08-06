@@ -1,0 +1,227 @@
+oeo_energy_station_build_site_1 = {
+    entity = "solar_collector_array_entity0"
+	construction_entity = "solar_collector_array_entity0"
+	portrait = "GFX_oeo_collector"
+	construction_blocks_and_blocked_by = none
+	place_entity_on_planet_plane = no
+	build_time = @oeo_solar_build_time
+	entity_offset = { x = -12 y = -12 }
+	outliner_trigger = {
+		exists = owner
+		owner = {
+			NOT = { has_country_flag = oeo_solar_outliner }
+		}
+	}
+	resources = {
+		category = megastructures_oeo_solar
+		cost = { influence = @oeo_solar_influence_cost }
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = @oeo_solar_alloy_cost
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = @oeo_solar_alloy_cost
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = @oeo_solar_alloy_cost
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		produces = {
+			trigger = {
+				owner = {
+					has_policy_flag = oeo_solar_energy
+				}
+				is_scope_type = megastructure
+				root = {
+					NOT = { has_megastructure_flag = oeo_no_more_sun }
+				}
+			}
+			energy = @oeo_solar_energy_output
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					has_policy_flag = oeo_solar_energy
+				}
+				is_scope_type = megastructure
+				root = {
+					NOT = { has_megastructure_flag = oeo_no_more_sun }
+				}
+			}
+			trade = @oeo_solar_trade_upkeep
+		}
+		produces = {
+			trigger = {
+				owner = {
+					has_policy_flag = oeo_solar_refueling
+				}
+				is_scope_type = megastructure
+				root = {
+					NOT = { has_megastructure_flag = oeo_no_more_sun }
+				}
+			}
+			energy = 5
+		}
+	}
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = oeo_solar_refueling
+			}
+			is_scope_type = megastructure
+			root = {
+				NOT = { has_megastructure_flag = oeo_no_more_sun }
+			}
+		}
+		ships_energy_upkeep_mult = -0.01
+	}
+	custom_tooltip_requirements = "oeo_MEGASTRUCTURE_TOOLTIP_REQUIREMENTS_HECTOSTRUCTURE_LIMIT"
+	dismantle_cost = {
+		category = megastructures
+		cost = { energy = @oeo_solar_alloy_cost }
+	}
+	dismantle_time = 360
+	dismantle_potential = {	always = yes }
+	dismantle_possible = {
+		custom_tooltip = {
+			fail_text = "oeo_dismantle_cooldown" 
+			NOT = { has_megastructure_flag = oeo_dismantle_cooldown }
+		}
+	}
+	on_dismantle_start = {
+		fromfrom.planet = {
+			set_planet_flag = oeo_not_cancelled
+			planet_event = { id = oeo_individual_dismantle.1 days = 361 }
+		}
+	}
+	on_dismantle_cancel = {
+		fromfrom = { set_timed_megastructure_flag = { flag = oeo_dismantle_cooldown days = 360 } }
+		fromfrom.planet = { remove_planet_flag = oeo_not_cancelled }
+	}
+	on_dismantle_complete = {	
+		from = {
+			add_resource = {
+				alloys = @oeo_solar_alloy_cost
+				mult = modifier:megastructure_dismantle_refund_mult
+			}
+		}
+	}
+	potential = { has_technology = tech_oeo_orbtital_industry_1 }
+	possible = {
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_black_hole_neutron_star_pulsar"
+			NOT = {
+				is_star_class = sc_black_hole
+				is_star_class = sc_neutron_star
+				is_star_class = sc_pulsar
+			}
+		}
+	}
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "requires_surveyed_planet"
+				is_surveyed = {			# prevent leaking habitability information
+					who = prev.from
+					status = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = { has_anomaly = yes }
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_existing_megastructure"
+				#can_build_megastructure_on_planet = yes
+				NOR = {
+					has_planet_flag = has_megastructure
+					has_planet_flag = megastructure
+					solar_system = {
+						OR = {
+							has_star_flag = ring_world_built
+							has_star_flag = ithomes_gate
+							has_megastructure = dyson_sphere_5
+							has_megastructure = dyson_sphere_4
+							has_megastructure = dyson_sphere_3
+							has_megastructure = dyson_sphere_2
+							has_megastructure = dyson_sphere_1
+							has_megastructure = dyson_sphere_ruined
+							has_megastructure = dyson_sphere_restored
+							has_megastructure = dyson_sphere_disco
+						}
+					}
+					is_planet_class = pc_ringworld_habitable
+					is_planet_class = pc_ringworld_habitable_damaged
+					is_planet_class = pc_ringworld_tech
+					is_planet_class = pc_ringworld_tech_damaged
+					is_planet_class = pc_ringworld_seam
+					is_planet_class = pc_ringworld_seam_damaged
+					is_planet_class = pc_habitat
+					is_star = yes
+				}
+			}
+
+			# balance for habitats
+			custom_tooltip = {
+				fail_text = "requires_not_minor_planetary_body"
+				NOT = { is_asteroid = yes }
+			}
+			custom_tooltip = {
+				fail_text = "requires_not_astral_scar"
+				is_astral_scar = no
+			}
+			if = {
+				limit = { from = { is_ai = yes } }
+				NOR = {
+					has_deposit_for = shipclass_mining_station
+					has_deposit_for = shipclass_research_station
+				}
+			}
+		}
+	}
+	ai_weight = {
+		factor = 5
+		modifier = {
+			factor = 0.1
+			starbase = { NOT = { has_starbase_size >= starbase_starfortress } }
+		}
+		modifier = {
+			factor = 0.1
+			any_neighbor_system = {
+				exists = owner
+				NOT = {
+					owner = { is_same_value = from }
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+		 	from = { has_country_flag = oeo_hecto_cooldown }
+		}
+	}
+	on_build_start = {
+		from = { set_timed_country_flag = { flag = oeo_hecto_cooldown days = @oeo_hecto_cooldown_time } }
+	}
+	on_build_complete = {		
+		fromfrom.planet = {
+			set_planet_flag = has_megastructure
+			set_planet_flag = megastructure
+			set_planet_flag = oeo_solar
+			if = {
+				limit = { has_orbital_station = yes }
+				orbital_station = {
+					dismantle = yes
+				}
+			}
+		}
+	}
+}

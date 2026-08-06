@@ -1,0 +1,676 @@
+# Interstellar Assembly
+interstellar_assembly_0 = {
+	entity = "construction_platform_entity"
+	construction_entity = "construction_platform_entity"
+	portrait = "GFX_megastructure_construction_background"
+	place_entity_on_planet_plane = no
+	entity_offset = { x = -27 y = -27 }
+	build_time = 1800
+	resources = {
+		category = megastructures_oeo_megastructures
+		cost = { 
+			####Unity replaced with influence for 1st stage####
+			influence = 500
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = no
+			}
+			alloys = 5000
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			alloys = 5000
+			mult = 0.5
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			food = 5000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+
+		upkeep = {
+			trade = @oeo_assembly1_trade_upkeep
+		}
+		
+	}
+	dismantle_cost = {
+		category = megastructures
+		cost = { energy = 5000 }
+	}
+	dismantle_time = 360
+	dismantle_potential = {	always = yes }
+	dismantle_possible = {
+		custom_tooltip = {
+			fail_text = "oeo_dismantle_cooldown" 
+			NOT = { has_megastructure_flag = oeo_dismantle_cooldown }
+		}
+	}
+	on_dismantle_start = {
+		fromfrom.planet = {
+			set_planet_flag = oeo_not_cancelled
+			planet_event = { id = oeo_individual_dismantle.1 days = 361 }
+		}
+	}
+	on_dismantle_cancel = {
+		fromfrom = { set_timed_megastructure_flag = { flag = oeo_dismantle_cooldown days = 360 } }
+		fromfrom.planet = { remove_planet_flag = oeo_not_cancelled }
+	}
+	on_dismantle_complete = {	
+		from = {
+			add_resource = {
+				alloys = 5000
+				mult = modifier:megastructure_dismantle_refund_mult
+			}
+		}
+	}	
+	custom_tooltip_requirements = "oeo_MEGASTRUCTURE_TOOLTIP_REQUIREMENTS_MEGASTRUCTURE_LIMIT"
+
+	prerequisites = { "tech_interstellar_assembly" }
+
+	possible = {
+		hidden_trigger = {
+			exists = starbase
+		}
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		custom_tooltip = {
+			fail_text = "requires_surveyed_system"
+			NOT = {
+				any_system_planet = {
+					is_surveyed = {
+						who = prev.from
+						status = no
+					}
+				}
+			}
+		}
+	}
+
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "requires_survey_not_habitable"
+				is_surveyed = {			# prevent leaking habitability information
+					who = prev.from
+					status = yes
+				}
+				colonizable_planet = no
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = { has_anomaly = yes }
+			}
+			custom_tooltip = {
+				fail_text = "requires_not_minor_planetary_body"
+				NOR = {
+					is_asteroid = yes
+					is_moon = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_not_star"
+				is_star = no
+			}
+			custom_tooltip = {
+				fail_text = "requires_not_astral_scar"
+				is_astral_scar = no
+			}
+			custom_tooltip = {
+				fail_text = "requires_not_ring_world"
+				is_ringworld = no
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_existing_megastructure"
+				#can_build_megastructure_on_planet = yes
+				NOR = {
+					has_planet_flag = has_megastructure
+					has_planet_flag = megastructure
+				}
+			}
+		}
+	}
+
+	# root = system
+	# from = country
+	ai_weight = {
+		factor = 15
+
+		modifier = {
+			factor = 0.1
+			starbase = { NOT = { has_starbase_size >= starbase_starfortress } }
+		}
+
+		modifier = {
+			factor = 0.1
+			any_neighbor_system = {
+				exists = owner
+				NOT = {
+					owner = { is_same_value = from }
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+		 	from = {
+		 		has_country_flag = oeo_mega_cooldown
+		 	}
+		}
+		modifier = {
+			factor = 0
+			from = {
+				count_owned_megastructure = {
+					limit = { 
+						is_oeo_assembly_category = yes
+					}
+					count < 0
+				}
+			}
+		}
+	}
+
+	on_build_start = {
+		from = {
+			set_timed_country_flag = { flag = oeo_mega_cooldown days = @oeo_mega_cooldown_time }
+		}
+	}
+	on_build_cancel = {
+	}
+	on_build_complete = {
+		fromfrom.planet = {
+			set_planet_flag = has_megastructure
+			if = {
+				limit = { has_orbital_station = yes }
+				orbital_station = {
+					dismantle = yes
+				}
+			}
+			set_planet_flag = oeo_assembly
+		}
+		from = {
+			if = {
+				limit = {
+					has_relic = r_contingency_core
+					has_country_flag = built_mega_shipyard_site
+				}
+				set_country_flag = built_interstellar_assembly_site_contingency
+			}
+			set_country_flag = built_interstellar_assembly_site
+		}
+	}
+}
+
+# Interstellar Assembly 1
+interstellar_assembly_1 = {
+	entity = "interstellar_assembly_stage_1_entity"
+	construction_entity = "interstellar_assembly_stage_1_entity"
+	portrait = GFX_megastructure_construction_background
+	place_entity_on_planet_plane = no
+	entity_offset = { x = -27 y = -27 }
+	build_time = 1800
+	resources = {
+		category = megastructures_oeo_megastructures
+		cost = {
+			unity = 2500
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = no
+			}
+			alloys = 10000
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			food = 10000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+
+		upkeep = {
+			trade = @oeo_assembly2_trade_upkeep
+		}
+	}
+	dismantle_cost = {
+		category = megastructures
+		cost = { energy = 10000 }
+	}
+	dismantle_time = 360
+	dismantle_potential = {	always = yes }
+	dismantle_possible = {
+		custom_tooltip = {
+			fail_text = "oeo_dismantle_cooldown" 
+			NOT = { has_megastructure_flag = oeo_dismantle_cooldown }
+		}
+	}
+	on_dismantle_start = {
+		fromfrom.planet = {
+			set_planet_flag = oeo_not_cancelled
+			planet_event = { id = oeo_individual_dismantle.1 days = 361 }
+		}
+	}
+	on_dismantle_cancel = {
+		fromfrom = { set_timed_megastructure_flag = { flag = oeo_dismantle_cooldown days = 360 } }
+		fromfrom.planet = { remove_planet_flag = oeo_not_cancelled }
+	}
+	on_dismantle_complete = {	
+		from = {
+			add_resource = {
+				alloys = 10000
+				mult = modifier:megastructure_dismantle_refund_mult
+			}
+		}
+	}	
+	upgrade_from = {
+		interstellar_assembly_0
+	}
+
+	prerequisites = { "tech_interstellar_assembly" }
+
+	country_modifier = {
+		diplo_weight_mult = 0.10
+		# enables triggered_opinion_of_interstellar_assembly_1
+	}
+
+	on_build_complete = {
+		from = { country_event = { id = mega.9006 } }
+	}
+}
+
+# Interstellar Assembly 2
+interstellar_assembly_2 = {
+	entity = "interstellar_assembly_stage_2_entity"
+	construction_entity = "interstellar_assembly_stage_2_entity"
+	portrait = GFX_megastructure_construction_background
+	place_entity_on_planet_plane = no
+	entity_offset = { x = -27 y = -27 }
+	build_time = 1800
+	resources = {
+		category = megastructures_oeo_megastructures
+		cost = {
+			unity = 2500
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = no
+			}
+			alloys = 10000
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			food = 10000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+
+		upkeep = {
+			trade = @oeo_assembly3_trade_upkeep
+		}
+	}
+	dismantle_cost = {
+		category = megastructures
+		cost = { energy = 10000 }
+	}
+	dismantle_time = 360
+	dismantle_potential = {	always = yes }
+	dismantle_possible = {
+		custom_tooltip = {
+			fail_text = "oeo_dismantle_cooldown" 
+			NOT = { has_megastructure_flag = oeo_dismantle_cooldown }
+		}
+	}
+	on_dismantle_start = {
+		fromfrom.planet = {
+			set_planet_flag = oeo_not_cancelled
+			planet_event = { id = oeo_individual_dismantle.1 days = 361 }
+		}
+	}
+	on_dismantle_cancel = {
+		fromfrom = { set_timed_megastructure_flag = { flag = oeo_dismantle_cooldown days = 360 } }
+		fromfrom.planet = { remove_planet_flag = oeo_not_cancelled }
+	}
+	on_dismantle_complete = {	
+		from = {
+			add_resource = {
+				alloys = 10000
+				mult = modifier:megastructure_dismantle_refund_mult
+			}
+		}
+	}	
+	upgrade_from = {
+		interstellar_assembly_1
+	}
+
+	prerequisites = { "tech_interstellar_assembly" }
+
+	country_modifier = {
+		diplo_weight_mult = 0.20
+		empire_size_mult = -0.05
+		envoys_add = 1
+		# enables triggered_opinion_of_interstellar_assembly_2
+	}
+
+	on_build_complete = {
+		from = { country_event = { id = mega.9007 } }
+	}
+}
+
+# Interstellar Assembly 3
+interstellar_assembly_3 = {
+	entity = "interstellar_assembly_stage_3_entity"
+	construction_entity = "interstellar_assembly_stage_3_entity"
+	portrait = GFX_megastructure_construction_background
+	place_entity_on_planet_plane = no
+	entity_offset = { x = -27 y = -27 }
+	build_time = 1800
+	resources = {
+		category = megastructures_oeo_megastructures
+		cost = {
+			unity = 2500
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = no
+			}
+			alloys = 10000
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			food = 10000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+
+		upkeep = {
+			trade = @oeo_assembly4_trade_upkeep
+		}
+	}
+	dismantle_cost = {
+		category = megastructures
+		cost = { energy = 10000 }
+	}
+	dismantle_time = 360
+	dismantle_potential = {	always = yes }
+	dismantle_possible = {
+		custom_tooltip = {
+			fail_text = "oeo_dismantle_cooldown" 
+			NOT = { has_megastructure_flag = oeo_dismantle_cooldown }
+		}
+	}
+	on_dismantle_start = {
+		fromfrom.planet = {
+			set_planet_flag = oeo_not_cancelled
+			planet_event = { id = oeo_individual_dismantle.1 days = 361 }
+		}
+	}
+	on_dismantle_cancel = {
+		fromfrom = { set_timed_megastructure_flag = { flag = oeo_dismantle_cooldown days = 360 } }
+		fromfrom.planet = { remove_planet_flag = oeo_not_cancelled }
+	}
+	on_dismantle_complete = {	
+		from = {
+			add_resource = {
+				alloys = 10000
+				mult = modifier:megastructure_dismantle_refund_mult
+			}
+		}
+	}	
+	upgrade_from = {
+		interstellar_assembly_2
+	}
+
+	prerequisites = { "tech_interstellar_assembly" }
+
+	country_modifier = {
+		diplo_weight_mult = 0.30
+		empire_size_mult = -0.05
+		envoys_add = 1
+		# enables triggered_opinion_of_interstellar_assembly_3
+	}
+
+	on_build_complete = {
+		from = { country_event = { id = mega.9008 } }
+	}
+}
+
+# Interstellar Assembly 4
+interstellar_assembly_4 = {
+	entity = "interstellar_assembly_stage_4_entity"
+	construction_entity = "interstellar_assembly_stage_4_entity"
+	portrait = "GFX_megastructure_interstellar_assembly_background"
+	place_entity_on_planet_plane = no
+	entity_offset = { x = -27 y = -27 }
+	outliner_trigger = {
+		exists = owner
+		owner = {
+			NOT = { has_country_flag = oeo_assembly_outliner}
+		}
+	}
+	build_time = 1800
+	resources = {
+		category = megastructures_oeo_megastructures
+		cost = {
+			unity = 2500
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = no
+			}
+			alloys = 10000
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			food = 10000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+
+		upkeep = {
+			trade = @oeo_assembly5_trade_upkeep
+		}
+	}
+	dismantle_cost = {
+		category = megastructures
+		cost = { energy = 10000 }
+	}
+	dismantle_time = 360
+	dismantle_potential = {	always = yes }
+	dismantle_possible = {
+		custom_tooltip = {
+			fail_text = "oeo_dismantle_cooldown" 
+			NOT = { has_megastructure_flag = oeo_dismantle_cooldown }
+		}
+	}
+	on_dismantle_start = {
+		fromfrom.planet = {
+			set_planet_flag = oeo_not_cancelled
+			planet_event = { id = oeo_individual_dismantle.1 days = 361 }
+		}
+	}
+	on_dismantle_cancel = {
+		fromfrom = { set_timed_megastructure_flag = { flag = oeo_dismantle_cooldown days = 360 } }
+		fromfrom.planet = { remove_planet_flag = oeo_not_cancelled }
+	}
+	on_dismantle_complete = {	
+		from = {
+			add_resource = {
+				alloys = 10000
+				mult = modifier:megastructure_dismantle_refund_mult
+			}
+		}
+	}	
+	upgrade_from = {
+		interstellar_assembly_3
+	}
+
+	prerequisites = { "tech_interstellar_assembly" }
+	show_prereqs = yes
+
+	country_modifier = {
+		diplo_weight_mult = 0.40
+		empire_size_mult = -0.10
+		envoys_add = 2
+		# enables triggered_opinion_of_interstellar_assembly_4
+	}
+
+	on_build_complete = {
+		set_star_flag = interstellar_assembly_built
+		from = {
+			set_country_flag = has_built_or_repaired_megastructure
+			country_event = { id = mega.9009 }
+			set_country_flag = has_assembly
+		}
+	}
+}
+
+# Restored Interstellar Assembly
+interstellar_assembly_restored = {
+	entity = "interstellar_assembly_stage_4_entity"
+	construction_entity = "interstellar_assembly_stage_4_entity"
+	portrait = "GFX_megastructure_interstellar_assembly_background"
+	place_entity_on_planet_plane = no
+	entity_offset = { x = -27 y = -27 }
+	outliner_trigger = {
+		exists = owner
+		owner = {
+			NOT = { has_country_flag = oeo_assembly_outliner}
+		}
+	}
+	build_time = 3600
+	resources = {
+		category = megastructures_oeo_megastructures
+		cost = {
+			unity = 3200
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = no
+			}
+			alloys = 10000
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			alloys = 10000
+			mult = 0.5
+		}
+		cost = {
+			trigger = {
+				country_uses_bio_ships = yes
+			}
+			food = 10000
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+
+		upkeep = {
+			trade = @oeo_assembly5_trade_upkeep
+		}
+	}
+	dismantle_cost = {
+		category = megastructures
+		cost = { energy = 10000 }
+	}
+	dismantle_time = 360
+	dismantle_potential = {	always = yes }
+	dismantle_possible = {
+		custom_tooltip = {
+			fail_text = "oeo_dismantle_cooldown" 
+			NOT = { has_megastructure_flag = oeo_dismantle_cooldown }
+		}
+	}
+	on_dismantle_start = {
+		fromfrom.planet = {
+			set_planet_flag = oeo_not_cancelled
+			planet_event = { id = oeo_individual_dismantle.1 days = 361 }
+		}
+	}
+	on_dismantle_cancel = {
+		fromfrom = { set_timed_megastructure_flag = { flag = oeo_dismantle_cooldown days = 360 } }
+		fromfrom.planet = { remove_planet_flag = oeo_not_cancelled }
+	}
+	on_dismantle_complete = {	
+		from = {
+			add_resource = {
+				alloys = 10000
+				mult = modifier:megastructure_dismantle_refund_mult
+			}
+		}
+	}	
+	upgrade_from = {
+		interstellar_assembly_ruined
+	}
+
+	possible = {
+		from = { has_technology = tech_mega_engineering }
+	}
+
+	country_modifier = {
+		diplo_weight_mult = 0.40
+		empire_size_mult = -0.10
+		envoys_add = 2
+		# enables triggered_opinion_of_interstellar_assembly_4
+	}
+
+	on_build_start = {
+		fromfrom = {
+			set_graphical_culture = root.from
+		}
+	}
+
+	on_build_complete = {
+		set_star_flag = interstellar_assembly_built
+		every_system_ambient_object = {
+			limit = {
+				OR = {
+					is_ambient_object_type = large_debris_object
+					is_ambient_object_type = medium_debris_01_object
+					is_ambient_object_type = medium_debris_02_object
+				}
+			}
+			destroy_ambient_object = this
+		}
+		from = {
+			set_country_flag = has_built_or_repaired_megastructure
+			country_event = { id = mega.9131 }
+			set_country_flag = has_assembly
+		}
+	}
+}

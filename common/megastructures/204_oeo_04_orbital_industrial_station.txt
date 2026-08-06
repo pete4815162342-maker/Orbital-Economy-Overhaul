@@ -1,0 +1,647 @@
+oeo_industrial_station_build_site_0 = {
+    entity = "station_generic_01_entity"
+	construction_entity = "station_generic_01_entity"
+	portrait = "GFX_oeo_kilo"
+	place_entity_on_planet_plane = no
+	build_outside_gravity_well = no
+	use_planet_resource = no
+	outliner_trigger = {
+		exists = owner
+		owner = {
+			NOT = { has_country_flag = oeo_industrial_outliner }
+		}
+	}
+	construction_blocks_and_blocked_by = none
+	build_time = @oeo_industrial_build_time
+	entity_offset = { x = -12 y = -12 }
+	upgrade_desc = hide
+	resources = {
+		category = megastructures_oeo_industrial 
+		cost = { influence = @oeo_industrial_influence_cost }
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = @oeo_industrial_alloy_cost
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = @oeo_industrial_alloy_cost
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = @oeo_industrial_alloy_cost
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		produces = { 
+			trigger = {
+				owner = {
+					has_policy_flag = oeo_industrial_forges
+				}
+			}
+			alloys = @oeo_forge_alloy_output
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_catalytic_empire = no
+					has_policy_flag = oeo_industrial_forges
+				}
+			}
+			minerals = @oeo_forge_mineral_upkeep
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_catalytic_empire = yes 
+					has_policy_flag = oeo_industrial_forges
+				}
+			}
+			food = @oeo_forge_food_upkeep
+		}
+		produces = {
+			trigger = {
+				owner = {
+					country_uses_consumer_goods = yes
+					has_policy_flag = oeo_industrial_mixed
+				}
+			}
+			consumer_goods = @oeo_manufactury_goods_output
+		}
+		produces = {
+			trigger = { 
+				owner = {
+					country_uses_consumer_goods = yes
+					has_policy_flag = oeo_industrial_mixed
+				}
+			}
+			alloys = @oeo_manufactory_alloys_output
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_catalytic_empire = no
+					country_uses_consumer_goods = yes
+					has_policy_flag = oeo_industrial_mixed
+				}
+			}
+			minerals = 15
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_catalytic_empire = yes
+					country_uses_consumer_goods = yes
+					has_policy_flag = oeo_industrial_mixed
+				}
+			}
+			food = 30
+		}
+		produces = {
+			trigger = {
+				owner = {
+					country_uses_consumer_goods = yes
+					has_policy_flag = oeo_industrial_mixed_masterworks
+				}
+			}
+			consumer_goods = @oeo_manufactury_goods_output
+			trade = 1
+		}
+		produces = {
+			trigger = { 
+				owner = {
+					country_uses_consumer_goods = yes
+					has_policy_flag = oeo_industrial_mixed_masterworks
+				}
+			}
+			alloys = @oeo_manufactory_alloys_output
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_catalytic_empire = no
+					country_uses_consumer_goods = yes
+					has_policy_flag = oeo_industrial_mixed_masterworks
+				}
+			}
+			minerals = 15
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_catalytic_empire = yes
+					country_uses_consumer_goods = yes
+					has_policy_flag = oeo_industrial_mixed_masterworks
+				}
+			}
+			food = 30
+		}
+		produces = {
+			trigger = {
+				owner = {
+					country_uses_consumer_goods = yes
+					has_policy_flag = oeo_industrial_factory
+				}
+			}
+			consumer_goods = @oeo_factory_goods_output
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_catalytic_empire = no
+					country_uses_consumer_goods = yes
+					has_policy_flag = oeo_industrial_factory
+				}
+			}
+			minerals = 10
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_catalytic_empire = yes
+					country_uses_consumer_goods = yes
+					has_policy_flag = oeo_industrial_factory
+				}
+			}
+			food = 20
+		}
+		produces = {
+			trigger = {
+				owner = {
+					country_uses_consumer_goods = yes
+					has_policy_flag = oeo_industrial_masterworks
+				}
+			}
+			consumer_goods = 10
+			trade = 2
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_catalytic_empire = no
+					country_uses_consumer_goods = yes
+					has_policy_flag = oeo_industrial_masterworks
+				}
+			}
+			minerals = 10
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_catalytic_empire = yes
+					country_uses_consumer_goods = yes
+					has_policy_flag = oeo_industrial_masterworks
+				}
+			}
+			food = 20
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					NOR = { 
+						has_policy_flag = oeo_industrial_masterworks
+						has_policy_flag = oeo_industrial_mixed_masterworks
+					}
+				}
+			}
+			trade = @oeo_industrial_trade_upkeep
+		}
+	}
+	dismantle_cost = {
+		category = megastructures_oeo_hectostructures
+		cost = { energy = @oeo_industrial_alloy_cost }
+	}
+	dismantle_time = 360
+	dismantle_potential = {	always = yes }
+	dismantle_possible = {
+		custom_tooltip = {
+			fail_text = "oeo_dismantle_cooldown" 
+			NOT = { has_megastructure_flag = oeo_dismantle_cooldown }
+		}
+	}
+	on_dismantle_start = {
+		fromfrom.planet = {
+			set_planet_flag = oeo_not_cancelled
+			planet_event = { id = oeo_individual_dismantle.1 days = 361 }
+		}
+	}
+	on_dismantle_cancel = {
+		fromfrom = { set_timed_megastructure_flag = { flag = oeo_dismantle_cooldown days = 360 } }
+		fromfrom.planet = { remove_planet_flag = oeo_not_cancelled }
+	}
+	on_dismantle_complete = {	
+		from = {
+			add_resource = {
+				alloys = @oeo_industrial_alloy_cost
+				mult = modifier:megastructure_dismantle_refund_mult
+			}
+		}
+	}
+	custom_tooltip_requirements = "oeo_MEGASTRUCTURE_TOOLTIP_REQUIREMENTS_HECTOSTRUCTURE_LIMIT"
+	potential = { has_technology = tech_oeo_orbtital_industry_2 }
+	possible = {
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+	}
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "requires_surveyed_planet"
+				is_surveyed = {			# prevent leaking habitability information
+					who = prev.from
+					status = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = { has_anomaly = yes }
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_existing_megastructure"
+				#can_build_megastructure_on_planet = yes
+				NOR = {
+					has_planet_flag = has_megastructure
+					has_planet_flag = megastructure
+					solar_system = {
+						OR = {
+							has_star_flag = ring_world_built
+							has_star_flag = ithomes_gate
+						}
+					}
+					is_planet_class = pc_ringworld_habitable
+					is_planet_class = pc_ringworld_habitable_damaged
+					is_planet_class = pc_ringworld_tech
+					is_planet_class = pc_ringworld_tech_damaged
+					is_planet_class = pc_ringworld_seam
+					is_planet_class = pc_ringworld_seam_damaged
+					is_planet_class = pc_habitat
+					is_star = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_not_minor_planetary_body"
+				NOT = { is_asteroid = yes }
+			}
+			custom_tooltip = {
+				fail_text = "requires_not_astral_scar"
+				is_astral_scar = no
+			}
+			if = {
+				limit = { from = { is_ai = yes } }
+				NOR = {
+					has_deposit_for = shipclass_mining_station
+					has_deposit_for = shipclass_research_station
+				}
+			}
+		}
+	}
+	ai_weight = {
+		factor = 5
+		modifier = {
+			factor = 0.1
+			starbase = { NOT = { has_starbase_size >= starbase_starfortress } }
+		}
+		modifier = {
+			factor = 0.1
+			any_neighbor_system = {
+				exists = owner
+				NOT = {
+					owner = { is_same_value = from }
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+		 	from = { has_country_flag = oeo_hecto_cooldown }
+		}
+	}
+	on_build_start = {
+		from = { set_timed_country_flag = { flag = oeo_hecto_cooldown days = @oeo_hecto_cooldown_time } }
+	}
+	on_build_complete = {
+		fromfrom.planet = {
+			set_planet_flag = has_megastructure
+			set_planet_flag = megastructure
+			set_planet_flag = oeo_industrial
+			if = {
+				limit = { has_orbital_station = yes }
+				orbital_station = {
+					dismantle = yes
+				}
+			}
+		}
+	}
+}
+########RUINED###################
+oeo_industrial_station_ruined = {
+    entity = "station_generic_01_damaged_entity"
+	construction_entity = "station_generic_01_damaged_entity"
+	#portrait = "GFX_oeo_kilo"
+	place_entity_on_planet_plane = no
+	build_outside_gravity_well = no
+	use_planet_resource = no
+	show_in_outliner = yes
+	entity_offset = { x = -20 y = -20 }
+	construction_blocks_and_blocked_by = none
+	dismantle_cost = {
+		category = megastructures_oeo_hectostructures
+		cost = {
+			energy = @oeo_industrial_alloy_cost
+		}
+	}
+	dismantle_time = 360
+	dismantle_potential = {	always = yes }
+	dismantle_possible = {
+		custom_tooltip = {
+			fail_text = "oeo_dismantle_cooldown" 
+			NOT = { has_megastructure_flag = oeo_dismantle_cooldown }
+		}
+	}
+	on_dismantle_start = {
+		fromfrom.planet = {
+			set_planet_flag = oeo_not_cancelled
+			planet_event = { id = oeo_individual_dismantle.1 days = 361 }
+		}
+	}
+	on_dismantle_cancel = {
+		fromfrom = { set_timed_megastructure_flag = { flag = oeo_dismantle_cooldown days = 360 } }
+		fromfrom.planet = { remove_planet_flag = oeo_not_cancelled }
+	}
+	on_dismantle_complete = {	
+		from = {
+			add_resource = {
+				alloys = @oeo_industrial_alloy_cost
+				mult = modifier:megastructure_dismantle_refund_mult
+			}
+		}
+	}
+	potential = { always = no }
+	on_build_complete = {		
+		fromfrom.planet = {
+			set_planet_flag = has_megastructure
+			set_planet_flag = megastructure
+			if = {
+				limit = { has_orbital_station = yes }
+				orbital_station = {
+					dismantle = yes
+				}
+			}
+		}
+	}
+}
+oeo_industrial_station_restored = {
+    entity = "station_generic_01_entity"
+	construction_entity = "station_generic_01_entity"
+	portrait = "GFX_oeo_kilo"
+	show_in_outliner = yes
+	construction_blocks_and_blocked_by = none
+	build_time = @oeo_industrial_build_time
+	entity_offset = { x = -20 y = -20 }
+	upgrade_desc = hide
+	resources = {
+		category = megastructures_oeo_hectostructures
+		cost = {
+			trigger = { country_uses_bio_ships = no }
+			alloys = @oeo_industrial_alloy_cost
+			mult = 0.5
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			alloys = @oeo_industrial_alloy_cost
+			mult = 0.75
+		}
+		cost = {
+			trigger = { country_uses_bio_ships = yes }
+			food = @oeo_industrial_alloy_cost
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		produces = { 
+			trigger = {
+				owner = {
+					has_policy_flag = oeo_industrial_forges
+				}
+			}
+			alloys = @oeo_forge_alloy_output
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_catalytic_empire = no
+					has_policy_flag = oeo_industrial_forges
+				}
+			}
+			minerals = @oeo_forge_mineral_upkeep
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_catalytic_empire = yes 
+					has_policy_flag = oeo_industrial_forges
+				}
+			}
+			food = @oeo_forge_food_upkeep
+		}
+		produces = {
+			trigger = {
+				owner = {
+					country_uses_consumer_goods = yes
+					has_policy_flag = oeo_industrial_mixed
+				}
+			}
+			consumer_goods = @oeo_manufactury_goods_output
+		}
+		produces = {
+			trigger = { 
+				owner = {
+					country_uses_consumer_goods = yes
+					has_policy_flag = oeo_industrial_mixed
+				}
+			}
+			alloys = @oeo_manufactory_alloys_output
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_catalytic_empire = no
+					country_uses_consumer_goods = yes
+					has_policy_flag = oeo_industrial_mixed
+				}
+			}
+			minerals = 15
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_catalytic_empire = yes
+					country_uses_consumer_goods = yes
+					has_policy_flag = oeo_industrial_mixed
+				}
+			}
+			food = 30
+		}
+		produces = {
+			trigger = {
+				owner = {
+					country_uses_consumer_goods = yes
+					has_policy_flag = oeo_industrial_mixed_masterworks
+				}
+			}
+			consumer_goods = @oeo_manufactury_goods_output
+			trade = 1
+		}
+		produces = {
+			trigger = { 
+				owner = {
+					country_uses_consumer_goods = yes
+					has_policy_flag = oeo_industrial_mixed_masterworks
+				}
+			}
+			alloys = @oeo_manufactory_alloys_output
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_catalytic_empire = no
+					country_uses_consumer_goods = yes
+					has_policy_flag = oeo_industrial_mixed_masterworks
+				}
+			}
+			minerals = 15
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_catalytic_empire = yes
+					country_uses_consumer_goods = yes
+					has_policy_flag = oeo_industrial_mixed_masterworks
+				}
+			}
+			food = 30
+		}
+		produces = {
+			trigger = {
+				owner = {
+					country_uses_consumer_goods = yes
+					has_policy_flag = oeo_industrial_factory
+				}
+			}
+			consumer_goods = @oeo_factory_goods_output
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_catalytic_empire = no
+					country_uses_consumer_goods = yes
+					has_policy_flag = oeo_industrial_factory
+				}
+			}
+			minerals = 10
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_catalytic_empire = yes
+					country_uses_consumer_goods = yes
+					has_policy_flag = oeo_industrial_factory
+				}
+			}
+			food = 20
+		}
+		produces = {
+			trigger = {
+				owner = {
+					country_uses_consumer_goods = yes
+					has_policy_flag = oeo_industrial_masterworks
+				}
+			}
+			consumer_goods = 10
+			trade = 2
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_catalytic_empire = no
+					country_uses_consumer_goods = yes
+					has_policy_flag = oeo_industrial_masterworks
+				}
+			}
+			minerals = 10
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					is_catalytic_empire = yes
+					country_uses_consumer_goods = yes
+					has_policy_flag = oeo_industrial_masterworks
+				}
+			}
+			food = 20
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					NOR = { 
+						has_policy_flag = oeo_industrial_masterworks
+						has_policy_flag = oeo_industrial_mixed_masterworks
+					}
+				}
+			}
+			trade = @oeo_industrial_trade_upkeep
+		}
+	}
+	dismantle_cost = {
+		category = megastructures_oeo_hectostructures
+		cost = { energy = @oeo_industrial_alloy_cost }
+	}
+	dismantle_time = 360
+	dismantle_potential = {	always = yes }
+	dismantle_possible = {
+		custom_tooltip = {
+			fail_text = "oeo_dismantle_cooldown" 
+			NOT = { has_megastructure_flag = oeo_dismantle_cooldown }
+		}
+	}
+	on_dismantle_start = {
+		fromfrom.planet = {
+			set_planet_flag = oeo_not_cancelled
+			planet_event = { id = oeo_individual_dismantle.1 days = 361 }
+		}
+	}
+	on_dismantle_cancel = {
+		fromfrom = { set_timed_megastructure_flag = { flag = oeo_dismantle_cooldown days = 360 } }
+		fromfrom.planet = { remove_planet_flag = oeo_not_cancelled }
+	}
+	on_dismantle_complete = {	
+		from = {
+			add_resource = {
+				alloys = @oeo_industrial_alloy_cost
+				mult = modifier:megastructure_dismantle_refund_mult
+			}
+		}
+	}
+	upgrade_from = {
+		oeo_industrial_station_ruined
+	}
+	prerequisites = { "tech_oeo_orbtital_industry_2" }
+	possible = {
+		custom_tooltip = {
+			fail_text = "oeo_requires_orbital_factory_tech"
+			from = { has_technology = tech_oeo_orbtital_industry_2 }
+		}
+	}
+	on_build_complete = {		
+		fromfrom.planet = {
+			set_planet_flag = has_megastructure
+			set_planet_flag = megastructure
+			if = {
+				limit = { has_orbital_station = yes }
+				orbital_station = {
+					dismantle = yes
+				}
+			}
+		}
+		fromfrom = { set_megastructure_flag = oeo_industrial_station }	
+	}
+}
