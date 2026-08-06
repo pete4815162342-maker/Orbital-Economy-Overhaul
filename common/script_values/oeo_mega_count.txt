@@ -1,0 +1,180 @@
+oeo_num_system_orb_count = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = count_system_megastructure
+		parameters = { 
+			limit = {
+				is_oeo_vanilla = yes
+			}
+		}
+		mode = add
+	}
+}
+oeo_num_system_center_count = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = count_system_megastructure
+		parameters = { 
+			limit = {
+				is_oeo_vanilla = yes
+			}
+		}
+		mode = add
+	}
+}
+oeo_num_system_assembly_count = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = count_system_megastructure
+		parameters = { 
+			limit = {
+				is_oeo_vanilla = yes
+			}
+		}
+		mode = add
+	}
+}
+oeo_num_system_rings_count = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = count_system_megastructure
+		parameters = { 
+			limit = {
+				is_oeo_vanilla = yes
+			}
+		}
+		mode = add
+	}
+}
+oeo_num_system_matter_count = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = count_system_megastructure
+		parameters = { 
+			limit = {
+				is_oeo_vanilla = yes
+			}
+		}
+		mode = add
+	}
+}
+oeo_num_system_catapult_count = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = count_system_megastructure
+		parameters = { 
+			limit = {
+				is_oeo_vanilla = yes
+			}
+		}
+		mode = add
+	}
+}
+oeo_num_system_art_count = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = count_system_megastructure
+		parameters = { 
+			limit = {
+				is_oeo_vanilla = yes
+			}
+		}
+		mode = add
+	}
+}
+oeo_num_system_sphere = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = count_system_megastructure
+		parameters = { 
+			limit = {
+				is_oeo_sphere_category = yes
+			}
+		}
+		mode = add
+	}
+}
+oeo_num_system_orb = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = count_system_megastructure
+		parameters = { 
+			limit = {
+				is_oeo_orb_category = yes
+			}
+		}
+		mode = add
+	}
+}
+oeo_num_system_think = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = count_system_megastructure
+		parameters = { 
+			limit = {
+				is_oeo_orb_category = yes
+			}
+		}
+		mode = add
+	}
+}
+oeo_num_system_matter = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = count_system_megastructure
+		parameters = { 
+			limit = {
+				is_oeo_matter_category = yes
+			}
+		}
+		mode = add
+	}
+}
+oeo_num_system_center = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = count_system_megastructure
+		parameters = { 
+			limit = {
+				is_oeo_center_category = yes
+			}
+		}
+		mode = add
+	}
+}
+oeo_num_system_art = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = count_system_megastructure
+		parameters = { 
+			limit = {
+				is_oeo_art_category = yes
+			}
+		}
+		mode = add
+	}
+}
+oeo_num_system_assembly = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = count_system_megastructure
+		parameters = { 
+			limit = {
+				is_oeo_assembly_category = yes
+			}
+		}
+		mode = add
+	}
+}
+oeo_num_system_shipyard = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = count_system_megastructure
+		parameters = { 
+			limit = {
+				is_oeo_shipyard_category = yes
+			}
+		}
+		mode = add
+	}
+}

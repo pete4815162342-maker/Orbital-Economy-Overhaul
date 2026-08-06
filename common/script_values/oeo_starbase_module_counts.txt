@@ -1,0 +1,85 @@
+#Values referenced by starbase modules
+
+oeo_num_system_hectostructures_for_starbase = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = count_system_megastructure
+		trigger_scope = solar_system
+		parameters = {
+			limit = {
+				OR = {
+					is_megastructure_type = oeo_hydroponic_station_build_site_1
+					is_megastructure_type = oeo_energy_station_build_site_1
+					is_megastructure_type = oeo_asteroid_mine
+					is_megastructure_type = oeo_industrial_station_build_site_0
+					is_megastructure_type = oeo_industrial_station_restored	
+				}
+			}
+		}
+		mode = add
+	}
+}
+oeo_num_asteroid_in_system_for_starbase = {
+	complex_trigger_modifier = {
+		trigger = count_system_planet
+		trigger_scope = solar_system
+		parameters = {
+			limit = {
+				is_asteroid = yes
+			}
+		}
+		mode = add
+	}
+}
+oeo_num_planet_rings_in_system_for_starbase = {
+	complex_trigger_modifier = {
+		trigger = count_system_planet
+		trigger_scope = solar_system
+		parameters = {
+			limit = {
+				has_ring = yes
+			}
+		}
+		mode = add
+	}
+}
+
+oeo_num_system_colonies = {
+	complex_trigger_modifier = {
+		trigger = count_system_planet
+		trigger_scope = solar_system
+		parameters = {
+			limit = {
+				is_colony = yes
+			}
+		}
+		mode = add
+	}
+}
+
+oeo_num_system_hydroponics_for_starbase = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = count_system_megastructure
+		trigger_scope = solar_system
+		parameters = {
+			limit = {
+				is_megastructure_type = oeo_hydroponic_station_build_site_1
+			}
+		}
+		mode = add
+	}
+}
+oeo_num_system_solar_for_starbase = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = count_system_megastructure
+		trigger_scope = solar_system
+		parameters = {
+			limit = {
+				is_megastructure_type = oeo_energy_station_build_site_1
+			}
+		}
+		mode = add
+	}
+}
