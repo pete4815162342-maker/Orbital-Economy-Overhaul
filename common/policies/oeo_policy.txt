@@ -1,0 +1,272 @@
+oeo_hectostructure_policy = {
+	potential = {}
+	allow = {}
+	option = {
+		name = "oeo_hectostructure_full_ouput"
+		policy_flags = { oeo_hectostructure_full_ouput }
+		AI_weight = {
+			modifier = { factor = 1000 }
+		}
+	}
+	option = {
+		name = "oeo_hectostructure_three_q_ouput"
+		policy_flags = { oeo_hectostructure_three_q_ouput }
+		potential = {}
+		valid = {}
+		modifier = {
+			megastructures_oeo_hectostructures_producers_produces_mult = -0.25
+			megastructures_oeo_hectostructures_producers_upkeep_mult = -0.25
+		}
+		AI_weight = {
+			modifier = { factor = 0 }
+		}
+	}
+	option = {
+		name = "oeo_hectostructure_half_ouput"
+		policy_flags = { oeo_hectostructure_half_ouput }
+		potential = {}
+		valid = {}
+		modifier = {
+			megastructures_oeo_hectostructures_produces_mult = -0.5
+			megastructures_oeo_hectostructures_upkeep_mult = -0.5
+		}
+		AI_weight = {
+			modifier = { factor = 0 }
+		}
+	}
+	option = {
+		name = "oeo_hectostructure_quarter_ouput"
+		policy_flags = { oeo_hectostructure_quarter_ouput }
+		potential = {}
+		valid = {}
+		modifier = {
+			megastructures_oeo_hectostructures_produces_mult = -0.75
+			megastructures_oeo_hectostructures_upkeep_mult = -0.75
+		}
+		AI_weight = {
+			modifier = { factor = 0 }
+		}
+	}
+}
+oeo_matrioshka_policy = {
+	potential = {
+		any_owned_megastructure = {
+			OR = {
+				is_megastructure_type = oeo_matrioshka_brain_2
+				is_megastructure_type = oeo_matrioshka_brain_1
+				is_megastructure_type = oeo_matrioshka_brain_0
+			}
+		}
+	}
+	allow = {}
+	option = {
+		name = "oeo_virtual_reality"
+		policy_flags = { oeo_virtual_reality }
+		potential = { is_virtual_empire = yes }
+		valid = { is_virtual_empire = yes }
+		modifier = {}
+		AI_weight = {
+			modifier = { factor = 1000 }
+		}
+	}
+	option = {
+		name = "oeo_automation"
+		policy_flags = { oeo_automation }
+		potential = { has_technology = tech_assembly_pattern }
+		valid = { has_technology = tech_assembly_pattern }
+		modifier = {}
+		AI_weight = {
+			modifier = { factor = 0 }
+		}
+	}
+	option = {
+		name = "oeo_logistics"
+		policy_flags = { oeo_logistics }
+		potential = {
+			OR = {
+				has_tradition = tr_logistics_finish
+				has_tradition = tr_mercantile_finish
+			}
+		}
+		valid = {
+			OR = {
+				has_tradition = tr_logistics_finish
+				has_tradition = tr_mercantile_finish
+			}
+		}
+		modifier = { empire_size_mult = -0.1 }
+		AI_weight = {
+			modifier = { factor = 500 }
+		}
+	}
+	option = {
+		name = "oeo_research"
+		policy_flags = { oeo_research }
+		modifier = { num_tech_alternatives_add = 2 }
+	}
+	option = {
+		name = "oeo_administrative"
+		policy_flags = { oeo_administrative }
+		potential = {
+			OR = {
+				has_tradition = tr_harmony_finish
+				has_tradition = tr_synchronicity_finish
+			}
+		}
+		valid = {
+			OR = {
+				has_tradition = tr_harmony_finish
+				has_tradition = tr_synchronicity_finish
+			}
+		}
+		modifier = { planetary_ascension_effect_mult = 0.15 }
+	}
+}
+oeo_industrial_policy = {
+	potential = {
+		any_owned_megastructure = {
+			OR = {
+				is_megastructure_type = oeo_industrial_station_build_site_0 
+				is_megastructure_type = oeo_industrial_station_restored
+			}
+		}
+	}
+	allow = {}
+	option = {
+		name = "oeo_industrial_forges"
+		policy_flags = { oeo_industrial_forges }
+		potential = {}
+		valid = {}
+	}
+	option = {
+		name = "oeo_industrial_mixed"
+		policy_flags = { oeo_industrial_mixed }
+		potential = {
+			country_uses_consumer_goods = yes
+			NOR = {
+				has_valid_civic = civic_crafters
+				has_valid_civic = civic_corporate_crafters
+			}
+		}
+		valid = {
+			country_uses_consumer_goods = yes
+			NOR = {
+				has_valid_civic = civic_crafters
+				has_valid_civic = civic_corporate_crafters
+			}
+		}
+	}
+	option = {
+		name = "oeo_industrial_mixed_masterworks"
+		policy_flags = { oeo_industrial_mixed_masterworks }
+		potential = {
+			country_uses_consumer_goods = yes
+			OR = {
+				has_valid_civic = civic_crafters
+				has_valid_civic = civic_corporate_crafters
+			}
+		}
+		valid = {
+			country_uses_consumer_goods = yes
+			OR = {
+				has_valid_civic = civic_crafters
+				has_valid_civic = civic_corporate_crafters
+			}
+		}
+	}
+	option = {
+		name = "oeo_industrial_factory"
+		policy_flags = { oeo_industrial_factory }
+		potential = {
+			country_uses_consumer_goods = yes
+			NOR = {
+				has_valid_civic = civic_crafters
+				has_valid_civic = civic_corporate_crafters
+			}
+		}
+		valid = {
+			country_uses_consumer_goods = yes
+			NOR = {
+				has_valid_civic = civic_crafters
+				has_valid_civic = civic_corporate_crafters
+			}
+		}
+	}
+	option = {
+		name = "oeo_industrial_masterworks"
+		policy_flags = { oeo_industrial_masterworks }
+		potential = {
+			country_uses_consumer_goods = yes
+			OR = {
+				has_valid_civic = civic_crafters
+				has_valid_civic = civic_corporate_crafters
+			}
+		}
+		valid = {
+			country_uses_consumer_goods = yes
+			OR = {
+				has_valid_civic = civic_crafters
+				has_valid_civic = civic_corporate_crafters
+			}
+		}
+	}
+}
+oeo_hydroponics_policy = {
+	potential = {
+		any_owned_megastructure = {
+			is_megastructure_type = oeo_hydroponic_station_build_site_1
+		}
+	}
+	allow = {}
+	option = {
+		name = "oeo_hydroponics_food"
+		policy_flags = { oeo_hydroponics_food }
+		potential = {}
+		valid = {}
+	}
+	option = {
+		name = "oeo_hydroponics_reactor"
+		policy_flags = { oeo_hydroponics_reactor }
+		potential = { has_technology = tech_bio_reactor }
+		valid = { has_technology = tech_bio_reactor }
+		modifier = {}
+	}
+	option = {
+		name = "oeo_hydroponics_refinery"
+		policy_flags = { oeo_hydroponics_refinery }
+		potential = { has_technology = tech_bio_reactor_2 }
+		valid = { has_technology = tech_bio_reactor_2 }
+		modifier = {}
+	}
+	option = {
+		name = "oeo_hydroponics_research"
+		policy_flags = { oeo_hydroponics_research }
+		potential = { has_ascension_perk = ap_engineered_evolution }
+		valid = { has_ascension_perk = ap_engineered_evolution }
+		modifier = {
+			country_society_tech_research_speed = 0.1
+			bonus_pop_growth_mult = 0.1
+		}
+	}
+}
+oeo_solar_policy = {
+	potential = {
+		any_owned_megastructure = {
+			is_megastructure_type = oeo_energy_station_build_site_1
+		}
+	}
+	allow = {}
+	option = {
+		name = "oeo_solar_energy"
+		policy_flags = { oeo_solar_energy }
+		potential = {}
+		valid = {}
+	}
+	option = {
+		name = "oeo_solar_refueling"
+		policy_flags = { oeo_solar_refueling }
+		potential = { has_tradition = tr_oeo_star_husbandry_decentralized_fuel_depots }
+		valid = { has_tradition = tr_oeo_star_husbandry_decentralized_fuel_depots }
+		modifier = {}
+	}
+}
