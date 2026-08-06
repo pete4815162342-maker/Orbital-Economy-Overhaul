@@ -1,0 +1,6 @@
+on_game_start = {
+	events = {
+		oeo_game_start.1
+		zzz_oeo_terraform_game_start.1
+	}
+}
