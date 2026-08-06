@@ -1,0 +1,6 @@
+megastructure_dismantle_refund_mult = {
+	icon = mod_megastructure_dismantle_refund_mult
+	good = yes
+	category = country
+	percentage = yes
+}
